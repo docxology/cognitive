@@ -1,14 +1,16 @@
 # InferAnt Stream 10: Active Inference - Modeling, Learning, and Exploration
 
 ## Stream Information
+
 - **Platform**: GitHub Live
-- **Repository**: https://github.com/docxology/cognitive
-- **Tools**: 
-  - Cursor: https://cursor.com/
-  - Obsidian: https://obsidian.md/
-  - CodeViz: https://codeviz.ai/
+- **Repository**: <https://github.com/docxology/cognitive>
+- **Tools**:
+  - Cursor: <https://cursor.com/>
+  - Obsidian: <https://obsidian.md/>
+  - CodeViz: <https://codeviz.ai/>
 
 ## Epistemic Status
+
 - Incipient development phase
 - Semi-structured framework
 - Open for collaborations and contributions
@@ -17,6 +19,8 @@
 ## Agenda
 
 ### 1. Introduction
+
+- Start with Github push
 - Welcome and overview of [[obsidian_usage]] and [[active_inference]] and [[free_energy_principle]]
 - Context from previous streams
 - Today's objectives and roadmap
@@ -26,6 +30,7 @@
   - GitHub repository organization
 
 ### 2. Theoretical Foundations
+
 - Active Inference Framework
   - Free Energy Principle review
   - Generative models
@@ -37,7 +42,10 @@
   - Exploration-exploitation balance
   - Information gain
 
-### 3. Implementation Architecture 
+### 3. Implementation Architecture
+
+- POMDP (simple and generic), Ants, Biofirms
+- CodeViz and More. 
 - Core Components
   - GenerativeModel class
   - BeliefUpdater class
@@ -50,7 +58,8 @@
   - D matrix (prior beliefs)
   - E matrix (policy specification)
 
-### 4. Code Development 
+### 4. Code Development
+
 - Base Implementation
   - Matrix initialization and validation
   - Belief updating mechanisms
@@ -63,6 +72,7 @@
   - Property-based tests
 
 ### 5. Practical Applications
+
 - Example Scenarios
   - Simple navigation task
   - Multi-agent coordination
@@ -75,6 +85,7 @@
   - Policy evaluation
 
 ### 6. Future Directions
+
 - Next Steps
   - Extended functionality
   - Performance optimization
@@ -87,6 +98,7 @@
   - Collaboration opportunities
 
 ## Repository Organization
+
 ```
 cognitive/
 ├── src/
@@ -113,6 +125,7 @@ cognitive/
 ```
 
 ## Next Steps
+
 1. Implement core classes and functions
 2. Develop comprehensive test suite
 3. Create visualization utilities
@@ -121,18 +134,16 @@ cognitive/
 6. Establish contribution workflow
 
 ## References
+
 - Free Energy Principle foundations
 - Active Inference implementations
 - Related cognitive architectures
 - Relevant research papers
 
 ## Notes
+
 - Focus on modular, reusable components
 - Maintain clear documentation
 - Ensure test coverage
 - Consider performance optimization
 - Enable easy extension
-
-
-
-

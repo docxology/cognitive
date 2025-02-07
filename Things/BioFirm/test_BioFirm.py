@@ -650,8 +650,9 @@ class TestBioFirm:
     
     def _plot_scale_analysis(self, scale_type: str, scale: str, results: Dict[str, Any]):
         """Plot scale-specific analysis with enhanced styling."""
-        fig = plt.figure(figsize=(15, 12))
-        gs = fig.add_gridspec(3, 2, height_ratios=[1, 1, 0.8], hspace=0.3, wspace=0.3)
+        # Increase figure size and adjust spacing
+        fig = plt.figure(figsize=(16, 12))
+        gs = fig.add_gridspec(3, 2, height_ratios=[1, 1, 0.8], hspace=0.4, wspace=0.3)
         
         # Time series plot with enhanced styling
         ax1 = fig.add_subplot(gs[0, :])
@@ -746,8 +747,9 @@ class TestBioFirm:
     
     def _plot_intervention_analysis(self, intervention: str, results: Dict[str, Any]):
         """Plot intervention analysis with enhanced styling."""
-        fig = plt.figure(figsize=(15, 12))
-        gs = fig.add_gridspec(3, 2, height_ratios=[1, 1, 1], hspace=0.3, wspace=0.3)
+        # Increase figure size and adjust spacing
+        fig = plt.figure(figsize=(16, 12))
+        gs = fig.add_gridspec(3, 2, height_ratios=[1, 1, 1], hspace=0.4, wspace=0.3)
         
         # Before/After state comparison with error bars
         ax1 = fig.add_subplot(gs[0, :])
@@ -824,8 +826,10 @@ class TestBioFirm:
         from scipy import stats
         kernel = stats.gaussian_kde(effects)
         x_range = np.linspace(min(effects), max(effects), 100)
-        ax3.plot(x_range, kernel(x_range), 'r-', linewidth=2,
-                 label='KDE', color=self.color_schemes['main'][6])
+        ax3.plot(x_range, kernel(x_range), 
+                 linewidth=2,
+                 label='KDE', 
+                 color=self.color_schemes['main'][6])
         
         self._add_plot_styling(ax3, 'Effect Size Distribution',
                               'Effect Size', 'Density')
@@ -890,8 +894,9 @@ class TestBioFirm:
     
     def _plot_stability_analysis(self, scenario: str, results: Dict[str, Any]):
         """Plot stability analysis with enhanced styling."""
-        fig = plt.figure(figsize=(15, 12))
-        gs = fig.add_gridspec(3, 2, height_ratios=[1, 1, 1], hspace=0.3, wspace=0.3)
+        # Increase figure size and adjust spacing
+        fig = plt.figure(figsize=(16, 12))
+        gs = fig.add_gridspec(3, 2, height_ratios=[1, 1, 1], hspace=0.4, wspace=0.3)
         
         # System trajectory with confidence intervals
         ax1 = fig.add_subplot(gs[0, :])
@@ -949,8 +954,9 @@ class TestBioFirm:
     
     def _plot_resilience_analysis(self, disturbance: str, results: Dict[str, Any]):
         """Plot resilience analysis with enhanced styling."""
-        fig = plt.figure(figsize=(15, 15))
-        gs = fig.add_gridspec(4, 2, height_ratios=[1, 1, 1, 1], hspace=0.3, wspace=0.3)
+        # Increase figure size and adjust spacing
+        fig = plt.figure(figsize=(16, 15))
+        gs = fig.add_gridspec(4, 2, height_ratios=[1, 1, 1, 1], hspace=0.4, wspace=0.3)
         
         # System response with confidence intervals and thresholds
         ax1 = fig.add_subplot(gs[0, :])
@@ -1506,8 +1512,9 @@ class TestBioFirm:
     
     def _plot_stability_comparison(self, scenarios: List[str], metrics: Dict[str, Dict[str, float]]):
         """Plot stability comparison across scenarios."""
-        fig = plt.figure(figsize=(15, 10))
-        gs = fig.add_gridspec(2, 2, height_ratios=[1, 1])
+        # Increase figure size and adjust spacing
+        fig = plt.figure(figsize=(16, 12))
+        gs = fig.add_gridspec(2, 2, height_ratios=[1, 1], hspace=0.4, wspace=0.3)
         
         # Metric comparison
         ax1 = fig.add_subplot(gs[0, :])
@@ -1552,8 +1559,9 @@ class TestBioFirm:
     
     def _plot_resilience_comparison(self, disturbances: List[str], metrics: Dict[str, Dict[str, float]]):
         """Plot resilience comparison across disturbance types."""
-        fig = plt.figure(figsize=(15, 12))
-        gs = fig.add_gridspec(3, 2, height_ratios=[1, 1, 1])
+        # Increase figure size and adjust spacing
+        fig = plt.figure(figsize=(16, 15))
+        gs = fig.add_gridspec(3, 2, height_ratios=[1, 1, 1], hspace=0.4, wspace=0.3)
         
         # Metric comparison
         ax1 = fig.add_subplot(gs[0, :])
@@ -1644,8 +1652,9 @@ class TestBioFirm:
     
     def _plot_wavelet_analysis(self, data: np.ndarray, time: np.ndarray, name: str):
         """Plot wavelet analysis of time series data."""
-        fig = plt.figure(figsize=(15, 10))
-        gs = fig.add_gridspec(2, 2)
+        # Increase figure size and adjust spacing
+        fig = plt.figure(figsize=(16, 12))
+        gs = fig.add_gridspec(2, 2, hspace=0.4, wspace=0.3)
         
         # Continuous wavelet transform
         scales = np.arange(1, 128)
@@ -1690,8 +1699,9 @@ class TestBioFirm:
     
     def _plot_information_theory(self, data: np.ndarray, name: str):
         """Plot information theory metrics."""
-        fig = plt.figure(figsize=(15, 10))
-        gs = fig.add_gridspec(2, 2)
+        # Increase figure size and adjust spacing
+        fig = plt.figure(figsize=(16, 12))
+        gs = fig.add_gridspec(2, 2, hspace=0.4, wspace=0.3)
         
         # Transfer entropy between variables
         ax1 = fig.add_subplot(gs[0, 0])
@@ -1736,8 +1746,9 @@ class TestBioFirm:
     
     def _plot_fractal_analysis(self, data: np.ndarray, name: str):
         """Plot fractal analysis metrics."""
-        fig = plt.figure(figsize=(15, 10))
-        gs = fig.add_gridspec(2, 2)
+        # Increase figure size and adjust spacing
+        fig = plt.figure(figsize=(16, 12))
+        gs = fig.add_gridspec(2, 2, hspace=0.4, wspace=0.3)
         
         # Detrended fluctuation analysis
         ax1 = fig.add_subplot(gs[0, 0])
@@ -1786,8 +1797,9 @@ class TestBioFirm:
     
     def _plot_causal_analysis(self, data: np.ndarray, name: str):
         """Plot causal analysis metrics."""
-        fig = plt.figure(figsize=(15, 10))
-        gs = fig.add_gridspec(2, 2)
+        # Increase figure size and adjust spacing
+        fig = plt.figure(figsize=(16, 12))
+        gs = fig.add_gridspec(2, 2, hspace=0.4, wspace=0.3)
         
         # Granger causality matrix
         ax1 = fig.add_subplot(gs[0, 0])
