@@ -6,6 +6,8 @@ import yaml
 import numpy as np
 from pathlib import Path
 from typing import Optional
+import matplotlib
+matplotlib.use('Agg')  # Use non-GUI backend
 import matplotlib.pyplot as plt
 
 from ant_colony.environment import World
@@ -27,8 +29,18 @@ class Simulation:
         # Initialize components
         self.environment = World(self.config['environment'])
         self.colony = Colony(self.config['colony'], self.environment)
-        self.visualizer = ColonyVisualizer(self.config['visualization'])
-        self.data_collector = DataCollector(self.config['data_collection'])
+        
+        # Initialize visualization if enabled
+        if self.config.get('visualization', {}).get('enabled', True):
+            self.visualizer = ColonyVisualizer(self.config)
+        else:
+            self.visualizer = None
+            
+        # Initialize data collection if enabled
+        if self.config.get('data_collection', {}).get('enabled', True):
+            self.data_collector = DataCollector(self.config['data_collection'])
+        else:
+            self.data_collector = None
         
         # Simulation state
         self.current_step = 0
@@ -55,7 +67,7 @@ class Simulation:
         self.colony.update(dt)
         
         # Update visualization if enabled
-        if self.config['visualization']['enabled']:
+        if self.visualizer is not None:
             world_state = {
                 'agents': self.colony.agents,
                 'resources': self.environment.resources,
@@ -64,8 +76,8 @@ class Simulation:
             }
             self.visualizer.update(world_state)
             
-        # Collect data
-        if self.config['data_collection']['enabled']:
+        # Collect data if enabled
+        if self.data_collector is not None:
             self.data_collector.collect(self.current_time, world_state)
             
             # Save data periodically
@@ -89,7 +101,7 @@ class Simulation:
                     print(f"Step {self.current_step}/{max_steps}")
                     
                 # Update visualization
-                if not headless and self.config['visualization']['enabled']:
+                if not headless and self.visualizer is not None:
                     plt.pause(0.001)  # Allow GUI to update
                     
         except KeyboardInterrupt:
@@ -97,11 +109,11 @@ class Simulation:
             
         finally:
             # Save final data
-            if self.config['data_collection']['enabled']:
+            if self.data_collector is not None:
                 self.data_collector.save_data()
                 
             # Show final visualization
-            if not headless and self.config['visualization']['enabled']:
+            if not headless and self.visualizer is not None:
                 plt.show()
                 
     def pause(self) -> None:
@@ -123,5 +135,5 @@ class Simulation:
         self.colony = Colony(self.config['colony'], self.environment)
         
         # Clear data
-        if self.config['data_collection']['enabled']:
+        if self.data_collector is not None:
             self.data_collector = DataCollector(self.config['data_collection']) 

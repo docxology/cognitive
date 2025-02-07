@@ -34,6 +34,9 @@ class Nestmate:
         """Initialize the agent."""
         self.config = config
         
+        # Initialize beliefs first
+        self.beliefs = Belief()
+        
         # Physical state
         self.position = None
         self.orientation = 0.0
@@ -47,6 +50,13 @@ class Nestmate:
         self.current_task = TaskType.EXPLORATION
         self.task_time = 0.0
         
+        # Memory state
+        self.memory = {
+            'temporal': [],  # List of temporal memories (past states/actions)
+            'spatial': {},   # Dict of spatial memories (locations)
+            'social': {}     # Dict of social memories (interactions)
+        }
+        
         # Sensory state
         self.observations = {
             'pheromones': {},
@@ -56,7 +66,6 @@ class Nestmate:
         }
         
         # Internal model
-        self.beliefs = Belief()
         self.preferences = {task: 1.0 for task in TaskType}
         
         # Learning parameters
@@ -76,6 +85,31 @@ class Nestmate:
         
         # Select and execute actions
         self._select_actions()
+        
+        # Update memory with current state
+        self._update_memory()
+        
+    def _update_memory(self) -> None:
+        """Update agent's memory with current state."""
+        # Add current state to temporal memory
+        current_state = {
+            'state': self.current_task,
+            'position': self.position,
+            'energy': self.energy,
+            'time': self.task_time
+        }
+        self.memory['temporal'].append(current_state)
+        
+        # Limit memory size to prevent unbounded growth
+        max_memory = 100
+        if len(self.memory['temporal']) > max_memory:
+            self.memory['temporal'] = self.memory['temporal'][-max_memory:]
+            
+        # Update spatial memory if we found something interesting
+        if self.beliefs.food_location:
+            self.memory['spatial']['food'] = self.beliefs.food_location
+            
+        # Could add more memory updates here (social interactions, etc.)
         
     def _update_physical_state(self, dt: float) -> None:
         """Update physical state of the agent."""

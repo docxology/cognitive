@@ -78,6 +78,7 @@ class World:
         for _ in range(self.config['food_sources']['count']):
             pos = self._random_position()
             amount = np.random.uniform(*self.config['food_sources']['value_range'])
+            size = np.random.uniform(*self.config['food_sources']['size_range'])
             
             resource = Resource(
                 position=pos,
@@ -137,6 +138,14 @@ class World:
                         resource.max_amount
                     )
                     
+    def get_state(self) -> dict:
+        """Get the current state of the world."""
+        return {
+            'pheromones': self.pheromones,
+            'resources': [resource for resources in self.resources.values() for resource in resources],
+            'terrain': self.terrain
+        }
+        
     def get_local_state(self, position: Position, radius: float) -> dict:
         """Get the local state around a position within given radius."""
         x, y = position.x, position.y

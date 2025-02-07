@@ -14,8 +14,32 @@ class SimulationRenderer:
     def __init__(self, config: dict):
         """Initialize the renderer with configuration settings."""
         self.config = config
-        self.viz_config = config['visualization']
+        self.viz_config = config.get('visualization', {})
         self.env_size = config['environment']['size']
+        
+        # Default colors if not specified in config
+        self.colors = {
+            'nest': 'brown',
+            'food': 'green',
+            'obstacles': 'gray',
+            'agents': {
+                'foraging': 'red',
+                'maintenance': 'blue',
+                'nursing': 'pink',
+                'defense': 'darkred',
+                'exploration': 'orange'
+            },
+            'pheromones': {
+                'food': 'green',
+                'home': 'red',
+                'alarm': 'orange',
+                'trail': 'blue'
+            }
+        }
+        
+        # Override defaults with config values if present
+        if 'colors' in self.viz_config:
+            self.colors.update(self.viz_config['colors'])
         
         # Setup the figure and axis
         self.fig, self.ax = plt.subplots(figsize=(10, 10))
@@ -31,7 +55,7 @@ class SimulationRenderer:
         
         # Setup the nest
         nest_loc = config['environment']['nest_location']
-        nest = Circle(nest_loc, 5, color=self.viz_config['colors']['nest'])
+        nest = Circle(nest_loc, 5, color=self.colors['nest'])
         self.ax.add_patch(nest)
         
     def update(self, world_state: dict) -> None:
@@ -46,7 +70,7 @@ class SimulationRenderer:
         # Update pheromones
         for p_type, grid in world_state['pheromones'].items():
             if p_type not in self.pheromone_plots:
-                color = self.viz_config['colors']['pheromones'][p_type]
+                color = self.colors['pheromones'][p_type]
                 self.pheromone_plots[p_type] = self.ax.imshow(
                     grid,
                     extent=[0, self.env_size[0], 0, self.env_size[1]],
@@ -60,7 +84,7 @@ class SimulationRenderer:
         
         # Draw agents
         for agent in world_state['agents']:
-            color = self.viz_config['colors']['agents'][agent.current_task.value]
+            color = self.colors['agents'][agent.current_task.value]
             agent_patch = self._create_agent_patch(agent, color)
             self.ax.add_patch(agent_patch)
             self.agent_patches.append(agent_patch)
@@ -69,8 +93,8 @@ class SimulationRenderer:
         for food in world_state['resources']:
             food_patch = Circle(
                 (food.position.x, food.position.y),
-                food.size,
-                color=self.viz_config['colors']['food']
+                food.size if hasattr(food, 'size') else 1.0,
+                color=self.colors['food']
             )
             self.ax.add_patch(food_patch)
             self.food_patches.append(food_patch)
@@ -79,8 +103,8 @@ class SimulationRenderer:
         for obstacle in world_state['obstacles']:
             obstacle_patch = Circle(
                 (obstacle.position.x, obstacle.position.y),
-                obstacle.size,
-                color=self.viz_config['colors']['obstacles']
+                obstacle.size if hasattr(obstacle, 'size') else 1.0,
+                color=self.colors['obstacles']
             )
             self.ax.add_patch(obstacle_patch)
             self.obstacle_patches.append(obstacle_patch)

@@ -134,13 +134,13 @@ class DataCollector:
             'run_id': self.run_id,
             'duration': len(self.data['time']),
             'colony_stats': {
-                'mean_population': float(colony_stats['population'].mean()),
-                'peak_population': int(colony_stats['population'].max()),
-                'total_food_collected': float(colony_stats['total_food_collected'].sum())
+                'mean_population': float(np.mean([stats['population'] for stats in self.data['colony_stats']])),
+                'peak_population': int(max(stats['population'] for stats in self.data['colony_stats'])),
+                'total_food_collected': float(sum(stats['total_food_collected'] for stats in self.data['colony_stats']))
             },
             'task_distribution': {
-                task: float(task_dist[task].mean())
-                for task in task_dist.columns
+                task: float(np.mean([dist.get(task, 0) for dist in self.data['task_distribution']]))
+                for task in set().union(*self.data['task_distribution'])
             }
         }
         

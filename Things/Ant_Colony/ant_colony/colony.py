@@ -10,8 +10,8 @@ import numpy as np
 from typing import Dict, List, Tuple, Optional
 from dataclasses import dataclass
 import networkx as nx
-from agents.nestmate import Nestmate, TaskType
-from environment.world import World, Position, Resource
+from ant_colony.agents.nestmate import Nestmate, TaskType
+from ant_colony.environment.world import World, Position, Resource
 
 @dataclass
 class ColonyStats:
@@ -45,6 +45,10 @@ class Colony:
             'water': 0.0,
             'building_materials': 0.0
         }
+        
+        # Initialize task needs and allocation
+        self.task_needs = {task: 0.0 for task in TaskType}
+        self.task_allocation = {task: set() for task in TaskType}
         
         # Initialize agents
         self.agents: List[Nestmate] = []
@@ -91,6 +95,8 @@ class Colony:
             
             agent = Nestmate(agent_config)
             agent.position = pos
+            
+            # Initialize beliefs after creating agent
             agent.beliefs.nest_location = self.nest_position
             
             self.agents.append(agent)
@@ -181,11 +187,19 @@ class Colony:
             'energy_efficiency': self._compute_energy_efficiency()
         }
         
+        # Compute coordination metrics
+        coordination = {
+            'task_specialization': self._calculate_specialization(),
+            'social_network_density': nx.density(self.interaction_network),
+            'task_balance': self._compute_task_balance(task_dist)
+        }
+        
         return ColonyStats(
             population=len(self.agents),
             task_distribution=task_dist,
             resource_levels=self.resources.copy(),
-            efficiency_metrics=efficiency
+            efficiency_metrics=efficiency,
+            coordination_metrics=coordination
         )
         
     def _compute_food_efficiency(self) -> float:
@@ -459,4 +473,17 @@ class Colony:
                     break
                 if agent not in current_defenders:
                     agent.current_task = TaskType.DEFENSE
-                    current_defenders.add(agent) 
+                    current_defenders.add(agent)
+        
+    def _compute_task_balance(self, task_dist: Dict[TaskType, int]) -> float:
+        """Compute how well-balanced the task distribution is."""
+        if not self.agents:
+            return 0.0
+        
+        # Ideal distribution would be uniform across tasks
+        ideal_per_task = len(self.agents) / len(TaskType)
+        deviations = [abs(count - ideal_per_task) for count in task_dist.values()]
+        max_deviation = len(self.agents)  # Worst case: all agents on one task
+        
+        # Return normalized score (1.0 = perfect balance, 0.0 = worst balance)
+        return 1.0 - sum(deviations) / (2 * max_deviation) 

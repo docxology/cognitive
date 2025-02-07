@@ -6,6 +6,7 @@
       {
         "id": "dea337cf76935a08",
         "type": "tabs",
+        "dimension": 37.73006134969325,
         "children": [
           {
             "id": "0ba8a1b9b9dd949a",
@@ -26,19 +27,16 @@
       {
         "id": "99b33ec97f002ea4",
         "type": "tabs",
+        "dimension": 62.26993865030674,
         "children": [
           {
             "id": "283b4112120e60a0",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Things/BioFirm/BioFirm_README.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "BioFirm_README"
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
             }
           }
         ]
@@ -114,7 +112,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Things/Continuous_Generic/Continuous_Generic_README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -124,7 +121,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Continuous_Generic_README"
+              "title": "Backlinks"
             }
           },
           {
@@ -133,12 +130,11 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Things/Continuous_Generic/Continuous_Generic_README.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Continuous_Generic_README"
+              "title": "Outgoing links"
             }
           },
           {
@@ -162,13 +158,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Things/Continuous_Generic/Continuous_Generic_README.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Continuous_Generic_README"
+              "title": "Outline"
             }
           }
         ]
@@ -188,32 +183,34 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "0ba8a1b9b9dd949a",
+  "active": "283b4112120e60a0",
   "lastOpenFiles": [
-    "ant_colony/agents/nestmate.py",
-    "ant_colony/agents",
-    "ant_colony",
-    "Things/Ant_Colony/ant_colony/__pycache__/main.cpython-310.pyc",
-    "Things/Ant_Colony/ant_colony/utils/__pycache__/data_collection.cpython-310.pyc",
-    "Things/Ant_Colony/ant_colony/utils/__pycache__/__init__.cpython-310.pyc",
-    "Things/Ant_Colony/ant_colony/utils/__pycache__",
-    "Things/Ant_Colony/ant_colony/environment/__pycache__/world.cpython-310.pyc",
-    "Things/Ant_Colony/ant_colony/utils/__init__.py",
-    "Things/Ant_Colony/ant_colony/utils/data_collection.py",
-    "Things/Ant_Colony/ant_colony/utils",
+    "Things/Path_Network/venv/lib/python3.10/site-packages/pip-25.0.dist-info/top_level.txt",
+    "Things/Path_Network/venv/lib/python3.10/site-packages/pip-25.0.dist-info/entry_points.txt",
+    "Things/Path_Network/venv/lib/python3.10/site-packages/pip-25.0.dist-info/WHEEL",
+    "Things/Path_Network/venv/lib/python3.10/site-packages/pip-25.0.dist-info/REQUESTED",
+    "Things/Path_Network/venv/lib/python3.10/site-packages/pip-25.0.dist-info/RECORD",
+    "Things/Path_Network/venv/lib/python3.10/site-packages/pip-25.0.dist-info/METADATA",
+    "Things/Path_Network/venv/lib/python3.10/site-packages/pip-25.0.dist-info/LICENSE.txt",
+    "Things/Path_Network/venv/lib/python3.10/site-packages/pip-25.0.dist-info/AUTHORS.txt",
+    "Things/Path_Network/venv/lib/python3.10/site-packages/pip-25.0.dist-info/INSTALLER",
+    "Things/Path_Network/venv/lib/python3.10/site-packages/pip-25.0.dist-info",
+    "Things/Path_Network/venv/bin/Activate.ps1",
+    "Things/Path_Network/output/20250207_134114/agent_height_variations.png",
+    "Things/Path_Network/output/20250207_134114/water_level_distribution.png",
+    "Things/Path_Network/output/20250207_134114/final_state.png",
+    "Things/Path_Network/output/20250207_134114/initial_state.png",
+    "Things/Path_Network/output/20250207_134014/agent_height_variations.png",
+    "Things/Path_Network/output/20250207_134014/water_level_distribution.png",
+    "Things/Path_Network/output/20250207_134014/final_state.png",
+    "Things/Path_Network/output/20250207_134014/initial_state.png",
+    "Things/Path_Network/README.md",
+    "Things/Path_Network/Path_Network_README.md",
+    "Things/BioFirm/BioFirm_README.md",
+    "Things/Continuous_Generic/Continuous_Generic_README.md",
     "Output/tests/visualization/detailed_summary.png",
     "Output/tests/visualization/summary.png",
-    "Output/tests/visualization/action_phase_space.png",
-    "Output/tests/visualization/action_evolution.png",
-    "Output/tests/visualization/free_energy_landscape.png",
-    "Output/tests/visualization/belief_animation.gif",
-    "Things/BioFirm/BioFirm_README.md",
     "knowledge_base/cognitive/continuous_time_active_inference.md",
-    "Output/tests/visualization/generalized_coordinates.png",
-    "Output/tests/visualization/energy_ratio.png",
-    "Output/tests/visualization/energy_components.png",
-    "Output/tests/visualization/phase_space_energy.png",
-    "Things/Continuous_Generic/Continuous_Generic_README.md",
     "Things/Generic_POMDP/Generic_POMDP_README.md",
     "src/models/active_inference/docs/biofirm_schema.md",
     "knowledge_base/agents/GenericPOMDP/matrices/A_matrix.md",
@@ -234,8 +231,6 @@
     "knowledge_base/mathematics/expected_free_energy.md",
     "knowledge_base/mathematics/active_inference_pomdp.md",
     "knowledge_base/mathematics/compute_efe.md",
-    "knowledge_base/mathematics/belief_updating.md",
-    "knowledge_base/cognitive/perceptual_inference.md",
-    "knowledge_base/cognitive/metacognition.md"
+    "knowledge_base/mathematics/belief_updating.md"
   ]
 }
