@@ -6,7 +6,7 @@
       {
         "id": "dea337cf76935a08",
         "type": "tabs",
-        "dimension": 38.062547673531654,
+        "dimension": 30.51643192488263,
         "children": [
           {
             "id": "0ba8a1b9b9dd949a",
@@ -44,7 +44,7 @@
       {
         "id": "109379312b857b11",
         "type": "tabs",
-        "dimension": 61.937452326468346,
+        "dimension": 69.48356807511738,
         "children": [
           {
             "id": "52d3928d1a582e57",
@@ -205,6 +205,7 @@
   },
   "active": "0ba8a1b9b9dd949a",
   "lastOpenFiles": [
+    "InferAnt_Stream_10.md",
     "Things/BioFirm/output/20250207_113935/results/advanced_report_resilience_pulse.txt",
     "Things/BioFirm/output/20250207_113935/results/stats_report_resilience_pulse.txt",
     "Things/BioFirm/output/20250207_113935/visualizations/causal_resilience_pulse.png",
@@ -225,9 +226,7 @@
     "Things/BioFirm/output/20250207_113935/results/resilience_pulse.yaml",
     "Things/BioFirm/output/20250207_113935/results/resilience_press.yaml",
     "Things/BioFirm/output/20250207_113935/results/resilience_shock.yaml",
-    "Things/BioFirm/output/20250207_113935/results/advanced_report_stability_extreme.txt",
     "Canvas.canvas",
-    "InferAnt_Stream_10.md",
     "knowledge_base/systems/index.md",
     "knowledge_base/mathematics/index.md",
     "knowledge_base/index.md",

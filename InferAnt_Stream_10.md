@@ -20,7 +20,7 @@
 
 ### 1. Introduction
 
-- Start with Github push
+- Start with Github push.
 - Welcome and overview of [[obsidian_usage]] and [[active_inference]] and [[free_energy_principle]]
 - Context from previous streams
 - Today's objectives and roadmap
