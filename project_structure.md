@@ -1,146 +1,183 @@
 # Project Structure
 
+## Overview
+
+This document outlines the comprehensive organization of the cognitive modeling framework, detailing the purpose and relationships between different components.
+
 ## Core Directories
 
-### 📁 templates/
-- `node_templates/` - Base templates for different types of cognitive nodes (See [[ai_concept_template]])
-  - `agent_template.md` - Template for [[active_inference]] agent definitions
-  - `belief_template.md` - Template for [[belief_updating]] structures
-  - `goal_template.md` - Template for goal hierarchies and optimization
-  - `action_template.md` - Template for [[action_selection]] definitions
-  - `observation_template.md` - Template for [[predictive_processing]] patterns
-  - `relationship_template.md` - Template for [[linking_completeness|node relationships]]
-
 ### 📁 knowledge_base/
-- `cognitive/` - Core cognitive concepts (See [[cognitive_phenomena]])
-  - [[active_inference]] - Active Inference framework
-  - [[free_energy_principle]] - Free Energy Principle
-  - [[predictive_processing]] - Predictive Processing theory
-- `agents/` - Agent definitions and states
-- `beliefs/` - Belief networks and structures
-- `goals/` - Goal hierarchies and definitions
-- `actions/` - Action repertoires and policies
-- `observations/` - Observation patterns and histories
-- `relationships/` - Inter-node relationships and dynamics
+Core knowledge organization and theoretical foundations
+
+#### Cognitive Domain
+- `cognitive/` - Core cognitive concepts
+  - `active_inference/` - Active Inference framework
+  - `belief_updating/` - Belief update mechanisms
+  - `policy_selection/` - Action selection algorithms
+  - `free_energy/` - Free Energy calculations
+  - `predictive_processing/` - Predictive processing theory
+
+#### Mathematical Domain
+- `mathematics/` - Mathematical foundations
+  - `probability/` - Probability theory
+  - `information_theory/` - Information theoretic concepts
+  - `optimization/` - Optimization methods
+  - `dynamical_systems/` - System dynamics
+
+#### Implementation Domain
+- `implementations/` - Concrete examples
+  - `navigation/` - Navigation tasks
+  - `foraging/` - Resource foraging
+  - `coordination/` - Multi-agent coordination
+  - `learning/` - Learning scenarios
 
 ### 📁 src/
+Source code implementation
+
+#### Core Components
 - `models/` - Core modeling components
-  - `active_inference/` - [[active_inference|Active Inference]] implementation
-  - `belief_updating/` - [[belief_updating|Belief update mechanisms]]
-  - `policy_selection/` - [[action_selection|Policy selection algorithms]]
+  - `active_inference/` - Active Inference implementation
+    - `generative_model.py`
+    - `belief_updater.py`
+    - `policy_selector.py`
   - `state_estimation/` - State estimation tools
-- `utils/` - Utility functions and helpers
-  - `visualization/` - [[visualization_tools|Visualization tools]]
-  - `data_processing/` - Data processing utilities
-  - `obsidian_integration/` - [[obsidian_linking|Obsidian integration tools]]
-- `analysis/` - Analysis tools and scripts
-  - `network_analysis/` - Network analysis tools
-  - `metrics/` - Performance and behavior metrics
+  - `optimization/` - Optimization algorithms
+
+#### Utility Functions
+- `utils/` - Utility functions
+  - `visualization/` - Visualization tools
+    - `state_space.py`
+    - `belief_plots.py`
+    - `network_viz.py`
+  - `validation/` - Validation utilities
+    - `matrix_validation.py`
+    - `model_checks.py`
+  - `data_processing/` - Data handling
+
+#### Analysis Tools
+- `analysis/` - Analysis tools
+  - `metrics/` - Performance metrics
+  - `network_analysis/` - Network analysis
   - `simulations/` - Simulation frameworks
 
-### 📁 docs/
-See [[documentation_standards]] for comprehensive documentation guidelines
-
-#### Core Documentation
-- `api/` - API Reference Documentation
-  - [[api_documentation]] - API documentation guidelines
-  - [[api_reference]] - Complete API reference
-  - [[api_versioning]] - API versioning guidelines
-  - [[api_examples]] - API usage examples
-
-#### Conceptual Documentation
-- `concepts/` - Core Concepts and Theory
-  - [[machine_readability]] - Machine processing principles
-  - [[plain_text_benefits]] - Benefits of plain text
-  - [[research_education]] - Research and education integration
-  - [[cognitive_phenomena]] - Cognitive phenomena catalog
-  - [[theoretical_foundations]] - Theoretical background
-
-#### Implementation Guides
-- `guides/` - Usage Guides and Tutorials
-  - [[ai_documentation_style]] - Documentation style guide
-  - [[ai_file_organization]] - File organization guide
-  - [[ai_folder_structure]] - Directory structure guide
-  - [[ai_semantic_processing]] - Semantic processing guide
-  - [[ai_validation_framework]] - Validation framework
-  - [[linking_completeness]] - Link completeness guide
-  - [[linking_analysis]] - Link analysis guide
-  - [[linking_validation]] - Link validation guide
-  - [[obsidian_linking]] - Obsidian integration guide
-  - [[package_documentation]] - Package documentation guide
-
-#### Example Documentation
-- `examples/` - Example Implementations
-  - [[example_writing]] - Example writing guide
-  - [[quickstart_example]] - Quick start tutorial
-  - [[active_inference_example]] - Active inference examples
-  - [[belief_updating_example]] - Belief updating examples
-  - [[integration_examples]] - Integration examples
-  - [[validation_examples]] - Validation examples
-
-#### Template Documentation
-- `templates/` - Documentation Templates
-  - [[package_component]] - Package component template
-  - [[ai_concept_template]] - AI concept template
-  - [[linking_template]] - Linking template
-  - [[validation_template]] - Validation template
-  - [[example_template]] - Example template
-  - [[guide_template]] - Guide template
-
-#### Tool Documentation
-- `tools/` - Development Tools
-  - [[documentation_tools]] - Documentation tooling
-  - [[validation_tools]] - Validation tools
-  - [[visualization_tools]] - Visualization tools
-  - [[analysis_tools]] - Analysis tools
-  - [[generation_tools]] - Code generation tools
-
-#### Research Documentation
-- `research/` - Research Documentation
-  - [[experiment_documentation]] - Experiment documentation
-  - [[result_analysis]] - Result analysis
-  - [[literature_review]] - Literature review
-  - [[theoretical_development]] - Theory development
-
 ### 📁 tests/
-- Unit tests and integration tests (See [[testing_guide]])
-  - `test_matrix_ops.py` - Matrix operation tests
-  - `test_visualization.py` - Visualization tests
-  - `conftest.py` - Shared test fixtures
+Comprehensive test suite
 
-### 📁 data/
-- `raw/` - Raw data storage
-- `processed/` - Processed data
-- `results/` - Analysis results
+#### Test Categories
+- `unit/` - Unit tests
+  - `test_matrix_ops.py`
+  - `test_belief_updates.py`
+  - `test_policy_selection.py`
+- `integration/` - Integration tests
+  - `test_agent_environment.py`
+  - `test_learning_scenarios.py`
+- `visualization/` - Visualization tests
+  - `test_state_plots.py`
+  - `test_network_viz.py`
 
-## Key Files
+### 📁 docs/
+Project documentation
 
-- `requirements.txt` - Python dependencies
-- `setup.py` - Package setup
-- `README.md` - Project documentation (See [[documentation_standards]])
-- `CONTRIBUTING.md` - [[contribution_guide|Contribution guidelines]]
-- `.gitignore` - [[git_workflow|Git ignore rules]]
-- `config.yaml` - Configuration settings
+#### Documentation Types
+- `theory/` - Theoretical foundations
+  - `active_inference.md`
+  - `free_energy.md`
+  - `predictive_processing.md`
+- `implementation/` - Implementation details
+  - `api_reference.md`
+  - `class_documentation.md`
+  - `function_specifications.md`
+- `examples/` - Usage examples
+  - `quickstart.md`
+  - `tutorials/`
+  - `case_studies/`
 
-## Documentation Integration
+### 📁 templates/
+Reusable templates and patterns
 
-### Knowledge Graph Structure
-The project follows a [[linking_completeness|comprehensive linking structure]] that ensures:
-- Bidirectional relationships between components
-- Clear dependency chains
-- Traceable implementations
-- Validated connections
+#### Template Categories
+- `concepts/` - Concept templates
+  - `cognitive_template.md`
+  - `mathematical_template.md`
+  - `implementation_template.md`
+- `documentation/` - Documentation templates
+  - `api_template.md`
+  - `example_template.md`
+  - `tutorial_template.md`
 
-### Validation Framework
-See [[ai_validation_framework]] for details on:
-- Link validation
-- Documentation completeness
-- Quality metrics
-- Automated checks
+## File Organization
 
-### Best Practices
-Follow these guides for development:
-- [[ai_documentation_style]] - Documentation style guide
-- [[ai_file_organization]] - File organization patterns
-- [[ai_folder_structure]] - Directory structure guidelines
-- [[ai_semantic_processing]] - Semantic processing integration 
+### Naming Conventions
+- Use lowercase with underscores
+- Include category prefixes
+- Be descriptive and concise
+
+### File Structure
+- Include header metadata
+- Follow consistent organization
+- Maintain clear dependencies
+
+### Version Control
+- Use meaningful commits
+- Group related changes
+- Track dependencies
+
+## Development Workflow
+
+### 1. Knowledge Development
+1. Create concept documentation
+2. Establish relationships
+3. Validate theoretical consistency
+4. Update dependencies
+
+### 2. Implementation
+1. Write core functionality
+2. Add unit tests
+3. Create integration tests
+4. Document API
+
+### 3. Validation
+1. Run test suite
+2. Check coverage
+3. Validate relationships
+4. Review documentation
+
+### 4. Deployment
+1. Update version
+2. Generate documentation
+3. Create release notes
+4. Deploy changes
+
+## Quality Assurance
+
+### Documentation Standards
+- Complete API documentation
+- Clear usage examples
+- Comprehensive guides
+- Up-to-date references
+
+### Testing Requirements
+- High test coverage
+- Integration testing
+- Property-based tests
+- Performance benchmarks
+
+### Code Quality
+- Follow style guide
+- Use type hints
+- Write clear comments
+- Maintain modularity
+
+## References
+
+### Documentation
+- Project style guide
+- API documentation
+- Testing guide
+- Contribution guide
+
+### Dependencies
+- requirements.txt
+- setup.py
+- environment.yml
+- Dockerfile 

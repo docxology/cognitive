@@ -1,0 +1,396 @@
+2025-02-06 14:42:15,529 - test_generic_pomdp - INFO - ================================================================================
+2025-02-06 14:42:15,529 - test_generic_pomdp - INFO - ================================================================================
+2025-02-06 14:42:15,529 - test_generic_pomdp - INFO - Starting test session
+2025-02-06 14:42:15,529 - test_generic_pomdp - INFO - Starting test session
+2025-02-06 14:42:15,530 - test_generic_pomdp - INFO - Log file: /home/trim/Documents/Obsidian/Cognitive_Modeling/Things/Generic_POMDP/Output/logs/test_run_20250206_144215.log
+2025-02-06 14:42:15,530 - test_generic_pomdp - INFO - Log file: /home/trim/Documents/Obsidian/Cognitive_Modeling/Things/Generic_POMDP/Output/logs/test_run_20250206_144215.log
+2025-02-06 14:42:15,530 - test_generic_pomdp - INFO - Python version: 3.10.12 (main, Jan 17 2025, 14:35:34) [GCC 11.4.0]
+2025-02-06 14:42:15,530 - test_generic_pomdp - INFO - Python version: 3.10.12 (main, Jan 17 2025, 14:35:34) [GCC 11.4.0]
+2025-02-06 14:42:15,530 - test_generic_pomdp - INFO - ================================================================================
+2025-02-06 14:42:15,530 - test_generic_pomdp - INFO - ================================================================================
+2025-02-06 14:42:15,538 - test_generic_pomdp - INFO - Testing configuration dimensions:
+2025-02-06 14:42:15,538 - test_generic_pomdp - INFO - Testing configuration dimensions:
+2025-02-06 14:42:15,539 - test_generic_pomdp - INFO - Observations: 4
+2025-02-06 14:42:15,539 - test_generic_pomdp - INFO - Observations: 4
+2025-02-06 14:42:15,539 - test_generic_pomdp - INFO - States: 3
+2025-02-06 14:42:15,539 - test_generic_pomdp - INFO - States: 3
+2025-02-06 14:42:15,539 - test_generic_pomdp - INFO - Actions: 2
+2025-02-06 14:42:15,539 - test_generic_pomdp - INFO - Actions: 2
+2025-02-06 14:42:15,539 - test_generic_pomdp - INFO - Planning horizon: 4
+2025-02-06 14:42:15,539 - test_generic_pomdp - INFO - Planning horizon: 4
+2025-02-06 14:42:15,539 - test_generic_pomdp - INFO - Total timesteps: 10
+2025-02-06 14:42:15,539 - test_generic_pomdp - INFO - Total timesteps: 10
+2025-02-06 14:42:15,539 - test_generic_pomdp - INFO - All configuration dimensions validated successfully
+2025-02-06 14:42:15,539 - test_generic_pomdp - INFO - All configuration dimensions validated successfully
+2025-02-06 14:42:15,549 - test_generic_pomdp - INFO - Checking model dimensions match configuration:
+2025-02-06 14:42:15,549 - test_generic_pomdp - INFO - Checking model dimensions match configuration:
+2025-02-06 14:42:15,550 - test_generic_pomdp - INFO - ✓ Observations dimension: 4
+2025-02-06 14:42:15,550 - test_generic_pomdp - INFO - ✓ Observations dimension: 4
+2025-02-06 14:42:15,550 - test_generic_pomdp - INFO - ✓ States dimension: 3
+2025-02-06 14:42:15,550 - test_generic_pomdp - INFO - ✓ States dimension: 3
+2025-02-06 14:42:15,550 - test_generic_pomdp - INFO - ✓ Actions dimension: 2
+2025-02-06 14:42:15,550 - test_generic_pomdp - INFO - ✓ Actions dimension: 2
+2025-02-06 14:42:15,550 - test_generic_pomdp - INFO - 
+Validating matrix shapes:
+2025-02-06 14:42:15,550 - test_generic_pomdp - INFO - 
+Validating matrix shapes:
+2025-02-06 14:42:15,550 - test_generic_pomdp - INFO - ✓ A matrix shape: (4, 3)
+2025-02-06 14:42:15,550 - test_generic_pomdp - INFO - ✓ A matrix shape: (4, 3)
+2025-02-06 14:42:15,550 - test_generic_pomdp - INFO - ✓ B matrix shape: (3, 3, 2)
+2025-02-06 14:42:15,550 - test_generic_pomdp - INFO - ✓ B matrix shape: (3, 3, 2)
+2025-02-06 14:42:15,550 - test_generic_pomdp - INFO - ✓ C matrix shape: (4, 4)
+2025-02-06 14:42:15,550 - test_generic_pomdp - INFO - ✓ C matrix shape: (4, 4)
+2025-02-06 14:42:15,550 - test_generic_pomdp - INFO - ✓ D matrix shape: (3,)
+2025-02-06 14:42:15,550 - test_generic_pomdp - INFO - ✓ D matrix shape: (3,)
+2025-02-06 14:42:15,550 - test_generic_pomdp - INFO - ✓ E matrix shape: (2,)
+2025-02-06 14:42:15,550 - test_generic_pomdp - INFO - ✓ E matrix shape: (2,)
+2025-02-06 14:42:15,550 - test_generic_pomdp - INFO - 
+✓ Initial state validated successfully
+2025-02-06 14:42:15,550 - test_generic_pomdp - INFO - 
+✓ Initial state validated successfully
+2025-02-06 14:42:15,550 - test_generic_pomdp - INFO - 
+All initialization checks passed successfully
+2025-02-06 14:42:15,550 - test_generic_pomdp - INFO - 
+All initialization checks passed successfully
+2025-02-06 14:42:16,686 - test_generic_pomdp - INFO - Observation counts: [50]
+2025-02-06 14:42:16,686 - test_generic_pomdp - INFO - Observation counts: [50]
+2025-02-06 14:42:16,698 - test_generic_pomdp - INFO - 
+Starting full simulation test
+2025-02-06 14:42:16,698 - test_generic_pomdp - INFO - 
+Starting full simulation test
+2025-02-06 14:42:16,699 - test_generic_pomdp - INFO - 
+Output directories:
+2025-02-06 14:42:16,699 - test_generic_pomdp - INFO - 
+Output directories:
+2025-02-06 14:42:16,699 - test_generic_pomdp - INFO - Test results: /home/trim/Documents/Obsidian/Cognitive_Modeling/Things/Generic_POMDP/Output/test_results/full_simulation
+2025-02-06 14:42:16,699 - test_generic_pomdp - INFO - Test results: /home/trim/Documents/Obsidian/Cognitive_Modeling/Things/Generic_POMDP/Output/test_results/full_simulation
+2025-02-06 14:42:16,699 - test_generic_pomdp - INFO - Plots: /home/trim/Documents/Obsidian/Cognitive_Modeling/Things/Generic_POMDP/Output/plots
+2025-02-06 14:42:16,699 - test_generic_pomdp - INFO - Plots: /home/trim/Documents/Obsidian/Cognitive_Modeling/Things/Generic_POMDP/Output/plots
+2025-02-06 14:42:16,699 - test_generic_pomdp - INFO - EFE Components: /home/trim/Documents/Obsidian/Cognitive_Modeling/Things/Generic_POMDP/Output/plots/efe_components
+2025-02-06 14:42:16,699 - test_generic_pomdp - INFO - EFE Components: /home/trim/Documents/Obsidian/Cognitive_Modeling/Things/Generic_POMDP/Output/plots/efe_components
+2025-02-06 14:42:16,699 - test_generic_pomdp - INFO - 
+Model Configuration:
+2025-02-06 14:42:16,699 - test_generic_pomdp - INFO - 
+Model Configuration:
+2025-02-06 14:42:16,699 - test_generic_pomdp - INFO - Observations: 4
+2025-02-06 14:42:16,699 - test_generic_pomdp - INFO - Observations: 4
+2025-02-06 14:42:16,699 - test_generic_pomdp - INFO - States: 3
+2025-02-06 14:42:16,699 - test_generic_pomdp - INFO - States: 3
+2025-02-06 14:42:16,699 - test_generic_pomdp - INFO - Actions: 2
+2025-02-06 14:42:16,699 - test_generic_pomdp - INFO - Actions: 2
+2025-02-06 14:42:16,699 - test_generic_pomdp - INFO - Planning horizon: 4
+2025-02-06 14:42:16,699 - test_generic_pomdp - INFO - Planning horizon: 4
+2025-02-06 14:42:16,699 - test_generic_pomdp - INFO - Total timesteps: 10
+2025-02-06 14:42:16,699 - test_generic_pomdp - INFO - Total timesteps: 10
+2025-02-06 14:42:20,632 - test_generic_pomdp - INFO - 
+Running simulation for 10 steps
+2025-02-06 14:42:20,632 - test_generic_pomdp - INFO - 
+Running simulation for 10 steps
+2025-02-06 14:42:20,633 - test_generic_pomdp - INFO - 
+Step 1/10
+2025-02-06 14:42:20,633 - test_generic_pomdp - INFO - 
+Step 1/10
+2025-02-06 14:42:20,640 - test_generic_pomdp - INFO - Observation: 3
+2025-02-06 14:42:20,640 - test_generic_pomdp - INFO - Observation: 3
+2025-02-06 14:42:20,640 - test_generic_pomdp - INFO - Free Energy: 0.1293
+2025-02-06 14:42:20,640 - test_generic_pomdp - INFO - Free Energy: 0.1293
+2025-02-06 14:42:20,640 - test_generic_pomdp - INFO - Updated beliefs: [8.46940190e-01 9.99325545e-17 1.53059810e-01]
+2025-02-06 14:42:20,640 - test_generic_pomdp - INFO - Updated beliefs: [8.46940190e-01 9.99325545e-17 1.53059810e-01]
+2025-02-06 14:42:22,643 - test_generic_pomdp - INFO - 
+Step 2/10
+2025-02-06 14:42:22,643 - test_generic_pomdp - INFO - 
+Step 2/10
+2025-02-06 14:42:22,649 - test_generic_pomdp - INFO - Observation: 1
+2025-02-06 14:42:22,649 - test_generic_pomdp - INFO - Observation: 1
+2025-02-06 14:42:22,649 - test_generic_pomdp - INFO - Free Energy: 0.0149
+2025-02-06 14:42:22,649 - test_generic_pomdp - INFO - Free Energy: 0.0149
+2025-02-06 14:42:22,650 - test_generic_pomdp - INFO - Updated beliefs: [9.90534545e-17 9.90534545e-17 1.00000000e+00]
+2025-02-06 14:42:22,650 - test_generic_pomdp - INFO - Updated beliefs: [9.90534545e-17 9.90534545e-17 1.00000000e+00]
+2025-02-06 14:42:24,690 - test_generic_pomdp - INFO - 
+Step 3/10
+2025-02-06 14:42:24,690 - test_generic_pomdp - INFO - 
+Step 3/10
+2025-02-06 14:42:24,696 - test_generic_pomdp - INFO - Observation: 1
+2025-02-06 14:42:24,696 - test_generic_pomdp - INFO - Observation: 1
+2025-02-06 14:42:24,696 - test_generic_pomdp - INFO - Free Energy: 0.0149
+2025-02-06 14:42:24,696 - test_generic_pomdp - INFO - Free Energy: 0.0149
+2025-02-06 14:42:24,696 - test_generic_pomdp - INFO - Updated beliefs: [9.97670637e-17 9.97670637e-17 1.00000000e+00]
+2025-02-06 14:42:24,696 - test_generic_pomdp - INFO - Updated beliefs: [9.97670637e-17 9.97670637e-17 1.00000000e+00]
+2025-02-06 14:42:26,776 - test_generic_pomdp - INFO - 
+Step 4/10
+2025-02-06 14:42:26,776 - test_generic_pomdp - INFO - 
+Step 4/10
+2025-02-06 14:42:26,782 - test_generic_pomdp - INFO - Observation: 2
+2025-02-06 14:42:26,782 - test_generic_pomdp - INFO - Observation: 2
+2025-02-06 14:42:26,782 - test_generic_pomdp - INFO - Free Energy: 1.1020
+2025-02-06 14:42:26,782 - test_generic_pomdp - INFO - Free Energy: 1.1020
+2025-02-06 14:42:26,782 - test_generic_pomdp - INFO - Updated beliefs: [9.06753435e-17 1.00000000e+00 9.06753435e-17]
+2025-02-06 14:42:26,782 - test_generic_pomdp - INFO - Updated beliefs: [9.06753435e-17 1.00000000e+00 9.06753435e-17]
+2025-02-06 14:42:28,718 - test_generic_pomdp - INFO - 
+Step 5/10
+2025-02-06 14:42:28,718 - test_generic_pomdp - INFO - 
+Step 5/10
+2025-02-06 14:42:28,725 - test_generic_pomdp - INFO - Observation: 3
+2025-02-06 14:42:28,725 - test_generic_pomdp - INFO - Observation: 3
+2025-02-06 14:42:28,725 - test_generic_pomdp - INFO - Free Energy: 1.0299
+2025-02-06 14:42:28,725 - test_generic_pomdp - INFO - Free Energy: 1.0299
+2025-02-06 14:42:28,725 - test_generic_pomdp - INFO - Updated beliefs: [0.37367767 0.51630096 0.11002137]
+2025-02-06 14:42:28,725 - test_generic_pomdp - INFO - Updated beliefs: [0.37367767 0.51630096 0.11002137]
+2025-02-06 14:42:30,777 - test_generic_pomdp - INFO - 
+Step 6/10
+2025-02-06 14:42:30,777 - test_generic_pomdp - INFO - 
+Step 6/10
+2025-02-06 14:42:30,783 - test_generic_pomdp - INFO - Observation: 3
+2025-02-06 14:42:30,783 - test_generic_pomdp - INFO - Observation: 3
+2025-02-06 14:42:30,783 - test_generic_pomdp - INFO - Free Energy: 0.0919
+2025-02-06 14:42:30,783 - test_generic_pomdp - INFO - Free Energy: 0.0919
+2025-02-06 14:42:30,784 - test_generic_pomdp - INFO - Updated beliefs: [9.16941211e-01 9.98243352e-17 8.30587886e-02]
+2025-02-06 14:42:30,784 - test_generic_pomdp - INFO - Updated beliefs: [9.16941211e-01 9.98243352e-17 8.30587886e-02]
+2025-02-06 14:42:32,848 - test_generic_pomdp - INFO - 
+Step 7/10
+2025-02-06 14:42:32,848 - test_generic_pomdp - INFO - 
+Step 7/10
+2025-02-06 14:42:32,855 - test_generic_pomdp - INFO - Observation: 0
+2025-02-06 14:42:32,855 - test_generic_pomdp - INFO - Observation: 0
+2025-02-06 14:42:32,855 - test_generic_pomdp - INFO - Free Energy: -0.0126
+2025-02-06 14:42:32,855 - test_generic_pomdp - INFO - Free Energy: -0.0126
+2025-02-06 14:42:32,855 - test_generic_pomdp - INFO - Updated beliefs: [1.00000000e+00 9.95591513e-17 9.95591513e-17]
+2025-02-06 14:42:32,855 - test_generic_pomdp - INFO - Updated beliefs: [1.00000000e+00 9.95591513e-17 9.95591513e-17]
+2025-02-06 14:42:34,904 - test_generic_pomdp - INFO - 
+Step 8/10
+2025-02-06 14:42:34,904 - test_generic_pomdp - INFO - 
+Step 8/10
+2025-02-06 14:42:34,911 - test_generic_pomdp - INFO - Observation: 1
+2025-02-06 14:42:34,911 - test_generic_pomdp - INFO - Observation: 1
+2025-02-06 14:42:34,911 - test_generic_pomdp - INFO - Free Energy: 0.1970
+2025-02-06 14:42:34,911 - test_generic_pomdp - INFO - Free Energy: 0.1970
+2025-02-06 14:42:34,911 - test_generic_pomdp - INFO - Updated beliefs: [9.89869277e-17 9.89869277e-17 1.00000000e+00]
+2025-02-06 14:42:34,911 - test_generic_pomdp - INFO - Updated beliefs: [9.89869277e-17 9.89869277e-17 1.00000000e+00]
+2025-02-06 14:42:36,816 - test_generic_pomdp - INFO - 
+Step 9/10
+2025-02-06 14:42:36,816 - test_generic_pomdp - INFO - 
+Step 9/10
+2025-02-06 14:42:36,822 - test_generic_pomdp - INFO - Observation: 1
+2025-02-06 14:42:36,822 - test_generic_pomdp - INFO - Observation: 1
+2025-02-06 14:42:36,823 - test_generic_pomdp - INFO - Free Energy: 0.0149
+2025-02-06 14:42:36,823 - test_generic_pomdp - INFO - Free Energy: 0.0149
+2025-02-06 14:42:36,823 - test_generic_pomdp - INFO - Updated beliefs: [9.97670637e-17 9.97670637e-17 1.00000000e+00]
+2025-02-06 14:42:36,823 - test_generic_pomdp - INFO - Updated beliefs: [9.97670637e-17 9.97670637e-17 1.00000000e+00]
+2025-02-06 14:42:38,803 - test_generic_pomdp - INFO - 
+Step 10/10
+2025-02-06 14:42:38,803 - test_generic_pomdp - INFO - 
+Step 10/10
+2025-02-06 14:42:38,810 - test_generic_pomdp - INFO - Observation: 0
+2025-02-06 14:42:38,810 - test_generic_pomdp - INFO - Observation: 0
+2025-02-06 14:42:38,810 - test_generic_pomdp - INFO - Free Energy: -0.0126
+2025-02-06 14:42:38,810 - test_generic_pomdp - INFO - Free Energy: -0.0126
+2025-02-06 14:42:38,810 - test_generic_pomdp - INFO - Updated beliefs: [1.00000000e+00 9.86071101e-17 9.86071101e-17]
+2025-02-06 14:42:38,810 - test_generic_pomdp - INFO - Updated beliefs: [1.00000000e+00 9.86071101e-17 9.86071101e-17]
+2025-02-06 14:42:41,872 - test_generic_pomdp - INFO - 
+Simulation Summary:
+2025-02-06 14:42:41,872 - test_generic_pomdp - INFO - 
+Simulation Summary:
+2025-02-06 14:42:41,872 - test_generic_pomdp - INFO - Average Free Energy: 0.2570
+2025-02-06 14:42:41,872 - test_generic_pomdp - INFO - Average Free Energy: 0.2570
+2025-02-06 14:42:41,873 - test_generic_pomdp - INFO - Observation distribution: [2 4 1 3]
+2025-02-06 14:42:41,873 - test_generic_pomdp - INFO - Observation distribution: [2 4 1 3]
+2025-02-06 14:42:41,873 - test_generic_pomdp - INFO - Action distribution: [6 4]
+2025-02-06 14:42:41,873 - test_generic_pomdp - INFO - Action distribution: [6 4]
+2025-02-06 14:42:41,873 - test_generic_pomdp - INFO - Initial belief entropy: 1.0986
+2025-02-06 14:42:41,873 - test_generic_pomdp - INFO - Initial belief entropy: 1.0986
+2025-02-06 14:42:41,873 - test_generic_pomdp - INFO - Final belief entropy: -0.0000
+2025-02-06 14:42:41,873 - test_generic_pomdp - INFO - Final belief entropy: -0.0000
+2025-02-06 14:42:41,873 - test_generic_pomdp - INFO - 
+Generated visualization files:
+2025-02-06 14:42:41,873 - test_generic_pomdp - INFO - 
+Generated visualization files:
+2025-02-06 14:42:41,874 - test_generic_pomdp - INFO - - A_matrix.png
+2025-02-06 14:42:41,874 - test_generic_pomdp - INFO - - A_matrix.png
+2025-02-06 14:42:41,874 - test_generic_pomdp - INFO - - D_matrix.png
+2025-02-06 14:42:41,874 - test_generic_pomdp - INFO - - D_matrix.png
+2025-02-06 14:42:41,874 - test_generic_pomdp - INFO - - matrix_overview.png
+2025-02-06 14:42:41,874 - test_generic_pomdp - INFO - - matrix_overview.png
+2025-02-06 14:42:41,874 - test_generic_pomdp - INFO - - belief_evolution.png
+2025-02-06 14:42:41,874 - test_generic_pomdp - INFO - - belief_evolution.png
+2025-02-06 14:42:41,874 - test_generic_pomdp - INFO - - E_matrix.png
+2025-02-06 14:42:41,874 - test_generic_pomdp - INFO - - E_matrix.png
+2025-02-06 14:42:41,874 - test_generic_pomdp - INFO - - C_matrix.png
+2025-02-06 14:42:41,874 - test_generic_pomdp - INFO - - C_matrix.png
+2025-02-06 14:42:41,874 - test_generic_pomdp - INFO - - action_distribution.png
+2025-02-06 14:42:41,874 - test_generic_pomdp - INFO - - action_distribution.png
+2025-02-06 14:42:41,874 - test_generic_pomdp - INFO - - free_energy.png
+2025-02-06 14:42:41,874 - test_generic_pomdp - INFO - - free_energy.png
+2025-02-06 14:42:41,875 - test_generic_pomdp - INFO - - B_matrix.png
+2025-02-06 14:42:41,875 - test_generic_pomdp - INFO - - B_matrix.png
+2025-02-06 14:42:41,875 - test_generic_pomdp - INFO - 
+Full simulation test completed successfully
+2025-02-06 14:42:41,875 - test_generic_pomdp - INFO - 
+Full simulation test completed successfully
+2025-02-06 14:42:41,890 - test_generic_pomdp - INFO - 
+Starting full configured simulation test
+2025-02-06 14:42:41,890 - test_generic_pomdp - INFO - 
+Starting full configured simulation test
+2025-02-06 14:42:41,890 - test_generic_pomdp - INFO - 
+Running simulation for 10 timesteps as configured
+2025-02-06 14:42:41,890 - test_generic_pomdp - INFO - 
+Running simulation for 10 timesteps as configured
+2025-02-06 14:42:41,890 - test_generic_pomdp - INFO - 
+Model Configuration:
+2025-02-06 14:42:41,890 - test_generic_pomdp - INFO - 
+Model Configuration:
+2025-02-06 14:42:41,890 - test_generic_pomdp - INFO - Observations: 4
+2025-02-06 14:42:41,890 - test_generic_pomdp - INFO - Observations: 4
+2025-02-06 14:42:41,890 - test_generic_pomdp - INFO - States: 3
+2025-02-06 14:42:41,890 - test_generic_pomdp - INFO - States: 3
+2025-02-06 14:42:41,890 - test_generic_pomdp - INFO - Actions: 2
+2025-02-06 14:42:41,890 - test_generic_pomdp - INFO - Actions: 2
+2025-02-06 14:42:41,890 - test_generic_pomdp - INFO - Planning horizon: 4
+2025-02-06 14:42:41,890 - test_generic_pomdp - INFO - Planning horizon: 4
+2025-02-06 14:42:41,891 - test_generic_pomdp - INFO - Total timesteps: 10
+2025-02-06 14:42:41,891 - test_generic_pomdp - INFO - Total timesteps: 10
+2025-02-06 14:42:41,891 - test_generic_pomdp - INFO - 
+Timestep 1/10
+2025-02-06 14:42:41,891 - test_generic_pomdp - INFO - 
+Timestep 1/10
+2025-02-06 14:42:41,897 - test_generic_pomdp - INFO - Observation: 0
+2025-02-06 14:42:41,897 - test_generic_pomdp - INFO - Observation: 0
+2025-02-06 14:42:41,897 - test_generic_pomdp - INFO - Free Energy: 0.0131
+2025-02-06 14:42:41,897 - test_generic_pomdp - INFO - Free Energy: 0.0131
+2025-02-06 14:42:41,897 - test_generic_pomdp - INFO - Updated beliefs: [9.94796229e-17 9.94796229e-17 1.00000000e+00]
+2025-02-06 14:42:41,897 - test_generic_pomdp - INFO - Updated beliefs: [9.94796229e-17 9.94796229e-17 1.00000000e+00]
+2025-02-06 14:42:41,898 - test_generic_pomdp - INFO - 
+Timestep 2/10
+2025-02-06 14:42:41,898 - test_generic_pomdp - INFO - 
+Timestep 2/10
+2025-02-06 14:42:41,904 - test_generic_pomdp - INFO - Observation: 3
+2025-02-06 14:42:41,904 - test_generic_pomdp - INFO - Observation: 3
+2025-02-06 14:42:41,905 - test_generic_pomdp - INFO - Free Energy: -0.4812
+2025-02-06 14:42:41,905 - test_generic_pomdp - INFO - Free Energy: -0.4812
+2025-02-06 14:42:41,905 - test_generic_pomdp - INFO - Updated beliefs: [0.01619846 0.0085596  0.97524194]
+2025-02-06 14:42:41,905 - test_generic_pomdp - INFO - Updated beliefs: [0.01619846 0.0085596  0.97524194]
+2025-02-06 14:42:41,905 - test_generic_pomdp - INFO - 
+Timestep 3/10
+2025-02-06 14:42:41,905 - test_generic_pomdp - INFO - 
+Timestep 3/10
+2025-02-06 14:42:41,914 - test_generic_pomdp - INFO - Observation: 2
+2025-02-06 14:42:41,914 - test_generic_pomdp - INFO - Observation: 2
+2025-02-06 14:42:41,914 - test_generic_pomdp - INFO - Free Energy: 0.6181
+2025-02-06 14:42:41,914 - test_generic_pomdp - INFO - Free Energy: 0.6181
+2025-02-06 14:42:41,915 - test_generic_pomdp - INFO - Updated beliefs: [2.46025173e-01 7.53974827e-01 9.94670652e-17]
+2025-02-06 14:42:41,915 - test_generic_pomdp - INFO - Updated beliefs: [2.46025173e-01 7.53974827e-01 9.94670652e-17]
+2025-02-06 14:42:41,915 - test_generic_pomdp - INFO - 
+Timestep 4/10
+2025-02-06 14:42:41,915 - test_generic_pomdp - INFO - 
+Timestep 4/10
+2025-02-06 14:42:41,922 - test_generic_pomdp - INFO - Observation: 0
+2025-02-06 14:42:41,922 - test_generic_pomdp - INFO - Observation: 0
+2025-02-06 14:42:41,923 - test_generic_pomdp - INFO - Free Energy: -0.5735
+2025-02-06 14:42:41,923 - test_generic_pomdp - INFO - Free Energy: -0.5735
+2025-02-06 14:42:41,923 - test_generic_pomdp - INFO - Updated beliefs: [9.94197622e-17 9.94197622e-17 1.00000000e+00]
+2025-02-06 14:42:41,923 - test_generic_pomdp - INFO - Updated beliefs: [9.94197622e-17 9.94197622e-17 1.00000000e+00]
+2025-02-06 14:42:41,923 - test_generic_pomdp - INFO - 
+Timestep 5/10
+2025-02-06 14:42:41,923 - test_generic_pomdp - INFO - 
+Timestep 5/10
+2025-02-06 14:42:41,929 - test_generic_pomdp - INFO - Observation: 3
+2025-02-06 14:42:41,929 - test_generic_pomdp - INFO - Observation: 3
+2025-02-06 14:42:41,929 - test_generic_pomdp - INFO - Free Energy: 0.4059
+2025-02-06 14:42:41,929 - test_generic_pomdp - INFO - Free Energy: 0.4059
+2025-02-06 14:42:41,929 - test_generic_pomdp - INFO - Updated beliefs: [9.67484088e-17 1.00000000e+00 9.67484088e-17]
+2025-02-06 14:42:41,929 - test_generic_pomdp - INFO - Updated beliefs: [9.67484088e-17 1.00000000e+00 9.67484088e-17]
+2025-02-06 14:42:41,930 - test_generic_pomdp - INFO - 
+Timestep 6/10
+2025-02-06 14:42:41,930 - test_generic_pomdp - INFO - 
+Timestep 6/10
+2025-02-06 14:42:41,937 - test_generic_pomdp - INFO - Observation: 2
+2025-02-06 14:42:41,937 - test_generic_pomdp - INFO - Observation: 2
+2025-02-06 14:42:41,937 - test_generic_pomdp - INFO - Free Energy: 0.4575
+2025-02-06 14:42:41,937 - test_generic_pomdp - INFO - Free Energy: 0.4575
+2025-02-06 14:42:41,937 - test_generic_pomdp - INFO - Updated beliefs: [2.57305264e-04 9.99742695e-01 9.99798744e-17]
+2025-02-06 14:42:41,937 - test_generic_pomdp - INFO - Updated beliefs: [2.57305264e-04 9.99742695e-01 9.99798744e-17]
+2025-02-06 14:42:41,938 - test_generic_pomdp - INFO - 
+Timestep 7/10
+2025-02-06 14:42:41,938 - test_generic_pomdp - INFO - 
+Timestep 7/10
+2025-02-06 14:42:41,946 - test_generic_pomdp - INFO - Observation: 2
+2025-02-06 14:42:41,946 - test_generic_pomdp - INFO - Observation: 2
+2025-02-06 14:42:41,946 - test_generic_pomdp - INFO - Free Energy: 0.4059
+2025-02-06 14:42:41,946 - test_generic_pomdp - INFO - Free Energy: 0.4059
+2025-02-06 14:42:41,946 - test_generic_pomdp - INFO - Updated beliefs: [9.99516436e-17 1.00000000e+00 9.99516436e-17]
+2025-02-06 14:42:41,946 - test_generic_pomdp - INFO - Updated beliefs: [9.99516436e-17 1.00000000e+00 9.99516436e-17]
+2025-02-06 14:42:41,947 - test_generic_pomdp - INFO - 
+Timestep 8/10
+2025-02-06 14:42:41,947 - test_generic_pomdp - INFO - 
+Timestep 8/10
+2025-02-06 14:42:41,953 - test_generic_pomdp - INFO - Observation: 2
+2025-02-06 14:42:41,953 - test_generic_pomdp - INFO - Observation: 2
+2025-02-06 14:42:41,953 - test_generic_pomdp - INFO - Free Energy: 0.4575
+2025-02-06 14:42:41,953 - test_generic_pomdp - INFO - Free Energy: 0.4575
+2025-02-06 14:42:41,953 - test_generic_pomdp - INFO - Updated beliefs: [2.57305264e-04 9.99742695e-01 9.99798744e-17]
+2025-02-06 14:42:41,953 - test_generic_pomdp - INFO - Updated beliefs: [2.57305264e-04 9.99742695e-01 9.99798744e-17]
+2025-02-06 14:42:41,953 - test_generic_pomdp - INFO - 
+Timestep 9/10
+2025-02-06 14:42:41,953 - test_generic_pomdp - INFO - 
+Timestep 9/10
+2025-02-06 14:42:41,959 - test_generic_pomdp - INFO - Observation: 2
+2025-02-06 14:42:41,959 - test_generic_pomdp - INFO - Observation: 2
+2025-02-06 14:42:41,959 - test_generic_pomdp - INFO - Free Energy: 0.4059
+2025-02-06 14:42:41,959 - test_generic_pomdp - INFO - Free Energy: 0.4059
+2025-02-06 14:42:41,960 - test_generic_pomdp - INFO - Updated beliefs: [9.99516436e-17 1.00000000e+00 9.99516436e-17]
+2025-02-06 14:42:41,960 - test_generic_pomdp - INFO - Updated beliefs: [9.99516436e-17 1.00000000e+00 9.99516436e-17]
+2025-02-06 14:42:41,960 - test_generic_pomdp - INFO - 
+Timestep 10/10
+2025-02-06 14:42:41,960 - test_generic_pomdp - INFO - 
+Timestep 10/10
+2025-02-06 14:42:41,966 - test_generic_pomdp - INFO - Observation: 0
+2025-02-06 14:42:41,966 - test_generic_pomdp - INFO - Observation: 0
+2025-02-06 14:42:41,966 - test_generic_pomdp - INFO - Free Energy: -0.5496
+2025-02-06 14:42:41,966 - test_generic_pomdp - INFO - Free Energy: -0.5496
+2025-02-06 14:42:41,966 - test_generic_pomdp - INFO - Updated beliefs: [7.64756147e-03 9.98005899e-17 9.92352439e-01]
+2025-02-06 14:42:41,966 - test_generic_pomdp - INFO - Updated beliefs: [7.64756147e-03 9.98005899e-17 9.92352439e-01]
+2025-02-06 14:42:41,966 - test_generic_pomdp - INFO - 
+Simulation Summary:
+2025-02-06 14:42:41,966 - test_generic_pomdp - INFO - 
+Simulation Summary:
+2025-02-06 14:42:41,966 - test_generic_pomdp - INFO - Average Free Energy: 0.1160
+2025-02-06 14:42:41,966 - test_generic_pomdp - INFO - Average Free Energy: 0.1160
+2025-02-06 14:42:41,966 - test_generic_pomdp - INFO - Observation distribution: [3 0 5 2]
+2025-02-06 14:42:41,966 - test_generic_pomdp - INFO - Observation distribution: [3 0 5 2]
+2025-02-06 14:42:41,966 - test_generic_pomdp - INFO - Most frequent observation: 2 (count: 5)
+2025-02-06 14:42:41,966 - test_generic_pomdp - INFO - Most frequent observation: 2 (count: 5)
+2025-02-06 14:42:41,967 - test_generic_pomdp - INFO - Action distribution: [4 6]
+2025-02-06 14:42:41,967 - test_generic_pomdp - INFO - Action distribution: [4 6]
+2025-02-06 14:42:41,967 - test_generic_pomdp - INFO - Most frequent action: 1 (count: 6)
+2025-02-06 14:42:41,967 - test_generic_pomdp - INFO - Most frequent action: 1 (count: 6)
+2025-02-06 14:42:41,967 - test_generic_pomdp - INFO - Initial belief entropy: 1.0986
+2025-02-06 14:42:41,967 - test_generic_pomdp - INFO - Initial belief entropy: 1.0986
+2025-02-06 14:42:41,967 - test_generic_pomdp - INFO - Final belief entropy: 0.0449
+2025-02-06 14:42:41,967 - test_generic_pomdp - INFO - Final belief entropy: 0.0449
+2025-02-06 14:42:41,967 - test_generic_pomdp - INFO - Belief entropy reduction: 1.0537
+2025-02-06 14:42:41,967 - test_generic_pomdp - INFO - Belief entropy reduction: 1.0537
+2025-02-06 14:42:41,967 - test_generic_pomdp - INFO - 
+EFE Component Analysis:
+2025-02-06 14:42:41,967 - test_generic_pomdp - INFO - 
+EFE Component Analysis:
+2025-02-06 14:42:41,967 - test_generic_pomdp - INFO - Average Ambiguity: 0.8788
+2025-02-06 14:42:41,967 - test_generic_pomdp - INFO - Average Ambiguity: 0.8788
+2025-02-06 14:42:41,967 - test_generic_pomdp - INFO - Average Risk: 0.6426
+2025-02-06 14:42:41,967 - test_generic_pomdp - INFO - Average Risk: 0.6426
+2025-02-06 14:42:41,967 - test_generic_pomdp - INFO - Average Expected Preferences: 0.2222
+2025-02-06 14:42:41,967 - test_generic_pomdp - INFO - Average Expected Preferences: 0.2222
+2025-02-06 14:42:41,967 - test_generic_pomdp - INFO - 
+Full configured simulation completed successfully
+2025-02-06 14:42:41,967 - test_generic_pomdp - INFO - 
+Full configured simulation completed successfully
+2025-02-06 14:42:42,145 - test_generic_pomdp - INFO - Observation counts: [42  1  4  3]
+2025-02-06 14:42:42,145 - test_generic_pomdp - INFO - Observation counts: [42  1  4  3]
+2025-02-06 14:42:42,146 - test_generic_pomdp - INFO - Observation 0 count: 42
+2025-02-06 14:42:42,146 - test_generic_pomdp - INFO - Observation 0 count: 42
+2025-02-06 14:42:42,146 - test_generic_pomdp - INFO - Mean of other observations: 2.67
+2025-02-06 14:42:42,146 - test_generic_pomdp - INFO - Mean of other observations: 2.67
+2025-02-06 14:42:42,186 - test_generic_pomdp - INFO - ================================================================================
+2025-02-06 14:42:42,186 - test_generic_pomdp - INFO - ================================================================================
+2025-02-06 14:42:42,186 - test_generic_pomdp - INFO - Test session completed
+2025-02-06 14:42:42,186 - test_generic_pomdp - INFO - Test session completed
+2025-02-06 14:42:42,186 - test_generic_pomdp - INFO - ================================================================================
+2025-02-06 14:42:42,186 - test_generic_pomdp - INFO - ================================================================================

@@ -1,0 +1,17 @@
+README.md
+setup.py
+active_inference_framework.egg-info/PKG-INFO
+active_inference_framework.egg-info/SOURCES.txt
+active_inference_framework.egg-info/dependency_links.txt
+active_inference_framework.egg-info/requires.txt
+active_inference_framework.egg-info/top_level.txt
+src/__init__.py
+src/analysis/__init__.py
+src/models/__init__.py
+src/models/active_inference/__init__.py
+src/models/active_inference/base.py
+src/utils/__init__.py
+src/utils/create_node.py
+src/utils/matrix_utils.py
+src/visualization/__init__.py
+src/visualization/matrix_plots.py

@@ -1,0 +1,124 @@
+# Generic POMDP Configuration
+
+# Model Parameters
+model:
+  name: "Generic POMDP"
+  description: "Generic POMDP implementation using Active Inference"
+  version: "1.0.0"
+
+# Space Dimensions
+dimensions:
+  observations: 4
+  states: 3
+  actions: 2
+  total_timesteps: 10  # Total number of timesteps to run simulation
+  planning_horizon: 4   # Number of timesteps to look ahead for policy evaluation
+
+# Matrix Specifications
+matrices:
+  A_matrix:  # Observation model P(o|s)
+    initialization: "random_stochastic"
+    constraints:
+      - "column_stochastic"
+      - "non_negative"
+    validation:
+      max_condition_number: 1e6
+      
+  B_matrix:  # Transition model P(s'|s,a)
+    initialization: "identity_based"
+    initialization_params:
+      strength: 0.8  # Strength of identity component
+    constraints:
+      - "column_stochastic"
+      - "non_negative"
+    validation:
+      max_condition_number: 1e6
+      
+  C_matrix:  # Preferences over observations
+    initialization: "uniform"
+    initialization_params:
+      default_value: 0.0
+    constraints:
+      - "finite_values"
+      
+  D_matrix:  # Prior beliefs over states
+    initialization: "uniform"
+    constraints:
+      - "normalized"
+      - "non_negative"
+      
+  E_matrix:  # Prior over policies
+    initialization: "uniform"
+    constraints:
+      - "normalized"
+      - "non_negative"
+
+# Inference Parameters
+inference:
+  learning_rate: 0.1
+  temperature: 1.0
+  convergence_threshold: 1e-6
+  max_iterations: 100
+  belief_update:
+    method: "gradient_descent"
+    momentum: 0.9
+    adaptive_lr: true
+
+# Numerical Parameters
+numerical:
+  stability_threshold: 1e-12
+  max_condition_number: 1e6
+  gradient_clip: 10.0
+
+# Output Settings
+output:
+  base_dir: "Output/"
+  subdirs:
+    logs: "logs/"
+    plots: "plots/"
+    test_results: "test_results/"
+    simulations: "simulations/"
+  file_formats:
+    plots: ["png", "pdf"]
+    data: ["csv", "json"]
+  logging:
+    level: "INFO"
+    format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    file: "Output/logs/simulation.log"
+
+# Visualization Settings
+visualization:
+  enabled: true
+  output_dir: "Output/plots/"
+  formats:
+    - "png"
+    - "pdf"
+  required_plots:
+    - "belief_evolution"
+    - "free_energy"
+    - "action_probabilities"
+    - "observation_counts"
+  style:
+    colormap: "viridis"
+    figure_size: [10, 6]
+    font_size: 12
+    dpi: 300
+
+# Testing Configuration
+testing:
+  enabled: true
+  coverage_threshold: 90
+  test_cases:
+    initialization:
+      - "matrix_properties"
+      - "state_initialization"
+    dynamics:
+      - "belief_updates"
+      - "action_selection"
+      - "observation_generation"
+    convergence:
+      - "free_energy_minimization"
+      - "belief_convergence"
+    numerical:
+      - "stability"
+      - "precision" 
