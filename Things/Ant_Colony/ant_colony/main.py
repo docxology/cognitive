@@ -5,8 +5,8 @@ Main entry point for the ant colony simulation.
 import argparse
 import yaml
 import numpy as np
-from ant_colony.visualization import SimulationRenderer
-from ant_colony.agents import Nestmate, Position, TaskType
+from visualization.renderer import SimulationRenderer
+from agents.nestmate import Nestmate, Position
 from dataclasses import dataclass
 from typing import List
 

@@ -1,0 +1,19 @@
+# Visualization settings
+visualization:
+  enabled: true
+  update_interval: 1  # Update every N timesteps
+  trail_length: 50  # Number of positions to keep for trails
+  colors:
+    background: [255, 255, 255]
+    obstacles: [100, 100, 100]
+    food: [0, 255, 0]
+    nest: [139, 69, 19]
+    agents:
+      foraging: [255, 0, 0]
+      maintenance: [0, 0, 255]
+      nursing: [255, 192, 203]
+      defense: [128, 0, 0]
+      exploration: [255, 165, 0]
+    pheromones:
+      food: [0, 255, 0, 128]
+      home: [255, 0, 0, 128] 
