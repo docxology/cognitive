@@ -10,16 +10,6 @@
 
 ## Agenda
 
-### 1. Introduction
-
-- Welcome and overview of [[obsidian_usage]] and [[active_inference]] and [[free_energy_principle]]
-- Context from previous streams
-- Today's objectives and roadmap
-- Development environment setup
-  - Cursor configuration
-  - Obsidian knowledge base structure
-  - GitHub repository organization
-
 ### 2. Theoretical Foundations
 
 - Active Inference Framework

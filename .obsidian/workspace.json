@@ -6,7 +6,7 @@
       {
         "id": "dea337cf76935a08",
         "type": "tabs",
-        "dimension": 30.51643192488263,
+        "dimension": 37.01657458563536,
         "children": [
           {
             "id": "0ba8a1b9b9dd949a",
@@ -14,12 +14,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "InferAnt_Stream_10.md",
+                "file": "knowledge_base/cognitive/cognitive_phenomena.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "InferAnt_Stream_10"
+              "title": "cognitive_phenomena"
             }
           },
           {
@@ -44,7 +44,7 @@
       {
         "id": "109379312b857b11",
         "type": "tabs",
-        "dimension": 69.48356807511738,
+        "dimension": 62.98342541436463,
         "children": [
           {
             "id": "52d3928d1a582e57",
@@ -129,6 +129,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "knowledge_base/cognitive/cognitive_phenomena.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -138,7 +139,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks"
+              "title": "Backlinks for cognitive_phenomena"
             }
           },
           {
@@ -147,11 +148,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "knowledge_base/cognitive/cognitive_phenomena.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links"
+              "title": "Outgoing links from cognitive_phenomena"
             }
           },
           {
@@ -175,12 +177,13 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "knowledge_base/cognitive/cognitive_phenomena.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline"
+              "title": "Outline of cognitive_phenomena"
             }
           }
         ]
@@ -200,9 +203,34 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "52d3928d1a582e57",
+  "active": "0ba8a1b9b9dd949a",
   "lastOpenFiles": [
+    "knowledge_base/cognitive/bayesian_brain.md",
+    "knowledge_base/agents/GenericPOMDP/matrices/E_matrix.md",
+    "knowledge_base/agents/GenericPOMDP/matrices/D_matrix.md",
+    "knowledge_base/agents/GenericPOMDP/matrices/B_matrix.md",
+    "knowledge_base/agents/GenericPOMDP/matrices/A_matrix.md",
     "InferAnt_Stream_10.md",
+    "docs/guides/pomdp_structure.md",
+    "knowledge_base/agents/GenericPOMDP/matrices/C_matrix.md",
+    "knowledge_base/agents/GenericPOMDP/state_spaces/s_space.md",
+    "knowledge_base/agents/GenericPOMDP/state_spaces/o_space.md",
+    "knowledge_base/mathematics/information_theory.md",
+    "docs/tools/automation_scripts.md",
+    "docs/tools/advanced_linking.md",
+    "knowledge_base/systems/systems_theory.md",
+    "docs/tools/network_analysis.md",
+    "docs/tools/obsidian_usage.md",
+    "docs/tools/development_tools_index.md",
+    "docs/tools/development_tools.md",
+    "docs/tools/cursor_integration.md",
+    "docs/templates/cognitive_concept.md",
+    "docs/research/ant_colony_active_inference.md",
+    "docs/guides/linking_validation.md",
+    "docs/examples/index.md",
+    "docs/concepts/machine_readability.md",
+    "docs/api/api_versioning.md",
+    "docs/api/api_reference.md",
     "Things/BioFirm/output/20250207_113935/results/advanced_report_resilience_pulse.txt",
     "Things/BioFirm/output/20250207_113935/results/stats_report_resilience_pulse.txt",
     "Things/BioFirm/output/20250207_113935/visualizations/causal_resilience_pulse.png",
@@ -223,30 +251,6 @@
     "Things/BioFirm/output/20250207_113935/results/resilience_pulse.yaml",
     "Things/BioFirm/output/20250207_113935/results/resilience_press.yaml",
     "Things/BioFirm/output/20250207_113935/results/resilience_shock.yaml",
-    "Canvas.canvas",
-    "knowledge_base/systems/index.md",
-    "knowledge_base/mathematics/index.md",
-    "knowledge_base/index.md",
-    "knowledge_base/agents/index.md",
-    "knowledge_base/agents/README.md",
-    "docs/tools/index.md",
-    "docs/templates/research_document.md",
-    "docs/templates/learning_path.md",
-    "docs/templates/implementation_example.md",
-    "docs/templates/cognitive_concept.md",
-    "docs/research/index.md",
-    "docs/research/ant_colony_active_inference.md",
-    "docs/guides/learning_paths/swarm_intelligence.md",
-    "docs/guides/learning_paths/pomdp_framework.md",
-    "docs/guides/learning_paths/index.md",
-    "docs/guides/learning_paths/active_inference.md",
-    "docs/guides/implementation/active_inference_agent.md",
-    "docs/examples/index.md",
-    "docs/concepts/index.md",
-    "Things/BioFirm/docs/earth_systems_schema.md",
-    "src/models/active_inference/docs/biofirm_schema.md",
-    "Things/Ant_Colony/Ant_Colony_README.md",
-    "src/models/active_inference/docs/dispatcher.md",
-    "src/models/active_inference/docs/active_inference_dispatcher.md"
+    "Canvas.canvas"
   ]
 }

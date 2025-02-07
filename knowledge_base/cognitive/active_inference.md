@@ -126,6 +126,133 @@ Active inference is a principled framework unifying perception, action, and lear
   - [[unsupervised_learning]] - Learning without labels
   - [[robot_control]] - Autonomous systems
 
+## Computational Implementation
+
+### Software Architecture
+- [[computational_frameworks]] - Implementation structures
+  - [[modular_design]] - Component organization
+    - [[inference_engine]] - Core processing unit
+    - [[model_repository]] - Generative model storage
+    - [[action_planner]] - Policy computation
+  - [[distributed_systems]] - Parallel processing
+    - [[message_queues]] - Information routing
+    - [[load_balancing]] - Resource management
+  - [[real_time_processing]] - Online computation
+    - [[anytime_algorithms]] - Interruptible processing
+    - [[adaptive_scheduling]] - Dynamic resource allocation
+
+### Algorithm Design
+- [[inference_algorithms]] - Core computations
+  - [[variational_methods]] - Approximate inference
+    - [[mean_field_approximation]] - Factorized inference
+    - [[structured_approximation]] - Dependency preservation
+  - [[sampling_methods]] - Monte Carlo approaches
+    - [[importance_sampling]] - Weighted sampling
+    - [[sequential_monte_carlo]] - Particle filtering
+  - [[optimization_methods]] - Parameter tuning
+    - [[gradient_descent]] - Local optimization
+    - [[evolutionary_algorithms]] - Global search
+
+### Performance Optimization
+- [[computational_efficiency]] - Resource utilization
+  - [[memory_management]] - Storage optimization
+    - [[caching_strategies]] - Fast access
+    - [[garbage_collection]] - Resource recovery
+  - [[parallel_processing]] - Concurrent execution
+    - [[gpu_acceleration]] - Hardware optimization
+    - [[distributed_computing]] - Network utilization
+  - [[algorithmic_optimization]] - Speed improvements
+    - [[code_profiling]] - Performance analysis
+    - [[bottleneck_identification]] - Optimization targets
+
+## Biological Foundations
+
+### Neural Implementation
+- [[neural_circuits]] - Brain architecture
+  - [[cortical_organization]] - Hierarchical structure
+    - [[sensory_processing]] - Input handling
+    - [[motor_output]] - Action generation
+  - [[synaptic_mechanisms]] - Neural communication
+    - [[neurotransmitter_systems]] - Chemical signaling
+    - [[synaptic_plasticity]] - Learning mechanisms
+  - [[neural_dynamics]] - Circuit behavior
+    - [[oscillatory_patterns]] - Rhythmic activity
+    - [[synchronization]] - Coordinated firing
+
+### Evolutionary Perspective
+- [[adaptive_behavior]] - Survival strategies
+  - [[environmental_adaptation]] - Niche fitting
+    - [[sensory_evolution]] - Input specialization
+    - [[motor_adaptation]] - Action optimization
+  - [[social_learning]] - Group behavior
+    - [[cultural_transmission]] - Knowledge sharing
+    - [[collective_intelligence]] - Group dynamics
+  - [[developmental_trajectories]] - Growth patterns
+    - [[critical_periods]] - Learning windows
+    - [[skill_acquisition]] - Ability development
+
+### Clinical Applications
+- [[psychiatric_disorders]] - Mental health
+  - [[schizophrenia]] - Reality processing
+    - [[hallucinations]] - False perceptions
+    - [[delusions]] - False beliefs
+  - [[autism_spectrum]] - Social cognition
+    - [[sensory_processing]] - Input handling
+    - [[social_interaction]] - Communication
+  - [[anxiety_disorders]] - Uncertainty processing
+    - [[threat_detection]] - Risk assessment
+    - [[safety_behaviors]] - Avoidance patterns
+
+## Advanced Applications
+
+### Robotics and Control
+- [[autonomous_systems]] - Self-governing machines
+  - [[robot_perception]] - Environmental sensing
+    - [[sensor_fusion]] - Multi-modal integration
+    - [[scene_understanding]] - Context interpretation
+  - [[motion_planning]] - Movement generation
+    - [[trajectory_optimization]] - Path planning
+    - [[obstacle_avoidance]] - Safety constraints
+  - [[manipulation]] - Object interaction
+    - [[grasp_planning]] - Object handling
+    - [[tool_use]] - Extended capabilities
+
+### Artificial Intelligence
+- [[machine_learning]] - Automated learning
+  - [[deep_learning]] - Neural networks
+    - [[representation_learning]] - Feature extraction
+    - [[transfer_learning]] - Knowledge reuse
+  - [[reinforcement_learning]] - Interactive learning
+    - [[policy_optimization]] - Action selection
+    - [[exploration_exploitation]] - Learning strategy
+  - [[meta_learning]] - Learning to learn
+    - [[architecture_search]] - Model design
+    - [[hyperparameter_optimization]] - Parameter tuning
+
+### Human-Machine Interaction
+- [[interface_design]] - Interaction methods
+  - [[adaptive_interfaces]] - Dynamic adjustment
+    - [[user_modeling]] - Behavior prediction
+    - [[preference_learning]] - Customization
+  - [[natural_interaction]] - Intuitive control
+    - [[gesture_recognition]] - Movement interpretation
+    - [[speech_interface]] - Voice communication
+  - [[feedback_systems]] - Response generation
+    - [[haptic_feedback]] - Touch response
+    - [[visual_feedback]] - Display adaptation
+
+### Complex Systems
+- [[emergent_behavior]] - System-level patterns
+  - [[swarm_intelligence]] - Collective behavior
+    - [[flocking_dynamics]] - Group movement
+    - [[task_allocation]] - Work distribution
+  - [[social_networks]] - Human systems
+    - [[information_diffusion]] - Knowledge spread
+    - [[opinion_dynamics]] - Belief evolution
+  - [[economic_systems]] - Resource allocation
+    - [[market_dynamics]] - Exchange patterns
+    - [[decision_markets]] - Collective wisdom
+
 ## Mathematical Framework
 
 ### Variational Bayes
