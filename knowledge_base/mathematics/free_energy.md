@@ -26,6 +26,32 @@ semantic_relations:
 
 # Free Energy Computation
 
+## What Makes Something a Free Energy?
+
+At its core, a free energy is a functional (a function of functions) that measures the "energetic cost" of the mismatch between two probability distributions - typically between an approximate posterior distribution and the true distribution we're trying to model. The term "free energy" draws inspiration from statistical physics, where it represents the energy available to do useful work in a system.
+
+Key characteristics that define a free energy functional:
+
+1. Variational Form
+   - Always involves an expectation over a variational distribution
+   - Contains terms measuring both accuracy and complexity
+   - Provides a tractable bound on an intractable quantity
+
+2. Information-Theoretic Properties
+   - Related to KL divergences between distributions
+   - Measures information content and uncertainty
+   - Balances model fit against model complexity
+
+3. Optimization Characteristics
+   - Serves as an objective function for inference
+   - Has well-defined gradients
+   - Minimization improves model fit
+
+4. Thermodynamic Analogies
+   - Similar structure to physical free energies
+   - Trade-off between energy and entropy
+   - Equilibrium at minimum free energy
+
 ## Mathematical Framework
 
 ### Core Definition

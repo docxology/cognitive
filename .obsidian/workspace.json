@@ -6,7 +6,6 @@
       {
         "id": "dea337cf76935a08",
         "type": "tabs",
-        "dimension": 37.01657458563536,
         "children": [
           {
             "id": "0ba8a1b9b9dd949a",
@@ -14,46 +13,32 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "knowledge_base/cognitive/cognitive_phenomena.md",
+                "file": "Things/Continuous_Generic/Continuous_Generic_README.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "cognitive_phenomena"
-            }
-          },
-          {
-            "id": "283b4112120e60a0",
-            "type": "leaf",
-            "state": {
-              "type": "canvas",
-              "state": {
-                "file": "Canvas.canvas",
-                "viewState": {
-                  "x": 13.5,
-                  "y": 53.5,
-                  "zoom": -0.15902597721381279
-                }
-              },
-              "icon": "lucide-layout-dashboard",
-              "title": "Canvas"
+              "title": "Continuous_Generic_README"
             }
           }
         ]
       },
       {
-        "id": "109379312b857b11",
+        "id": "99b33ec97f002ea4",
         "type": "tabs",
-        "dimension": 62.98342541436463,
         "children": [
           {
-            "id": "52d3928d1a582e57",
+            "id": "283b4112120e60a0",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
+              "type": "markdown",
+              "state": {
+                "file": "Things/BioFirm/BioFirm_README.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "BioFirm_README"
             }
           }
         ]
@@ -129,7 +114,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "knowledge_base/cognitive/cognitive_phenomena.md",
+                "file": "Things/Continuous_Generic/Continuous_Generic_README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -139,7 +124,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for cognitive_phenomena"
+              "title": "Backlinks for Continuous_Generic_README"
             }
           },
           {
@@ -148,12 +133,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "knowledge_base/cognitive/cognitive_phenomena.md",
+                "file": "Things/Continuous_Generic/Continuous_Generic_README.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from cognitive_phenomena"
+              "title": "Outgoing links from Continuous_Generic_README"
             }
           },
           {
@@ -177,13 +162,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "knowledge_base/cognitive/cognitive_phenomena.md",
+                "file": "Things/Continuous_Generic/Continuous_Generic_README.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of cognitive_phenomena"
+              "title": "Outline of Continuous_Generic_README"
             }
           }
         ]
@@ -205,52 +190,52 @@
   },
   "active": "0ba8a1b9b9dd949a",
   "lastOpenFiles": [
-    "knowledge_base/cognitive/bayesian_brain.md",
-    "knowledge_base/agents/GenericPOMDP/matrices/E_matrix.md",
-    "knowledge_base/agents/GenericPOMDP/matrices/D_matrix.md",
-    "knowledge_base/agents/GenericPOMDP/matrices/B_matrix.md",
+    "ant_colony/agents/nestmate.py",
+    "ant_colony/agents",
+    "ant_colony",
+    "Things/Ant_Colony/ant_colony/__pycache__/main.cpython-310.pyc",
+    "Things/Ant_Colony/ant_colony/utils/__pycache__/data_collection.cpython-310.pyc",
+    "Things/Ant_Colony/ant_colony/utils/__pycache__/__init__.cpython-310.pyc",
+    "Things/Ant_Colony/ant_colony/utils/__pycache__",
+    "Things/Ant_Colony/ant_colony/environment/__pycache__/world.cpython-310.pyc",
+    "Things/Ant_Colony/ant_colony/utils/__init__.py",
+    "Things/Ant_Colony/ant_colony/utils/data_collection.py",
+    "Things/Ant_Colony/ant_colony/utils",
+    "Output/tests/visualization/detailed_summary.png",
+    "Output/tests/visualization/summary.png",
+    "Output/tests/visualization/action_phase_space.png",
+    "Output/tests/visualization/action_evolution.png",
+    "Output/tests/visualization/free_energy_landscape.png",
+    "Output/tests/visualization/belief_animation.gif",
+    "Things/BioFirm/BioFirm_README.md",
+    "knowledge_base/cognitive/continuous_time_active_inference.md",
+    "Output/tests/visualization/generalized_coordinates.png",
+    "Output/tests/visualization/energy_ratio.png",
+    "Output/tests/visualization/energy_components.png",
+    "Output/tests/visualization/phase_space_energy.png",
+    "Things/Continuous_Generic/Continuous_Generic_README.md",
+    "Things/Generic_POMDP/Generic_POMDP_README.md",
+    "src/models/active_inference/docs/biofirm_schema.md",
     "knowledge_base/agents/GenericPOMDP/matrices/A_matrix.md",
-    "InferAnt_Stream_10.md",
-    "docs/guides/pomdp_structure.md",
-    "knowledge_base/agents/GenericPOMDP/matrices/C_matrix.md",
     "knowledge_base/agents/GenericPOMDP/state_spaces/s_space.md",
-    "knowledge_base/agents/GenericPOMDP/state_spaces/o_space.md",
-    "knowledge_base/mathematics/information_theory.md",
-    "docs/tools/automation_scripts.md",
-    "docs/tools/advanced_linking.md",
-    "knowledge_base/systems/systems_theory.md",
-    "docs/tools/network_analysis.md",
-    "docs/tools/obsidian_usage.md",
-    "docs/tools/development_tools_index.md",
-    "docs/tools/development_tools.md",
-    "docs/tools/cursor_integration.md",
-    "docs/templates/cognitive_concept.md",
-    "docs/research/ant_colony_active_inference.md",
-    "docs/guides/linking_validation.md",
-    "docs/examples/index.md",
-    "docs/concepts/machine_readability.md",
-    "docs/api/api_versioning.md",
-    "docs/api/api_reference.md",
-    "Things/BioFirm/output/20250207_113935/results/advanced_report_resilience_pulse.txt",
-    "Things/BioFirm/output/20250207_113935/results/stats_report_resilience_pulse.txt",
-    "Things/BioFirm/output/20250207_113935/visualizations/causal_resilience_pulse.png",
-    "Things/BioFirm/output/20250207_113935/visualizations/fractal_resilience_pulse.png",
-    "Things/BioFirm/output/20250207_113935/visualizations/information_resilience_pulse.png",
-    "Things/BioFirm/output/20250207_113935/visualizations/wavelet_resilience_pulse.png",
-    "Things/BioFirm/output/20250207_113935/visualizations/state_space_3d_resilience_pulse.png",
-    "Things/BioFirm/output/20250207_113935/visualizations/network_resilience_pulse.png",
-    "Things/BioFirm/output/20250207_113935/visualizations/resilience_pulse_analysis.png",
-    "Things/BioFirm/output/20250207_113935/results/advanced_report_resilience_press.txt",
-    "Things/BioFirm/output/20250207_113935/results/stats_report_resilience_press.txt",
-    "Things/BioFirm/output/20250207_113935/visualizations/causal_resilience_press.png",
-    "Things/BioFirm/output/20250207_113935/visualizations/fractal_resilience_press.png",
-    "Things/BioFirm/output/20250207_113935/visualizations/information_resilience_press.png",
-    "Things/BioFirm/output/20250207_113935/results/advanced_report_resilience_shock.txt",
-    "Things/BioFirm/output/20250207_113935/results/stats_report_resilience_shock.txt",
-    "Things/BioFirm/output/20250207_113935/results/scenario_comparison_resilience.txt",
-    "Things/BioFirm/output/20250207_113935/results/resilience_pulse.yaml",
-    "Things/BioFirm/output/20250207_113935/results/resilience_press.yaml",
-    "Things/BioFirm/output/20250207_113935/results/resilience_shock.yaml",
-    "Canvas.canvas"
+    "src/models/active_inference/docs/active_inference_dispatcher.md",
+    "Canvas.canvas",
+    "knowledge_base/mathematics/uncertainty_resolution.md",
+    "knowledge_base/mathematics/taylor_series.md",
+    "knowledge_base/mathematics/path_integral_free_energy.md",
+    "knowledge_base/agents/GenericPOMDP/guides/s_space_enthusiast.md",
+    "knowledge_base/mathematics/path_integral.md",
+    "knowledge_base/agents/GenericPOMDP/guides/a_space_enthusiast.md",
+    "knowledge_base/mathematics/information_gain.md",
+    "knowledge_base/agents/GenericPOMDP/guides/b_matrix_enthusiast.md",
+    "knowledge_base/agents/GenericPOMDP/guides/o_space_enthusiast.md",
+    "knowledge_base/agents/GenericPOMDP/guides/b_matrix_basics.md",
+    "knowledge_base/mathematics/free_energy.md",
+    "knowledge_base/mathematics/expected_free_energy.md",
+    "knowledge_base/mathematics/active_inference_pomdp.md",
+    "knowledge_base/mathematics/compute_efe.md",
+    "knowledge_base/mathematics/belief_updating.md",
+    "knowledge_base/cognitive/perceptual_inference.md",
+    "knowledge_base/cognitive/metacognition.md"
   ]
 }

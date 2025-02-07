@@ -3,8 +3,8 @@
 # Model parameters
 model:
   state_dim: 2          # Dimension of state space
-  obs_dim: 2           # Dimension of observation space
-  n_orders: 3          # Number of generalized coordinate orders
+  obs_dim: 3           # Dimension of observation space
+  n_orders: 4          # Number of generalized coordinate orders
   dt: 0.01            # Time step for integration
   alpha: 1.0          # Learning rate for belief updating
   sigma: 1.0          # Action selection precision

@@ -29,7 +29,7 @@ semantic_relations:
 ## Mathematical Framework
 
 ### Core Definition
-The path integral formulation expresses the Free Energy Principle through trajectories in state space:
+The path integral formulation expresses the [[free_energy_principle]] through trajectories in state space:
 
 $\mathcal{F}[\pi] = \int_{\tau} \mathcal{L}(s(\tau), \dot{s}(\tau), a(\tau)) d\tau + \ln Z$
 

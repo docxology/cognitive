@@ -1,5 +1,7 @@
-"""Agents package for ant colony simulation."""
+"""
+Agents package for ant colony simulation.
+"""
 
-from .nestmate import Nestmate, Position, TaskType
+from ant_colony.agents.nestmate import Nestmate, TaskType
 
-__all__ = ['Nestmate', 'Position', 'TaskType'] 
+__all__ = ['Nestmate', 'TaskType'] 

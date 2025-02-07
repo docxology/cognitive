@@ -10,11 +10,11 @@ model:
 
 # Space Dimensions
 dimensions:
-  observations: 5
-  states: 4
-  actions: 3
-  total_timesteps: 10  # Total number of timesteps to run simulation
-  planning_horizon: 4   # Number of timesteps to look ahead for policy evaluation
+  observations: 6
+  states: 3
+  actions: 2
+  total_timesteps: 15  # Total number of timesteps to run simulation
+  planning_horizon: 5   # Number of timesteps to look ahead for policy evaluation
   memory_length: 5     # Number of past observations to consider for belief updates
   temporal_discount: 0.95  # Discount factor for future preferences
   belief_momentum: 0.8  # Added belief momentum for smoother updates

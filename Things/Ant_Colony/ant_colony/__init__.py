@@ -1,8 +1,12 @@
 """
 Ant Colony Simulation Package
 
-A multi-agent simulation of an ant colony using simplified behaviors
-and visualizations.
+A sophisticated multi-agent simulation of ant colony behavior using active inference.
 """
 
-__version__ = "1.0.0" 
+from ant_colony.simulation import Simulation
+from ant_colony.colony import Colony
+from ant_colony.visualization import ColonyVisualizer
+
+__version__ = "1.0.0"
+__all__ = ['Simulation', 'Colony', 'ColonyVisualizer'] 

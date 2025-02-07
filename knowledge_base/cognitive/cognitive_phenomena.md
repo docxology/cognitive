@@ -25,17 +25,48 @@ semantic_relations:
   - [[depth_perception]] - Processing of 3D spatial information
   - [[motion_perception]] - Detection and tracking of movement
   - [[color_processing]] - Processing of color information
+  - [[form_perception]] - Processing object shapes and structures
+  - [[texture_perception]] - Processing surface properties
+  - [[brightness_perception]] - Processing light intensity
+  - [[contrast_sensitivity]] - Detection of luminance differences
+  - [[binocular_vision]] - Integration of two eyes' input
+  - [[peripheral_vision]] - Processing outside central vision
+  - [[foveal_vision]] - High-acuity central vision
+  - [[illusory_contours]] - Perception of non-existent edges
+  - [[apparent_motion]] - Perception of non-existent movement
+  - [[biological_motion]] - Processing of animate movement
 
 ### Attention Mechanisms
 - [[selective_attention]] - Focus on relevant stimuli
 - [[divided_attention]] - Processing multiple stimuli
 - [[sustained_attention]] - Maintaining focus over time
 - [[attentional_control]] - Executive control of attention
+- [[spatial_attention]] - Focus on specific locations
+- [[feature_based_attention]] - Focus on specific features
+- [[object_based_attention]] - Focus on specific objects
+- [[temporal_attention]] - Focus on specific time points
+- [[endogenous_attention]] - Voluntary attention control
+- [[exogenous_attention]] - Involuntary attention capture
+- [[attentional_blink]] - Temporal attention limitation
+- [[inattentional_blindness]] - Failure to notice visible items
+- [[change_blindness]] - Failure to detect changes
+- [[vigilance]] - Long-term attention maintenance
 
 ### Sensory Integration
 - [[multisensory_integration]] - Combining different sensory inputs
 - [[sensorimotor_coordination]] - Coordination of perception and action
 - [[perceptual_binding]] - Integration of features into objects
+- [[cross_modal_perception]] - Integration across senses
+- [[audio_visual_integration]] - Sound and vision combination
+- [[proprioceptive_integration]] - Body position sensing
+- [[vestibular_integration]] - Balance and movement sensing
+- [[haptic_integration]] - Touch and movement combination
+- [[temporal_integration]] - Time-based sensory combination
+- [[spatial_integration]] - Space-based sensory combination
+- [[sensory_gating]] - Filtering of sensory information
+- [[sensory_adaptation]] - Adjustment to sustained stimuli
+- [[sensory_enhancement]] - Amplification of sensory signals
+- [[sensory_suppression]] - Reduction of sensory signals
 
 ## Learning and Memory
 
@@ -44,18 +75,48 @@ semantic_relations:
 - [[episodic_memory]] - Memory for events and experiences
 - [[semantic_memory]] - Knowledge and concept representation
 - [[procedural_memory]] - Skill learning and habits
+- [[implicit_memory]] - Unconscious memory effects
+- [[explicit_memory]] - Conscious memory recall
+- [[autobiographical_memory]] - Personal life events
+- [[prospective_memory]] - Future action memory
+- [[source_memory]] - Memory for information origins
+- [[recognition_memory]] - Familiarity-based memory
+- [[spatial_memory]] - Location and navigation memory
+- [[emotional_memory]] - Memory with emotional content
+- [[motor_memory]] - Movement-related memory
+- [[perceptual_memory]] - Sensory experience memory
 
 ### Learning Processes
 - [[associative_learning]] - Learning through association
 - [[reinforcement_learning]] - Learning from rewards and punishments
 - [[statistical_learning]] - Learning patterns and regularities
 - [[skill_acquisition]] - Development of expertise
+- [[perceptual_learning]] - Improved sensory processing
+- [[motor_learning]] - Movement skill acquisition
+- [[cognitive_learning]] - Knowledge and understanding
+- [[social_learning]] - Learning from others
+- [[observational_learning]] - Learning by watching
+- [[latent_learning]] - Learning without reinforcement
+- [[incidental_learning]] - Unintentional learning
+- [[errorless_learning]] - Learning without mistakes
+- [[transfer_learning]] - Applying learning across contexts
+- [[sequence_learning]] - Learning ordered patterns
 
 ### Memory Processes
 - [[encoding]] - Formation of new memories
 - [[consolidation]] - Stabilization of memories
 - [[retrieval]] - Access to stored information
 - [[forgetting]] - Loss or inhibition of information
+- [[reconsolidation]] - Memory modification
+- [[interference]] - Memory disruption
+- [[facilitation]] - Memory enhancement
+- [[priming]] - Memory influence on processing
+- [[chunking]] - Memory organization
+- [[rehearsal]] - Memory maintenance
+- [[elaboration]] - Memory enrichment
+- [[integration]] - Memory combination
+- [[pattern_completion]] - Memory reconstruction
+- [[pattern_separation]] - Memory discrimination
 
 ## Decision Making and Reasoning
 

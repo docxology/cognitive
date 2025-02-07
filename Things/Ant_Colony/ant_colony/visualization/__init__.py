@@ -1,5 +1,7 @@
-"""Visualization package for ant colony simulation."""
+"""
+Visualization module for the ant colony simulation.
+"""
 
-from .renderer import SimulationRenderer
+from ant_colony.visualization.renderer import SimulationRenderer as ColonyVisualizer
 
-__all__ = ['SimulationRenderer'] 
+__all__ = ['ColonyVisualizer'] 

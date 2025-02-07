@@ -1,9 +1,9 @@
 {
 	"nodes":[
-		{"id":"fa09cd5880a700fa","x":34,"y":-279,"width":250,"height":60,"type":"text","text":""},
-		{"id":"aa8bff472cde868a","x":-493,"y":-700,"width":400,"height":400,"type":"file","file":"knowledge_base/cognitive/active_inference.md"},
-		{"id":"81053f8fa66a65fe","x":-352,"y":407,"width":872,"height":400,"type":"file","file":"knowledge_base/cognitive/free_energy_principle.md"},
-		{"id":"3f20f8d5b303209b","x":84,"y":0,"width":250,"height":60,"type":"text","text":"Another idea"}
+		{"id":"fa09cd5880a700fa","type":"text","text":"","x":34,"y":-279,"width":250,"height":60},
+		{"id":"aa8bff472cde868a","type":"file","file":"knowledge_base/cognitive/active_inference.md","x":-493,"y":-700,"width":613,"height":560},
+		{"id":"81053f8fa66a65fe","type":"file","file":"knowledge_base/cognitive/free_energy_principle.md","x":-352,"y":407,"width":872,"height":400},
+		{"id":"3f20f8d5b303209b","type":"text","text":"Another idea","x":84,"y":0,"width":250,"height":60}
 	],
 	"edges":[
 		{"id":"b0aabc7a61c0b6c8","fromNode":"aa8bff472cde868a","fromSide":"right","toNode":"3f20f8d5b303209b","toSide":"left"},

@@ -12,12 +12,39 @@ environment:
     size_range: [1, 3]
     value_range: [10, 50]
   pheromone_decay: 0.995  # Decay rate per timestep
+  terrain_scale: 50.0
+  terrain_octaves: 6
+  terrain_persistence: 0.5
+  terrain_lacunarity: 2.0
+  resource_regeneration_rate: 0.1
 
 # Colony settings
 colony:
   initial_population: 50
   max_population: 100
   reproduction_rate: 0.001  # Chance per timestep
+  
+  # Nest structure
+  nest:
+    structure:
+      chambers:
+        - name: "food_storage"
+          size: [10, 10]
+          position: [5, 5]
+        - name: "brood_chamber"
+          size: [15, 15]
+          position: [25, 25]
+        - name: "waste_chamber"
+          size: [8, 8]
+          position: [40, 40]
+    environment:
+      temperature: 25.0
+      humidity: 0.7
+      ventilation: 0.5
+    resources:
+      food_capacity: 1000
+      water_capacity: 500
+      building_materials: 200
 
 # Agent settings
 agent:
@@ -33,6 +60,8 @@ agent:
   behavior:
     task_switching:
       flexibility: 0.01  # Base rate of task switching
+    learning_rate: 0.1
+    exploration_rate: 0.2
 
 # Visualization settings
 visualization:
@@ -53,12 +82,25 @@ visualization:
     pheromones:
       food: [0, 255, 0, 128]
       home: [255, 0, 0, 128]
+      alarm: [255, 165, 0, 128]
+      trail: [0, 0, 255, 128]
 
 # Simulation settings
 simulation:
   timestep: 0.1
   max_steps: 10000
   random_seed: 42
+
+# Data collection settings
+data_collection:
+  enabled: true
+  output_directory: "output"
+  save_interval: 100  # Save data every N steps
+  metrics:
+    - population
+    - task_distribution
+    - resource_levels
+    - pheromone_coverage
 
 # Runtime Parameters
 runtime:
@@ -74,6 +116,15 @@ runtime:
     gpu_enabled: false
     seed: 42
     deterministic: true
+
+# Debug settings
+debug:
+  logging:
+    level: "INFO"
+    file: "simulation.log"
+  profiling:
+    enabled: false
+    interval: 1000
 
 # Initialization
 initialization:

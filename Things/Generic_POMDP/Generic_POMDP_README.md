@@ -15,7 +15,7 @@ This is a comprehensive implementation of a Partially Observable Markov Decision
 
 ### Matrix Representations
 
-- **A Matrix** (Observation Model):
+- [[A_matrix]] (Observation Model):
   - Dimensions: `(num_observations, num_states)`
   - Properties: Column stochastic (sums to 1 along observations)
   - Represents: P(o|s) - probability of observations given states

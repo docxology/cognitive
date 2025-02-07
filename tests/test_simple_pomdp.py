@@ -8,7 +8,7 @@ import os
 import shutil
 import matplotlib.pyplot as plt
 
-from Things.SimplePOMDP.simple_pomdp import SimplePOMDP, compute_expected_free_energy
+from Things.Simple_POMDP import SimplePOMDP, compute_expected_free_energy
 
 @pytest.fixture
 def config_path(tmp_path):
