@@ -1,180 +1,151 @@
 """
-Simulation Runner
+Simulation Runner for Ant Colony Simulation
 
-This module implements the simulation runner that manages the ant colony simulation,
-including visualization, data collection, and analysis.
+This module provides the main simulation runner that coordinates the colony,
+environment, and visualization components.
 """
 
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 import seaborn as sns
-from typing import Dict, List, Tuple, Optional
-import yaml
-import h5py
 import time
 import logging
+import yaml
+import h5py
 from pathlib import Path
 import pandas as pd
+from typing import Dict, List, Tuple, Optional, Any
 
-from environment.world import World
-from colony import Colony
+from .visualization import ColonyVisualizer
+from .colony import Colony
+from .environment import World
+from .utils.data_collection import DataCollector
 from agents.nestmate import TaskType
 
 class Simulation:
-    """
-    Manages the ant colony simulation, including visualization and data collection.
-    """
+    """Main simulation runner class."""
     
     def __init__(self, config_path: str):
-        """Initialize simulation."""
-        # Load configuration
+        """Initialize simulation with configuration."""
         self.config = self._load_config(config_path)
-        
-        # Set up logging
         self._setup_logging()
         
         # Initialize components
-        self.environment = World(self.config)
-        self.colony = Colony(self.config, self.environment)
-        
-        # Visualization setup
-        if self.config['visualization']['realtime']['enabled']:
-            self._setup_visualization()
-            
-        # Data collection setup
-        self.data = {
-            'time': [],
-            'population': [],
-            'resources': [],
-            'task_distribution': [],
-            'efficiency_metrics': [],
-            'coordination_metrics': []
-        }
-        
-        # Performance tracking
-        self.performance_metrics = {
-            'step_times': [],
-            'memory_usage': [],
-            'fps': []
-        }
+        self.environment = World(self.config['environment'])
+        self.colony = Colony(self.config['colony'], self.environment)
+        self.visualizer = ColonyVisualizer(self.config['visualization'])
+        self.data_collector = DataCollector(self.config['data_collection'])
         
         # Simulation state
         self.current_step = 0
-        self.running = False
+        self.max_steps = self.config['simulation']['max_steps']
+        self.timestep = self.config['simulation']['timestep']
         self.paused = False
+        self.data = {
+            'time': [],
+            'resources': [],
+            'task_distribution': [],
+            'efficiency_metrics': []
+        }
         
-    def _load_config(self, config_path: str) -> dict:
+    def _load_config(self, config_path: str) -> Dict[str, Any]:
         """Load configuration from YAML file."""
         with open(config_path, 'r') as f:
             config = yaml.safe_load(f)
         return config
         
     def _setup_logging(self):
-        """Set up logging configuration."""
+        """Setup logging configuration."""
+        log_config = self.config['debug']['logging']
         logging.basicConfig(
-            level=self.config['debug']['logging']['level'],
-            format=self.config['debug']['logging']['format'],
-            filename=self.config['debug']['logging']['file']
+            level=getattr(logging, log_config['level']),
+            format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+            filename=log_config['file']
         )
         self.logger = logging.getLogger(__name__)
         
-    def _setup_visualization(self):
-        """Set up visualization components."""
-        plt.style.use('dark_background')
-        
-        # Create figure and subplots
-        self.fig = plt.figure(figsize=self.config['visualization']['plots']['figure_size'])
-        
-        # Main simulation view
-        self.ax_main = self.fig.add_subplot(221)
-        self.ax_main.set_title('Colony Simulation')
-        
-        # Resource levels
-        self.ax_resources = self.fig.add_subplot(222)
-        self.ax_resources.set_title('Resource Levels')
-        
-        # Task distribution
-        self.ax_tasks = self.fig.add_subplot(223)
-        self.ax_tasks.set_title('Task Distribution')
-        
-        # Efficiency metrics
-        self.ax_metrics = self.fig.add_subplot(224)
-        self.ax_metrics.set_title('Performance Metrics')
-        
-        plt.tight_layout()
-        
-    def run(self, num_steps: Optional[int] = None):
-        """Run simulation for specified number of steps."""
-        self.running = True
-        start_time = time.time()
-        
-        max_steps = num_steps if num_steps is not None else self.config['runtime']['time']['max_steps']
-        
-        try:
-            while self.running and self.current_step < max_steps:
-                if not self.paused:
-                    self.step()
-                    
-                    # Update visualization
-                    if self.config['visualization']['realtime']['enabled'] and \
-                       self.current_step % self.config['visualization']['realtime']['update_frequency'] == 0:
-                        self._update_visualization()
-                        
-                    # Save data
-                    if self.current_step % self.config['data']['export']['frequency'] == 0:
-                        self._save_data()
-                        
-                    # Performance monitoring
-                    if self.config['performance']['monitoring']['enabled'] and \
-                       self.current_step % self.config['performance']['monitoring']['frequency'] == 0:
-                        self._monitor_performance()
-                        
-        except KeyboardInterrupt:
-            self.logger.info("Simulation interrupted by user")
-        finally:
-            self._cleanup()
-            
-        end_time = time.time()
-        self.logger.info(f"Simulation completed in {end_time - start_time:.2f} seconds")
-        
     def step(self):
         """Execute one simulation step."""
-        step_start = time.time()
-        
         # Update environment
-        self.environment.step(self.config['runtime']['time']['timestep'])
+        self.environment.update(self.timestep)
         
         # Update colony
-        self.colony.step(self.config['runtime']['time']['timestep'])
+        self.colony.update(self.timestep)
         
         # Collect data
         self._collect_data()
         
-        # Update step counter
+        # Increment step counter
         self.current_step += 1
         
-        # Log step time
-        step_time = time.time() - step_start
-        self.performance_metrics['step_times'].append(step_time)
-        
     def _collect_data(self):
-        """Collect simulation data."""
-        # Basic metrics
-        self.data['time'].append(self.current_step * self.config['runtime']['time']['timestep'])
-        self.data['population'].append(self.colony.stats.population)
+        """Collect simulation data for analysis and visualization."""
+        self.data['time'].append(self.current_step * self.timestep)
         
-        # Resources
-        self.data['resources'].append(self.colony.stats.resource_levels.copy())
+        # Collect resource data
+        resource_data = {
+            rtype: sum(r.amount for r in resources)
+            for rtype, resources in self.environment.resources.items()
+        }
+        self.data['resources'].append(resource_data)
         
-        # Task distribution
-        self.data['task_distribution'].append(self.colony.stats.task_distribution.copy())
+        # Collect task distribution
+        task_dist = self.colony.get_task_distribution()
+        self.data['task_distribution'].append(task_dist)
         
-        # Efficiency metrics
-        self.data['efficiency_metrics'].append(self.colony.stats.efficiency_metrics.copy())
+        # Collect efficiency metrics
+        metrics = self.colony.compute_efficiency_metrics()
+        self.data['efficiency_metrics'].append(metrics)
         
-        # Coordination metrics
-        self.data['coordination_metrics'].append(self.colony.stats.coordination_metrics.copy())
+    def run(self, headless: bool = False):
+        """Run the simulation."""
+        self.logger.info("Starting simulation...")
+        
+        if not headless:
+            # Create and show animation
+            animation = self.visualizer.create_animation(self)
+            plt.show()
+        else:
+            # Run without visualization
+            try:
+                while self.current_step < self.max_steps and not self.paused:
+                    self.step()
+                    
+                    # Save data periodically
+                    if self.current_step % self.config['data_collection']['frequency'] == 0:
+                        self.data_collector.save_data(self.data)
+                        
+            except KeyboardInterrupt:
+                self.logger.info("Simulation interrupted by user")
+            finally:
+                # Save final data
+                self.data_collector.save_data(self.data)
+                
+        self.logger.info(f"Simulation completed after {self.current_step} steps")
+        
+    def pause(self):
+        """Pause the simulation."""
+        self.paused = True
+        self.logger.info("Simulation paused")
+        
+    def resume(self):
+        """Resume the simulation."""
+        self.paused = False
+        self.logger.info("Simulation resumed")
+        
+    def reset(self):
+        """Reset the simulation to initial state."""
+        self.logger.info("Resetting simulation...")
+        self.current_step = 0
+        self.environment.reset()
+        self.colony.reset()
+        self.data = {
+            'time': [],
+            'resources': [],
+            'task_distribution': [],
+            'efficiency_metrics': []
+        }
         
     def _update_visualization(self):
         """Update visualization plots."""
@@ -299,10 +270,10 @@ class Simulation:
             sim_group.create_dataset('step', data=self.current_step)
             
             # Save colony data
-            colony_group.create_dataset('population', data=np.array(self.data['population']))
+            colony_group.create_dataset('population', data=np.array(self.colony.stats.population))
             
             # Create datasets for dictionary data
-            for key in ['resources', 'task_distribution', 'efficiency_metrics', 'coordination_metrics']:
+            for key in ['resources', 'task_distribution', 'efficiency_metrics']:
                 if len(self.data[key]) > 0:
                     group = colony_group.create_group(key)
                     for metric_key in self.data[key][0].keys():
@@ -317,7 +288,7 @@ class Simulation:
         # Save basic metrics
         pd.DataFrame({
             'time': self.data['time'],
-            'population': self.data['population']
+            'population': self.colony.stats.population
         }).to_csv(output_dir / 'basic_metrics.csv', index=False)
         
         # Save resource data
@@ -378,17 +349,16 @@ class Simulation:
         self.logger.info(f"Final population: {self.colony.stats.population}")
         self.logger.info(f"Final resource levels: {self.colony.stats.resource_levels}")
         
-    def pause(self):
-        """Pause the simulation."""
-        self.paused = True
-        self.logger.info("Simulation paused")
-        
-    def resume(self):
-        """Resume the simulation."""
-        self.paused = False
-        self.logger.info("Simulation resumed")
-        
-    def stop(self):
-        """Stop the simulation."""
-        self.running = False
-        self.logger.info("Simulation stopped") 
+if __name__ == '__main__':
+    import argparse
+    
+    parser = argparse.ArgumentParser(description='Run Ant Colony Simulation')
+    parser.add_argument('--config', type=str, required=True,
+                       help='Path to configuration file')
+    parser.add_argument('--headless', action='store_true',
+                       help='Run without visualization')
+    args = parser.parse_args()
+    
+    # Create and run simulation
+    sim = Simulation(args.config)
+    sim.run(headless=args.headless) 
