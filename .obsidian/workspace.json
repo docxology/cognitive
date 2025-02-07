@@ -129,7 +129,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "InferAnt_Stream_10.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -139,7 +138,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for InferAnt_Stream_10"
+              "title": "Backlinks"
             }
           },
           {
@@ -148,12 +147,11 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "InferAnt_Stream_10.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from InferAnt_Stream_10"
+              "title": "Outgoing links"
             }
           },
           {
@@ -177,13 +175,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "InferAnt_Stream_10.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of InferAnt_Stream_10"
+              "title": "Outline"
             }
           }
         ]
@@ -203,7 +200,7 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "0ba8a1b9b9dd949a",
+  "active": "52d3928d1a582e57",
   "lastOpenFiles": [
     "InferAnt_Stream_10.md",
     "Things/BioFirm/output/20250207_113935/results/advanced_report_resilience_pulse.txt",

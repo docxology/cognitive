@@ -5,22 +5,13 @@
 - **Platform**: GitHub Live
 - **Repository**: <https://github.com/docxology/cognitive>
 - **Tools**:
-  - Cursor: <https://cursor.com/>
   - Obsidian: <https://obsidian.md/>
   - CodeViz: <https://codeviz.ai/>
-
-## Epistemic Status
-
-- Incipient development phase
-- Semi-structured framework
-- Open for collaborations and contributions
-- Integrating theoretical foundations with practical implementations
 
 ## Agenda
 
 ### 1. Introduction
 
-- Start with Github push.
 - Welcome and overview of [[obsidian_usage]] and [[active_inference]] and [[free_energy_principle]]
 - Context from previous streams
 - Today's objectives and roadmap
