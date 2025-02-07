@@ -162,5 +162,27 @@
     }
   },
   "active": "0ba8a1b9b9dd949a",
-  "lastOpenFiles": []
+  "lastOpenFiles": [
+    "src/models/active_inference/dispatcher.py",
+    "Things/Continuous_Generic/__pycache__/test_continuous_generic.cpython-310-pytest-8.3.2.pyc",
+    "Things/Continuous_Generic/__pycache__/conftest.cpython-310-pytest-8.3.2.pyc",
+    "Things/Continuous_Generic/Output/tests/single_step",
+    "Things/Continuous_Generic/Output/tests/multi_step",
+    "Things/Continuous_Generic/Output/tests/complex",
+    "Things/Continuous_Generic/Output/tests/basic",
+    "Things/Continuous_Generic/Output/tests",
+    "Things/Continuous_Generic/Output",
+    "Things/Continuous_Generic/__pycache__/visualization.cpython-310.pyc",
+    "Things/Continuous_Generic/__pycache__/continuous_generic.cpython-310.pyc",
+    "Things/Continuous_Generic/Output/tests/complex/energy_conservation/energy_evolution.gif",
+    "Things/Continuous_Generic/Output/tests/complex/energy_conservation/energy_analysis.png",
+    "Things/Continuous_Generic/Output/tests/complex/taylor_prediction/prediction_analysis.png",
+    "Things/Continuous_Generic/Output/tests/complex/generalized_coordinates/error_analysis.png",
+    "Things/Continuous_Generic/Output/tests/complex/generalized_coordinates/derivative_analysis.png",
+    "Things/Continuous_Generic/Output/tests/complex/generalized_coordinates/generalized_coordinates.gif",
+    "Things/Continuous_Generic/Output/tests/complex/driven_oscillator/prediction_analysis.png",
+    "Things/Continuous_Generic/Output/tests/complex/driven_oscillator/state_correlations.png",
+    "Things/Continuous_Generic/Output/tests/complex/driven_oscillator/time_evolution.png",
+    "Things/Continuous_Generic/Output/tests/complex/driven_oscillator/phase_space.png"
+  ]
 }
