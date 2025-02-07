@@ -34,6 +34,8 @@ class InferenceConfig:
     learning_rate: float
     precision_init: float
     use_gpu: bool = False
+    num_samples: int = 1000  # For sampling-based methods
+    temperature: float = 1.0  # For policy selection
     custom_params: Optional[Dict[str, Any]] = None
 
 class ActiveInferenceDispatcher:
@@ -47,6 +49,7 @@ class ActiveInferenceDispatcher:
         self.config = config
         self._setup_implementations()
         self._initialize_matrices()
+        self._rng = np.random.default_rng()  # For sampling methods
         
     def _setup_implementations(self):
         """Set up mapping of operations to implementations."""
@@ -121,9 +124,41 @@ class ActiveInferenceDispatcher:
                               observation: np.ndarray,
                               state: ModelState,
                               **kwargs) -> np.ndarray:
-        """Sampling-based implementation of belief updates."""
-        # Implementation for sampling-based updates
-        raise NotImplementedError("Sampling-based belief updates not yet implemented")
+        """Sampling-based implementation of belief updates using particle filtering."""
+        num_samples = self.config.num_samples
+        generative_matrix = kwargs.get('generative_matrix', np.eye(len(state.beliefs)))
+        
+        # Initialize particles
+        particles = self._rng.dirichlet(
+            state.beliefs * num_samples,
+            size=num_samples
+        )
+        
+        # Compute weights based on likelihood
+        likelihoods = np.array([
+            self._compute_likelihood(observation, p, generative_matrix)
+            for p in particles
+        ])
+        weights = likelihoods / np.sum(likelihoods)
+        
+        # Resample particles
+        resampled_indices = self._rng.choice(
+            num_samples,
+            size=num_samples,
+            p=weights
+        )
+        particles = particles[resampled_indices]
+        
+        # Return mean belief state
+        return np.mean(particles, axis=0)
+        
+    def _compute_likelihood(self,
+                          observation: np.ndarray,
+                          particle: np.ndarray,
+                          generative_matrix: np.ndarray) -> float:
+        """Compute likelihood of observation given particle state."""
+        prediction = np.dot(particle, generative_matrix)
+        return np.exp(-0.5 * np.sum(np.square(observation - prediction)))
         
     def _mean_field_belief_update(self,
                                 observation: np.ndarray,
@@ -150,8 +185,45 @@ class ActiveInferenceDispatcher:
                                  state: ModelState,
                                  goal_prior: Optional[np.ndarray] = None,
                                  **kwargs) -> np.ndarray:
-        """Sampling-based implementation of policy inference."""
-        raise NotImplementedError("Sampling-based policy inference not yet implemented")
+        """Sampling-based implementation of policy inference using MCMC."""
+        if goal_prior is None:
+            goal_prior = np.ones(len(state.policies)) / len(state.policies)
+            
+        num_samples = self.config.num_samples
+        current_policies = state.policies.copy()
+        accepted_policies = []
+        
+        # MCMC sampling
+        for _ in range(num_samples):
+            # Propose new policy distribution
+            proposal = self._propose_policy(current_policies)
+            
+            # Compute acceptance ratio
+            current_energy = self._policy_energy(current_policies, state, goal_prior)
+            proposal_energy = self._policy_energy(proposal, state, goal_prior)
+            
+            # Accept/reject
+            if np.log(self._rng.random()) < proposal_energy - current_energy:
+                current_policies = proposal
+            
+            accepted_policies.append(current_policies.copy())
+            
+        # Return mean policy distribution
+        return np.mean(accepted_policies, axis=0)
+        
+    def _propose_policy(self, current: np.ndarray) -> np.ndarray:
+        """Generate policy proposal for MCMC."""
+        proposal = current + self._rng.normal(0, 0.1, size=current.shape)
+        return self.matrix_ops.normalize_rows(np.maximum(proposal, 0))
+        
+    def _policy_energy(self,
+                      policies: np.ndarray,
+                      state: ModelState,
+                      goal_prior: np.ndarray) -> float:
+        """Compute energy (negative log probability) for policy distribution."""
+        expected_free_energy = self._calculate_expected_free_energy(
+            state, goal_prior)
+        return np.sum(policies * expected_free_energy)
         
     def _mean_field_policy_inference(self,
                                    state: ModelState,
@@ -165,15 +237,43 @@ class ActiveInferenceDispatcher:
                                       goal_prior: np.ndarray,
                                       **kwargs) -> np.ndarray:
         """Calculate expected free energy for policy evaluation."""
-        # Basic implementation - can be extended based on specific needs
-        pragmatic_value = -np.log(goal_prior + 1e-8)  # Avoid log(0)
+        # Enhanced implementation with both pragmatic and epistemic value
+        pragmatic_value = self._calculate_pragmatic_value(state, goal_prior)
         epistemic_value = self._calculate_epistemic_value(state)
-        return pragmatic_value + epistemic_value
+        
+        # Weight between exploration and exploitation
+        exploration_weight = kwargs.get('exploration_weight', 0.5)
+        return (1 - exploration_weight) * pragmatic_value + exploration_weight * epistemic_value
+        
+    def _calculate_pragmatic_value(self,
+                                 state: ModelState,
+                                 goal_prior: np.ndarray) -> np.ndarray:
+        """Calculate pragmatic value component of expected free energy."""
+        # KL divergence from current state to goal state
+        return -np.log(goal_prior + 1e-8)
         
     def _calculate_epistemic_value(self, state: ModelState) -> np.ndarray:
         """Calculate epistemic value component of expected free energy."""
-        # Simple implementation - can be extended
-        return -state.prediction_error * np.ones(len(state.policies))
+        # Information gain approximation
+        uncertainty = -np.sum(state.beliefs * np.log(state.beliefs + 1e-8))
+        return -uncertainty * np.ones(len(state.policies))
+        
+    def update_precision(self, prediction_error: float) -> float:
+        """Update precision parameter based on prediction errors."""
+        if self.config.method == InferenceMethod.VARIATIONAL:
+            # Precision updates for variational method
+            self.config.precision_init = (
+                0.9 * self.config.precision_init +
+                0.1 / (prediction_error + 1e-8)
+            )
+        elif self.config.method == InferenceMethod.SAMPLING:
+            # Adaptive step size for sampling method
+            self.config.precision_init = np.clip(
+                1.0 / (prediction_error + 1e-8),
+                0.1,
+                10.0
+            )
+        return self.config.precision_init
 
 class ActiveInferenceFactory:
     """Factory for creating Active Inference instances with specific configurations."""
@@ -197,6 +297,8 @@ class ActiveInferenceFactory:
             learning_rate=config_dict['learning_rate'],
             precision_init=config_dict['precision_init'],
             use_gpu=config_dict.get('use_gpu', False),
+            num_samples=config_dict.get('num_samples', 1000),
+            temperature=config_dict.get('temperature', 1.0),
             custom_params=config_dict.get('custom_params', None)
         )
         return ActiveInferenceFactory.create(config) 
