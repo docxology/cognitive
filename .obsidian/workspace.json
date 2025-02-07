@@ -6,22 +6,37 @@
       {
         "id": "dea337cf76935a08",
         "type": "tabs",
+        "dimension": 38.062547673531654,
         "children": [
           {
             "id": "0ba8a1b9b9dd949a",
             "type": "leaf",
             "state": {
+              "type": "markdown",
+              "state": {
+                "file": "InferAnt_Stream_10.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "InferAnt_Stream_10"
+            }
+          },
+          {
+            "id": "283b4112120e60a0",
+            "type": "leaf",
+            "state": {
               "type": "canvas",
               "state": {
-                "file": "Untitled.canvas",
+                "file": "Canvas.canvas",
                 "viewState": {
-                  "x": 0,
-                  "y": 111.59999999999994,
-                  "zoom": 0
+                  "x": 13.5,
+                  "y": 53.5,
+                  "zoom": -0.15902597721381279
                 }
               },
               "icon": "lucide-layout-dashboard",
-              "title": "Untitled"
+              "title": "Canvas"
             }
           }
         ]
@@ -29,6 +44,7 @@
       {
         "id": "109379312b857b11",
         "type": "tabs",
+        "dimension": 61.937452326468346,
         "children": [
           {
             "id": "52d3928d1a582e57",
@@ -113,7 +129,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Untitled.canvas",
+                "file": "InferAnt_Stream_10.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -123,7 +139,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Untitled"
+              "title": "Backlinks for InferAnt_Stream_10"
             }
           },
           {
@@ -132,12 +148,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Untitled.canvas",
+                "file": "InferAnt_Stream_10.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Untitled"
+              "title": "Outgoing links from InferAnt_Stream_10"
             }
           },
           {
@@ -161,13 +177,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Untitled.canvas",
+                "file": "InferAnt_Stream_10.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Untitled"
+              "title": "Outline of InferAnt_Stream_10"
             }
           }
         ]
@@ -189,34 +205,52 @@
   },
   "active": "0ba8a1b9b9dd949a",
   "lastOpenFiles": [
-    "Things/BioFirm/output/20250207_110105/results/advanced_report_resilience_pulse.txt",
-    "Things/BioFirm/output/20250207_110105/results/stats_report_resilience_pulse.txt",
-    "Things/BioFirm/output/20250207_110105/visualizations/causal_resilience_pulse.png",
-    "Things/BioFirm/output/20250207_110105/visualizations/fractal_resilience_pulse.png",
-    "Things/BioFirm/output/20250207_110105/visualizations/information_resilience_pulse.png",
-    "Things/BioFirm/output/20250207_110105/visualizations/wavelet_resilience_pulse.png",
-    "Things/BioFirm/output/20250207_110105/visualizations/state_space_3d_resilience_pulse.png",
-    "Things/BioFirm/output/20250207_110105/visualizations/network_resilience_pulse.png",
-    "Things/BioFirm/output/20250207_110105/visualizations/resilience_pulse_analysis.png",
-    "Things/BioFirm/output/20250207_110105/results/resilience_pulse.yaml",
-    "Things/BioFirm/output/20250207_110105/results/advanced_report_resilience_press.txt",
-    "Things/BioFirm/output/20250207_110105/results/stats_report_resilience_press.txt",
-    "Things/BioFirm/output/20250207_110105/visualizations/causal_resilience_press.png",
-    "Things/BioFirm/output/20250207_110105/visualizations/fractal_resilience_press.png",
-    "Things/BioFirm/output/20250207_110105/visualizations/information_resilience_press.png",
-    "Things/BioFirm/output/20250207_110105/results/resilience_press.yaml",
-    "Things/BioFirm/output/20250207_110105/results/advanced_report_resilience_shock.txt",
-    "Things/BioFirm/output/20250207_110105/results/stats_report_resilience_shock.txt",
-    "Things/BioFirm/output/20250207_110105/results/resilience_shock.yaml",
-    "Things/BioFirm/output/20250207_110105/results/advanced_report_stability_extreme.txt",
-    "Things/BioFirm/output/20250207_110105/results/stats_report_stability_extreme.txt",
-    "Untitled.canvas",
+    "Things/BioFirm/output/20250207_112939/results/advanced_report_resilience_pulse.txt",
+    "Things/BioFirm/output/20250207_112939/results/stats_report_resilience_pulse.txt",
+    "Things/BioFirm/output/20250207_112939/visualizations/causal_resilience_pulse.png",
+    "Things/BioFirm/output/20250207_112939/visualizations/fractal_resilience_pulse.png",
+    "Things/BioFirm/output/20250207_112939/visualizations/information_resilience_pulse.png",
+    "Things/BioFirm/output/20250207_112939/visualizations/wavelet_resilience_pulse.png",
+    "Things/BioFirm/output/20250207_112939/visualizations/state_space_3d_resilience_pulse.png",
+    "Things/BioFirm/output/20250207_112939/visualizations/network_resilience_pulse.png",
+    "Things/BioFirm/output/20250207_112939/visualizations/resilience_pulse_analysis.png",
+    "Things/BioFirm/output/20250207_112939/results/advanced_report_resilience_press.txt",
+    "Things/BioFirm/output/20250207_112939/results/stats_report_resilience_press.txt",
+    "Things/BioFirm/output/20250207_112939/visualizations/causal_resilience_press.png",
+    "Things/BioFirm/output/20250207_112939/visualizations/fractal_resilience_press.png",
+    "Things/BioFirm/output/20250207_112939/visualizations/information_resilience_press.png",
+    "Things/BioFirm/output/20250207_112939/results/advanced_report_resilience_shock.txt",
+    "Things/BioFirm/output/20250207_112939/results/stats_report_resilience_shock.txt",
+    "Things/BioFirm/output/20250207_112939/results/scenario_comparison_resilience.txt",
+    "Things/BioFirm/output/20250207_112939/results/resilience_pulse.yaml",
+    "Things/BioFirm/output/20250207_112939/results/resilience_press.yaml",
+    "Things/BioFirm/output/20250207_112939/results/resilience_shock.yaml",
+    "Things/BioFirm/output/20250207_112939/results/advanced_report_stability_extreme.txt",
+    "Canvas.canvas",
     "InferAnt_Stream_10.md",
+    "knowledge_base/systems/index.md",
+    "knowledge_base/mathematics/index.md",
+    "knowledge_base/index.md",
+    "knowledge_base/agents/index.md",
+    "knowledge_base/agents/README.md",
+    "docs/tools/index.md",
+    "docs/templates/research_document.md",
+    "docs/templates/learning_path.md",
+    "docs/templates/implementation_example.md",
+    "docs/templates/cognitive_concept.md",
+    "docs/research/index.md",
+    "docs/research/ant_colony_active_inference.md",
+    "docs/guides/learning_paths/swarm_intelligence.md",
+    "docs/guides/learning_paths/pomdp_framework.md",
+    "docs/guides/learning_paths/index.md",
+    "docs/guides/learning_paths/active_inference.md",
+    "docs/guides/implementation/active_inference_agent.md",
+    "docs/examples/index.md",
+    "docs/concepts/index.md",
     "Things/BioFirm/docs/earth_systems_schema.md",
     "src/models/active_inference/docs/biofirm_schema.md",
     "Things/Ant_Colony/Ant_Colony_README.md",
     "src/models/active_inference/docs/dispatcher.md",
-    "src/models/active_inference/docs/active_inference_dispatcher.md",
-    "src/models/active_inference/docs/active_inference.md"
+    "src/models/active_inference/docs/active_inference_dispatcher.md"
   ]
 }
