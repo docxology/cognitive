@@ -1,86 +1,152 @@
-# Cognitive Science Knowledge Base
-
 ---
-title: Cognitive Science Knowledge Base
+title: Cognitive Science Index
 type: index
 status: stable
-created: 2024-02-06
+created: 2024-02-07
 tags:
+  - cognitive
   - index
-  - cognitive_science
-  - knowledge_base
+  - organization
 semantic_relations:
-  - type: implements
-    links: [[../../docs/concepts/knowledge_organization]]
-  - type: relates
+  - type: organizes
     links:
-      - [[../../docs/guides/implementation_guides_index]]
-      - [[../../docs/concepts/concept_documentation_index]]
+      - [[cognitive_phenomena]]
+      - [[cognitive_architecture]]
+      - [[cognitive_development]]
 ---
 
-## Overview
-This directory contains the comprehensive cognitive science knowledge base, focusing on theoretical foundations, cognitive phenomena, and their mathematical implementations. While the [[../../docs/concepts/concept_documentation_index|concept documentation]] focuses on implementation aspects, this knowledge base provides the scientific theory and mathematical foundations.
+# Cognitive Science Knowledge Organization
 
-## Core Theory
+## Core Theoretical Frameworks
 
-### Theoretical Foundations
-- [[free_energy_principle]] - Core theoretical foundation
-- [[active_inference]] - Computational framework
-- [[predictive_processing]] - Information processing model
+### Active Inference and Free Energy
+- [[active_inference|Active Inference]]
+- [[free_energy_principle|Free Energy Principle]]
+- [[free_energy_minimization|Free Energy Minimization]]
+- [[predictive_processing|Predictive Processing]]
+- [[bayesian_brain|Bayesian Brain]]
 
-### Mathematical Foundations
-- [[../mathematics/information_theory]] - Information theoretic foundations
-- [[../mathematics/variational_methods]] - Variational inference methods
-- [[../mathematics/game_theory]] - Game theoretic principles
+### Information Processing
+- [[information_processing|Information Processing]]
+- [[predictive_coding|Predictive Coding]]
+- [[perceptual_inference|Perceptual Inference]]
+- [[prediction_error|Prediction Error]]
+- [[precision_weighting|Precision Weighting]]
 
-## Cognitive Phenomena
+### Learning and Development
+- [[learning_theory|Learning Theory]]
+- [[learning_mechanisms|Learning Mechanisms]]
+- [[cognitive_development|Cognitive Development]]
+- [[skill_acquisition|Skill Acquisition]]
+- [[neural_plasticity|Neural Plasticity]]
 
-### Basic Processes
-- [[perception/predictive_perception]] - Predictive perception mechanisms
-- [[attention/attention_mechanisms]] - Attention mechanisms
-- [[memory/memory_systems]] - Memory systems
-- [[learning/learning_mechanisms]] - Learning mechanisms
+## Cognitive Processes
+
+### Perception and Attention
+- [[perception_attention|Perception and Attention]]
+- [[attention_mechanisms|Attention Mechanisms]]
+- [[predictive_perception|Predictive Perception]]
+- [[psychophysics|Psychophysics]]
+
+### Memory and Knowledge
+- [[memory_systems|Memory Systems]]
+- [[memory_organization|Memory Organization]]
+- [[belief_initialization|Belief Initialization]]
+
+### Executive Functions
+- [[executive_functions|Executive Functions]]
+- [[cognitive_control|Cognitive Control]]
+- [[task_switching|Task Switching]]
+- [[action_selection|Action Selection]]
 
 ### Higher Cognition
-- [[consciousness/consciousness]] - Consciousness and awareness
-- [[social/social_cognition]] - Social cognition
-- [[emotion/emotional_processing]] - Emotional processing
-- [[decision/decision_making]] - Decision-making processes
+- [[reasoning_problem_solving|Reasoning and Problem Solving]]
+- [[decision_making|Decision Making]]
+- [[metacognition|Metacognition]]
+- [[consciousness|Consciousness]]
+- [[consciousness_and_awareness|Consciousness and Awareness]]
 
-### Neural Implementation
-- [[neural/cortical_hierarchy]] - Cortical organization
-- [[neural/neural_dynamics]] - Neural dynamics
-- [[neural/synaptic_plasticity]] - Synaptic plasticity
+### Social and Emotional
+- [[social_cognition|Social Cognition]]
+- [[emotional_processing|Emotional Processing]]
+- [[communication|Communication]]
+- [[cooperation|Cooperation]]
 
-## Clinical Applications
+## Neural Foundations
 
-### Disorders and Diagnostics
-- [[clinical/disorder_models]] - Computational models of disorders
-- [[clinical/diagnostic_tools]] - Diagnostic implementations
-- [[clinical/treatment_protocols]] - Treatment protocols
+### Neural Computation
+- [[neural_computation|Neural Computation]]
+- [[neural_coding|Neural Coding]]
+- [[synaptic_plasticity|Synaptic Plasticity]]
+- [[hierarchical_processing|Hierarchical Processing]]
 
-### Rehabilitation
-- [[clinical/rehabilitation_methods]] - Rehabilitation methods
-- [[clinical/progress_tracking]] - Progress tracking
-- [[clinical/outcome_measures]] - Outcome measures
+### Motor Control
+- [[motor_control|Motor Control]]
+- [[action_selection|Action Selection]]
 
-## Research Methods
+## Collective and Complex Systems
 
-### Computational Methods
-- [[methods/model_specification]] - Model specification
-- [[methods/parameter_estimation]] - Parameter estimation
-- [[methods/model_comparison]] - Model comparison
+### Collective Behavior
+- [[collective_behavior|Collective Behavior]]
+- [[social_insect_cognition|Social Insect Cognition]]
+- [[swarm_intelligence|Swarm Intelligence]]
+- [[stigmergic_coordination|Stigmergic Coordination]]
 
-### Experimental Methods
-- [[methods/experimental_design]] - Experimental design
-- [[methods/data_analysis]] - Data analysis
-- [[methods/result_interpretation]] - Result interpretation
+### Complex Systems
+- [[complex_systems_biology|Complex Systems Biology]]
+- [[emergence_self_organization|Emergence and Self-Organization]]
+- [[intelligence_networks|Intelligence Networks]]
 
-## Related Sections
-- [[../../docs/concepts/concept_documentation_index|Concept Documentation]]
-- [[../../docs/guides/implementation_guides_index|Implementation Guides]]
-- [[../../docs/api/api_documentation_index|API Documentation]]
-- [[../../docs/examples/usage_examples_index|Usage Examples]]
+## Mathematical Foundations
 
-## Contributing
-See [[../../docs/templates/knowledge_base_template|Knowledge Base Template]] for creating new knowledge base entries. 
+### Probability and Statistics
+- [[mathematics/probability_theory|Probability Theory]]
+- [[mathematics/statistical_foundations|Statistical Foundations]]
+- [[mathematics/uncertainty_resolution|Uncertainty Resolution]]
+
+### Information Theory
+- [[mathematics/information_theory|Information Theory]]
+- [[mathematics/information_geometry|Information Geometry]]
+- [[mathematics/information_gain|Information Gain]]
+
+### Free Energy and Variational Methods
+- [[mathematics/free_energy_theory|Free Energy Theory]]
+- [[mathematics/variational_methods|Variational Methods]]
+- [[mathematics/variational_calculus|Variational Calculus]]
+
+### Active Inference Mathematics
+- [[mathematics/active_inference_theory|Active Inference Theory]]
+- [[mathematics/expected_free_energy|Expected Free Energy]]
+- [[mathematics/path_integral_theory|Path Integral Theory]]
+
+## Implementation and Applications
+
+### Cognitive Architectures
+- [[cognitive_architecture|Cognitive Architecture]]
+- [[agents/GenericPOMDP/README|Generic POMDP Framework]]
+- [[agents/Continuous_Time/README|Continuous Time Agents]]
+
+### Example Applications
+- [[collective_behavior_ants|Ant Colony Example]]
+- [[examples/active_inference_basic|Basic Active Inference]]
+- [[examples/pomdp_agent|POMDP Agent]]
+
+## Research Directions
+
+### Current Research Areas
+- Active Inference Applications
+- Cognitive Architecture Development
+- Complex Systems Modeling
+- Social Cognition Studies
+
+### Open Questions
+- Consciousness and Free Energy
+- Scale-free Learning
+- Social Active Inference
+- Collective Intelligence
+
+## See Also
+
+- [[systems/systems_theory|Systems Theory]]
+- [[mathematics/category_theory|Category Theory]]
+- [[mathematics/differential_geometry|Differential Geometry]] 
