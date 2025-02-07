@@ -11,6 +11,29 @@
             "id": "0ba8a1b9b9dd949a",
             "type": "leaf",
             "state": {
+              "type": "canvas",
+              "state": {
+                "file": "Untitled.canvas",
+                "viewState": {
+                  "x": 0,
+                  "y": 111.59999999999994,
+                  "zoom": 0
+                }
+              },
+              "icon": "lucide-layout-dashboard",
+              "title": "Untitled"
+            }
+          }
+        ]
+      },
+      {
+        "id": "109379312b857b11",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "52d3928d1a582e57",
+            "type": "leaf",
+            "state": {
               "type": "graph",
               "state": {},
               "icon": "lucide-git-fork",
@@ -90,6 +113,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Untitled.canvas",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -99,7 +123,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks"
+              "title": "Backlinks for Untitled"
             }
           },
           {
@@ -108,11 +132,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Untitled.canvas",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links"
+              "title": "Outgoing links from Untitled"
             }
           },
           {
@@ -136,12 +161,13 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "Untitled.canvas",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline"
+              "title": "Outline of Untitled"
             }
           }
         ]
@@ -163,29 +189,34 @@
   },
   "active": "0ba8a1b9b9dd949a",
   "lastOpenFiles": [
-    "Things/Simple_POMDP/Output/efe_components_detailed.png",
-    "Things/Simple_POMDP/Output/policy_evolution.png",
-    "Things/Simple_POMDP/Output/free_energies.png",
-    "Things/Simple_POMDP/Output/belief_history.png",
-    "Things/Simple_POMDP/Output/action_history.png",
-    "Things/Simple_POMDP/Output/observation_likelihood.png",
-    "Things/Simple_POMDP/Output/state_transitions.png",
-    "Things/Simple_POMDP/Output/belief_evolution.png",
-    "Things/Simple_POMDP/Output/simulation_log.txt",
-    "Things/Simple_POMDP/Output/all_matrices.png",
-    "Things/Simple_POMDP/Output/C_preferences.png",
-    "Things/Simple_POMDP/Output/B_matrices.png",
-    "Things/Simple_POMDP/Output/matrix_validation.txt",
-    "Things/Simple_POMDP/Output",
+    "Things/BioFirm/output/20250207_110105/results/advanced_report_resilience_pulse.txt",
+    "Things/BioFirm/output/20250207_110105/results/stats_report_resilience_pulse.txt",
+    "Things/BioFirm/output/20250207_110105/visualizations/causal_resilience_pulse.png",
+    "Things/BioFirm/output/20250207_110105/visualizations/fractal_resilience_pulse.png",
+    "Things/BioFirm/output/20250207_110105/visualizations/information_resilience_pulse.png",
+    "Things/BioFirm/output/20250207_110105/visualizations/wavelet_resilience_pulse.png",
+    "Things/BioFirm/output/20250207_110105/visualizations/state_space_3d_resilience_pulse.png",
+    "Things/BioFirm/output/20250207_110105/visualizations/network_resilience_pulse.png",
+    "Things/BioFirm/output/20250207_110105/visualizations/resilience_pulse_analysis.png",
+    "Things/BioFirm/output/20250207_110105/results/resilience_pulse.yaml",
+    "Things/BioFirm/output/20250207_110105/results/advanced_report_resilience_press.txt",
+    "Things/BioFirm/output/20250207_110105/results/stats_report_resilience_press.txt",
+    "Things/BioFirm/output/20250207_110105/visualizations/causal_resilience_press.png",
+    "Things/BioFirm/output/20250207_110105/visualizations/fractal_resilience_press.png",
+    "Things/BioFirm/output/20250207_110105/visualizations/information_resilience_press.png",
+    "Things/BioFirm/output/20250207_110105/results/resilience_press.yaml",
+    "Things/BioFirm/output/20250207_110105/results/advanced_report_resilience_shock.txt",
+    "Things/BioFirm/output/20250207_110105/results/stats_report_resilience_shock.txt",
+    "Things/BioFirm/output/20250207_110105/results/resilience_shock.yaml",
+    "Things/BioFirm/output/20250207_110105/results/advanced_report_stability_extreme.txt",
+    "Things/BioFirm/output/20250207_110105/results/stats_report_stability_extreme.txt",
+    "Untitled.canvas",
+    "InferAnt_Stream_10.md",
+    "Things/BioFirm/docs/earth_systems_schema.md",
+    "src/models/active_inference/docs/biofirm_schema.md",
+    "Things/Ant_Colony/Ant_Colony_README.md",
     "src/models/active_inference/docs/dispatcher.md",
     "src/models/active_inference/docs/active_inference_dispatcher.md",
-    "src/models/active_inference/docs/active_inference.md",
-    "src/models/active_inference/docs",
-    "src/models/active_inference/config_examples/continuous_sampling.yaml",
-    "src/models/active_inference/config_examples/discrete_variational.yaml",
-    "src/models/active_inference/config_examples",
-    "src/models/active_inference/dispatcher.py",
-    "Things/Continuous_Generic/__pycache__/test_continuous_generic.cpython-310-pytest-8.3.2.pyc",
-    "Things/Continuous_Generic/__pycache__/conftest.cpython-310-pytest-8.3.2.pyc"
+    "src/models/active_inference/docs/active_inference.md"
   ]
 }

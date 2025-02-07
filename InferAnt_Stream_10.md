@@ -6,6 +6,7 @@
 - **Tools**: 
   - Cursor: https://cursor.com/
   - Obsidian: https://obsidian.md/
+  - CodeViz: https://codeviz.ai/
 
 ## Epistemic Status
 - Incipient development phase
@@ -16,7 +17,7 @@
 ## Agenda
 
 ### 1. Introduction
-- Welcome and overview
+- Welcome and overview of [[obsidian_usage]] and [[active_inference]] and [[free_energy_principle]]
 - Context from previous streams
 - Today's objectives and roadmap
 - Development environment setup

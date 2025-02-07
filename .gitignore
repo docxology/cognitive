@@ -44,10 +44,6 @@ Thumbs.db
 
 # Project Specific
 *.log
-logs/
-output/
-results/
-data/
 config/*.local.yaml
 .cache/
 .pytest_cache/
