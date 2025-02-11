@@ -1,12 +1,12 @@
-# [[Socioeconomic Active Inference]]
+# [[Socioeconomic_Active_Inference]]
 
 ## Overview
 
-This document outlines the application of [[Active Inference|Active Inference]] principles to socioeconomic systems within the [[BioFirm Framework|BioFirm]]. It demonstrates how the [[Active Inference/Free Energy Principle|Free Energy Principle]] can be used to understand and guide social and economic dynamics in bioregional contexts.
+This document outlines the application of [[Active_Inference|Active Inference]] principles to socioeconomic systems within the [[BioFirm_Framework|BioFirm]]. It demonstrates how the [[Active_Inference/Free_Energy_Principle|Free Energy Principle]] can be used to understand and guide social and economic dynamics in bioregional contexts.
 
 ## Theoretical Framework
 
-### 1. [[Active Inference/Social States|Social State Space]]
+### 1. [[Active_Inference/Social_States|Social State Space]]
 - **Community Dynamics**
   - Social networks
   - Cultural practices
@@ -18,7 +18,7 @@ This document outlines the application of [[Active Inference|Active Inference]] 
   - Market dynamics
   - Investment patterns
 
-### 2. [[Active Inference/Socioeconomic Dynamics|Socioeconomic Dynamics]]
+### 2. [[Active_Inference/Socioeconomic_Dynamics|Socioeconomic Dynamics]]
 ```python
 class SocioeconomicDynamics:
     """Models socioeconomic system dynamics using active inference"""
@@ -34,7 +34,7 @@ class SocioeconomicDynamics:
         # Account for policy effects
 ```
 
-### 3. [[Active Inference/Social Learning|Social Learning]]
+### 3. [[Active_Inference/Social_Learning|Social Learning]]
 - **Knowledge Integration**
   - Traditional knowledge
   - Scientific understanding
@@ -46,7 +46,7 @@ class SocioeconomicDynamics:
 
 ## Implementation Framework
 
-### 1. [[Active Inference/Social Control|Social Control]]
+### 1. [[Active_Inference/Social_Control|Social Control]]
 ```python
 class SocialController:
     """Active inference-based social system management"""
@@ -62,7 +62,7 @@ class SocialController:
         # Consider equity impacts
 ```
 
-### 2. [[Active Inference/Economic Control|Economic Control]]
+### 2. [[Active_Inference/Economic_Control|Economic Control]]
 ```python
 class EconomicController:
     """Active inference-based economic system management"""
@@ -78,7 +78,7 @@ class EconomicController:
         # Maximize value creation
 ```
 
-### 3. [[Active Inference/Socioeconomic Learning|Socioeconomic Learning]]
+### 3. [[Active_Inference/Socioeconomic_Learning|Socioeconomic Learning]]
 - **System Adaptation**
   - Policy learning
   - Market adaptation
@@ -216,10 +216,10 @@ where:
   - Value systems
 
 ## See Also
-- [[Active Inference]]
-- [[BioFirm Framework]]
-- [[Social Systems]]
-- [[Economic Systems]]
-- [[Governance Systems]]
-- [[Community Development]]
-- [[Sustainable Economics]] 
+- [[Active_Inference]]
+- [[BioFirm_Framework]]
+- [[Social_Systems]]
+- [[Economic_Systems]]
+- [[Governance_Systems]]
+- [[Community_Development]]
+- [[Sustainable_Economics]] 
