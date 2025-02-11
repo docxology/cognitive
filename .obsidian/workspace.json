@@ -14,12 +14,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "knowledge_base/systems/Adaptive Comanagement.md",
+                "file": "knowledge_base/BioFirm/ecological_active_inference.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Adaptive Comanagement"
+              "title": "ecological_active_inference"
             }
           }
         ]
@@ -183,9 +183,34 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "b3ae48a59c7d14cd",
+  "active": "0ba8a1b9b9dd949a",
   "lastOpenFiles": [
+    "knowledge_base/BioFirm/active_inference_connections.md",
+    "knowledge_base/BioFirm/socioeconomic_active_inference.md",
+    "knowledge_base/BioFirm/ecological_active_inference.md",
+    "knowledge_base/mathematics/compute_vfe.md",
+    "knowledge_base/BioFirm/visualization/plotting.py",
+    "knowledge_base/BioFirm/core/transition.py",
+    "knowledge_base/BioFirm/core/stewardship.py",
+    "knowledge_base/BioFirm/core/state_spaces.py",
+    "knowledge_base/BioFirm/core/observation.py",
+    "knowledge_base/BioFirm/config/example_config.yaml",
+    "knowledge_base/BioFirm/visualization",
+    "knowledge_base/BioFirm/core",
+    "knowledge_base/BioFirm/config",
+    "knowledge_base/BioFirm/biofirm_schema.md",
+    "knowledge_base/BioFirm/biofirm.py",
+    "knowledge_base/BioFirm/Bioregional State Space.md",
+    "src/models/active_inference/docs/BioFirm/Bioregional State Space.md",
+    "src/models/active_inference/docs/BioFirm/knowledge_base/Active_Inference/Markov_Blankets.md",
+    "src/models/active_inference/docs/BioFirm/knowledge_base/Active_Inference/Free_Energy_Principle.md",
     "src/models/active_inference/docs/BioFirm/biofirm_schema.md",
+    "knowledge_base/mathematics/expected_free_energy.md",
+    "knowledge_base/mathematics/belief_updating.md",
+    "knowledge_base/cognitive/bayesian_brain.md",
+    "knowledge_base/cognitive/cognitive_control.md",
+    "knowledge_base/cognitive/collective_behavior.md",
+    "State Space Abstraction.md",
     "knowledge_base/systems/Adaptive Comanagement.md",
     "knowledge_base/systems/Resilience Thinking.md",
     "knowledge_base/systems/Social-Ecological Systems.md",
@@ -193,17 +218,7 @@
     "knowledge_base/systems/Bioregional Stewardship Theory.md",
     "Things/Continuous_Generic/Continuous_Generic_README.md",
     "src/models/active_inference/docs/biofirm_schema.md",
-    "src/models/active_inference/docs/BioFirm",
     "Things/Baseball_Game/Baseball_Game.md",
-    "Things/Baseball_Game",
-    "Things/Path_Network/venv/lib/python3.10/site-packages/pip-25.0.dist-info/top_level.txt",
-    "Things/Path_Network/venv/lib/python3.10/site-packages/pip-25.0.dist-info/entry_points.txt",
-    "Things/Path_Network/venv/lib/python3.10/site-packages/pip-25.0.dist-info/WHEEL",
-    "Things/Path_Network/venv/lib/python3.10/site-packages/pip-25.0.dist-info/REQUESTED",
-    "Things/Path_Network/venv/lib/python3.10/site-packages/pip-25.0.dist-info/RECORD",
-    "Things/Path_Network/venv/lib/python3.10/site-packages/pip-25.0.dist-info/METADATA",
-    "Things/Path_Network/venv/lib/python3.10/site-packages/pip-25.0.dist-info/LICENSE.txt",
-    "Things/Path_Network/venv/lib/python3.10/site-packages/pip-25.0.dist-info/AUTHORS.txt",
     "Things/Path_Network/output/20250207_134114/agent_height_variations.png",
     "Things/Path_Network/output/20250207_134114/water_level_distribution.png",
     "Things/Path_Network/output/20250207_134114/final_state.png",
@@ -214,23 +229,8 @@
     "Things/Path_Network/output/20250207_134014/initial_state.png",
     "Things/Path_Network/README.md",
     "Things/Path_Network/Path_Network_README.md",
-    "Things/BioFirm/BioFirm_README.md",
     "Output/tests/visualization/detailed_summary.png",
     "Output/tests/visualization/summary.png",
-    "knowledge_base/cognitive/continuous_time_active_inference.md",
-    "Things/Generic_POMDP/Generic_POMDP_README.md",
-    "knowledge_base/agents/GenericPOMDP/matrices/A_matrix.md",
-    "knowledge_base/agents/GenericPOMDP/state_spaces/s_space.md",
-    "src/models/active_inference/docs/active_inference_dispatcher.md",
-    "Canvas.canvas",
-    "knowledge_base/mathematics/uncertainty_resolution.md",
-    "knowledge_base/mathematics/taylor_series.md",
-    "knowledge_base/mathematics/path_integral_free_energy.md",
-    "knowledge_base/agents/GenericPOMDP/guides/s_space_enthusiast.md",
-    "knowledge_base/mathematics/path_integral.md",
-    "knowledge_base/agents/GenericPOMDP/guides/a_space_enthusiast.md",
-    "knowledge_base/mathematics/information_gain.md",
-    "knowledge_base/agents/GenericPOMDP/guides/b_matrix_enthusiast.md",
-    "knowledge_base/agents/GenericPOMDP/guides/o_space_enthusiast.md"
+    "Canvas.canvas"
   ]
 }
