@@ -1,289 +1,301 @@
 ---
 title: Precision Weighting
-type: knowledge_base
+type: concept
 status: stable
-created: 2024-02-11
+created: 2024-02-12
 tags:
-  - cognition
+  - cognitive
+  - neuroscience
   - computation
-  - attention
-  - uncertainty
 semantic_relations:
-  - type: implements
-    links: [[uncertainty_estimation]]
-  - type: extends
-    links: [[probabilistic_inference]]
-  - type: related
+  - type: foundation
     links: 
-      - [[active_inference]]
+      - [[predictive_coding]]
+      - [[variational_inference]]
+  - type: relates
+    links:
       - [[free_energy_principle]]
-      - [[attention_allocation]]
-      - [[belief_updating]]
+      - [[active_inference]]
+      - [[error_propagation]]
 ---
 
 # Precision Weighting
 
-Precision weighting represents the process by which cognitive systems allocate attention and resources based on uncertainty estimates. Within the active inference framework, it implements precision-weighted prediction errors and belief updating through hierarchical precision control.
+## Overview
 
-## Mathematical Foundations
+Precision Weighting is a mechanism for dynamically adjusting the influence of prediction errors based on their reliability or precision. This process is crucial for balancing bottom-up sensory evidence with top-down predictions in hierarchical inference systems.
 
-### Precision Dynamics
-1. **Precision Estimation**
-   ```math
-   π = (σ² + ∑ᵢ wᵢεᵢ²)⁻¹
-   ```
-   where:
-   - π is precision
-   - σ² is baseline variance
-   - wᵢ are weights
-   - εᵢ are prediction errors
+## Core Concepts
 
-2. **Weighted Prediction Error**
-   ```math
-   ε̃ = πε
-   ```
-   where:
-   - ε̃ is weighted error
-   - π is precision
-   - ε is prediction error
+### Precision-Weighted Errors
+```math
+ε_π = π ⊙ (x - \hat{x})
+```
+where:
+- $ε_π$ is precision-weighted error
+- $π$ is precision
+- $x$ is actual input
+- $\hat{x}$ is prediction
+- $⊙$ is element-wise multiplication
 
-### Weighting Process
-1. **Belief Update**
-   ```math
-   dμ/dt = -∂F/∂μ = π(ε - ∂G/∂μ)
-   ```
-   where:
-   - μ is belief
-   - F is free energy
-   - π is precision
-   - ε is prediction error
-   - G is value function
+### Precision Updates
+```math
+\frac{∂π}{∂t} = η(ε^2 - \frac{1}{π})
+```
+where:
+- $π$ is precision
+- $η$ is learning rate
+- $ε$ is prediction error
 
-2. **Precision Control**
-   ```math
-   dπ/dt = η(π* - π) + κ∫ε²dt
-   ```
-   where:
-   - π is precision
-   - π* is target precision
-   - η is learning rate
-   - κ is adaptation rate
-   - ε is prediction error
+## Implementation
 
-## Core Mechanisms
+### Precision Layer
 
-### Weighting Processes
-1. **Precision Processing**
-   - Uncertainty estimation
-   - Precision computation
-   - Error weighting
-   - Attention allocation
-   - Resource distribution
+```python
+import numpy as np
+import torch
+import torch.nn as nn
+from typing import List, Tuple, Optional
 
-2. **Control Operations**
-   - Resource allocation
-   - Precision regulation
-   - Model selection
-   - Belief updating
-   - Performance optimization
+class PrecisionLayer(nn.Module):
+    def __init__(self,
+                 input_size: int,
+                 hidden_size: int,
+                 min_precision: float = 1e-6,
+                 max_precision: float = 1e6):
+        """Initialize precision layer.
+        
+        Args:
+            input_size: Input dimension
+            hidden_size: Hidden dimension
+            min_precision: Minimum precision value
+            max_precision: Maximum precision value
+        """
+        super().__init__()
+        
+        # Precision network
+        self.precision_net = nn.Sequential(
+            nn.Linear(input_size, hidden_size),
+            nn.ReLU(),
+            nn.Linear(hidden_size, input_size),
+            nn.Softplus()
+        )
+        
+        # Precision bounds
+        self.min_precision = min_precision
+        self.max_precision = max_precision
+        
+        # State
+        self.precision = nn.Parameter(
+            torch.ones(input_size)
+        )
+    
+    def forward(self,
+               input_data: torch.Tensor,
+               prediction: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
+        """Forward pass through layer.
+        
+        Args:
+            input_data: Input tensor
+            prediction: Prediction tensor
+            
+        Returns:
+            weighted_error: Precision-weighted error
+            precision: Current precision values
+        """
+        # Compute raw error
+        error = input_data - prediction
+        
+        # Update precision
+        self.precision.data = torch.clamp(
+            self.precision_net(error),
+            self.min_precision,
+            self.max_precision
+        )
+        
+        # Weight error
+        weighted_error = error * self.precision
+        
+        return weighted_error, self.precision
+```
 
-### Regulatory Systems
-1. **Process Control**
-   - Precision monitoring
-   - Resource tracking
-   - Attention regulation
-   - Decision timing
-   - Performance optimization
+### Precision Network
 
-2. **System Management**
-   - Resource allocation
-   - Processing distribution
-   - Memory optimization
-   - Efficiency enhancement
-   - Output maximization
+```python
+class PrecisionNetwork(nn.Module):
+    def __init__(self,
+                 layer_sizes: List[int],
+                 hidden_sizes: List[int]):
+        """Initialize precision network.
+        
+        Args:
+            layer_sizes: List of layer sizes
+            hidden_sizes: List of hidden sizes
+        """
+        super().__init__()
+        
+        # Create layers
+        self.prediction_layers = nn.ModuleList([
+            nn.Sequential(
+                nn.Linear(n1, h),
+                nn.ReLU(),
+                nn.Linear(h, n2)
+            )
+            for n1, h, n2 in zip(
+                layer_sizes[:-1],
+                hidden_sizes,
+                layer_sizes[1:]
+            )
+        ])
+        
+        self.precision_layers = nn.ModuleList([
+            PrecisionLayer(size, h)
+            for size, h in zip(
+                layer_sizes,
+                hidden_sizes
+            )
+        ])
+    
+    def forward(self,
+               input_data: torch.Tensor) -> Tuple[List[torch.Tensor], List[torch.Tensor]]:
+        """Forward pass through network.
+        
+        Args:
+            input_data: Input tensor
+            
+        Returns:
+            weighted_errors: List of precision-weighted errors
+            precisions: List of precision values
+        """
+        current = input_data
+        weighted_errors = []
+        precisions = []
+        
+        # Forward pass
+        for pred_layer, prec_layer in zip(
+            self.prediction_layers,
+            self.precision_layers[:-1]
+        ):
+            # Generate prediction
+            prediction = pred_layer(current)
+            
+            # Compute weighted error
+            weighted_error, precision = prec_layer(
+                current, prediction
+            )
+            
+            weighted_errors.append(weighted_error)
+            precisions.append(precision)
+            
+            # Update current input
+            current = prediction
+        
+        # Final layer precision
+        weighted_error, precision = self.precision_layers[-1](
+            current, current
+        )
+        weighted_errors.append(weighted_error)
+        precisions.append(precision)
+        
+        return weighted_errors, precisions
+```
 
-## Active Inference Implementation
+### Training Loop
 
-### Model Optimization
-1. **Prediction Processing**
-   - State estimation
-   - Precision computation
-   - Parameter updating
-   - Attention control
-   - Model selection
+```python
+def train_network(network: PrecisionNetwork,
+                 dataset: torch.Tensor,
+                 n_epochs: int = 100,
+                 learning_rate: float = 0.01) -> List[float]:
+    """Train precision network.
+    
+    Args:
+        network: Precision network
+        dataset: Training data
+        n_epochs: Number of epochs
+        learning_rate: Learning rate
+        
+    Returns:
+        losses: Training losses
+    """
+    optimizer = torch.optim.Adam(
+        network.parameters(),
+        lr=learning_rate
+    )
+    losses = []
+    
+    for epoch in range(n_epochs):
+        total_loss = 0
+        
+        for data in dataset:
+            # Forward pass
+            weighted_errors, precisions = network(data)
+            
+            # Compute loss
+            prediction_loss = sum(
+                torch.mean(error**2)
+                for error in weighted_errors
+            )
+            
+            precision_loss = sum(
+                torch.mean(torch.log(prec))
+                for prec in precisions
+            )
+            
+            loss = prediction_loss + precision_loss
+            
+            # Update parameters
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+            
+            total_loss += loss.item()
+        
+        avg_loss = total_loss / len(dataset)
+        losses.append(avg_loss)
+        print(f"Epoch {epoch}, Loss: {avg_loss:.4f}")
+    
+    return losses
+```
 
-2. **Control Dynamics**
-   - Information integration
-   - Resource planning
-   - Precision optimization
-   - Performance enhancement
-   - Efficiency optimization
+## Best Practices
 
-### Resource Management
-1. **Processing Allocation**
-   - Computational costs
-   - Memory demands
-   - Control requirements
-   - Efficiency targets
-   - Performance goals
+### Network Design
+1. Choose appropriate precision bounds
+2. Design precision networks
+3. Initialize precision values
+4. Consider hierarchical structure
 
-2. **Stability Control**
-   - Balance maintenance
-   - Resource regulation
-   - Distribution control
-   - Performance monitoring
-   - Adaptation management
+### Implementation
+1. Monitor precision values
+2. Handle numerical stability
+3. Validate error weighting
+4. Test precision updates
 
-## Neural Implementation
+### Training
+1. Tune learning rates
+2. Balance loss components
+3. Monitor precision statistics
+4. Validate learning
 
-### Network Architecture
-1. **Core Systems**
-   - Prefrontal cortex
-   - Parietal cortex
-   - Basal ganglia
-   - Thalamus
-   - Integration hubs
+## Common Issues
 
-2. **Processing Streams**
-   - Precision pathways
-   - Attention circuits
-   - Integration networks
-   - Feedback loops
-   - Control systems
+### Technical Challenges
+1. Precision instability
+2. Numerical overflow
+3. Gradient problems
+4. Learning collapse
 
-### Circuit Mechanisms
-1. **Neural Operations**
-   - Precision coding
-   - Attention modulation
-   - Error computation
-   - Resource allocation
-   - Performance regulation
+### Solutions
+1. Careful bounds
+2. Log-space computation
+3. Gradient clipping
+4. Proper initialization
 
-2. **Network Dynamics**
-   - Activity patterns
-   - Information flow
-   - Precision control
-   - State transitions
-   - Performance modulation
-
-## Behavioral Effects
-
-### Weighting Characteristics
-1. **Performance Measures**
-   - Precision control
-   - Attention allocation
-   - Error sensitivity
-   - Resource efficiency
-   - Adaptation ability
-
-2. **System Impact**
-   - Task completion
-   - Resource efficiency
-   - Error handling
-   - Learning capacity
-   - Performance quality
-
-### Individual Differences
-1. **Processing Capacity**
-   - Precision sensitivity
-   - Attention control
-   - Error detection
-   - Learning rate
-   - Performance level
-
-2. **State Factors**
-   - Attention focus
-   - Cognitive load
-   - Stress effects
-   - Fatigue impact
-   - Health status
-
-## Clinical Applications
-
-### Weighting Disorders
-1. **Deficit Patterns**
-   - Precision abnormalities
-   - Attention problems
-   - Resource imbalances
-   - Integration failures
-   - Performance decline
-
-2. **Assessment Methods**
-   - Precision tests
-   - Attention measures
-   - Resource evaluation
-   - Integration assessment
-   - Performance metrics
-
-### Intervention Approaches
-1. **Treatment Strategies**
-   - Precision training
-   - Attention enhancement
-   - Resource management
-   - Integration support
-   - Performance improvement
-
-2. **Rehabilitation Methods**
-   - Precision exercises
-   - Attention practice
-   - Resource optimization
-   - Integration development
-   - Performance training
-
-## Research Methods
-
-### Experimental Paradigms
-1. **Weighting Tasks**
-   - Precision control
-   - Attention allocation
-   - Resource distribution
-   - Performance evaluation
-   - Adaptation assessment
-
-2. **Measurement Approaches**
-   - Precision metrics
-   - Attention indices
-   - Resource measures
-   - Performance analysis
-   - Adaptation tracking
-
-### Analysis Techniques
-1. **Data Processing**
-   - Precision analysis
-   - Attention patterns
-   - Resource profiles
-   - Performance modeling
-   - Adaptation dynamics
-
-2. **Statistical Methods**
-   - Distribution analysis
-   - Pattern recognition
-   - Trend detection
-   - Performance metrics
-   - Efficiency indices
-
-## Future Directions
-
-1. **Theoretical Development**
-   - Model refinement
-   - Process understanding
-   - Individual differences
-   - Clinical applications
-   - Integration methods
-
-2. **Technical Advances**
-   - Measurement tools
-   - Analysis techniques
-   - Training systems
-   - Support applications
-   - Integration platforms
-
-3. **Clinical Innovation**
-   - Assessment tools
-   - Treatment strategies
-   - Intervention techniques
-   - Recovery protocols
-   - Support systems
+## Related Documentation
+- [[predictive_coding]]
+- [[variational_inference]]
+- [[error_propagation]]
 
 ## Related Concepts
 - [[active_inference]]

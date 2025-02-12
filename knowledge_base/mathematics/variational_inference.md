@@ -1,196 +1,315 @@
 ---
 title: Variational Inference
-type: knowledge_base
+type: concept
 status: stable
-created: 2024-03-20
+created: 2024-02-12
 tags:
   - mathematics
-  - inference
   - probability
-  - optimization
+  - computation
 semantic_relations:
-  - type: implements
-    links: [[variational_methods]]
-  - type: extends
-    links: [[bayesian_inference]]
-  - type: related
+  - type: foundation
     links: 
-      - [[variational_calculus]]
-      - [[active_inference]]
+      - [[probability_theory]]
+      - [[information_theory]]
+  - type: relates
+    links:
       - [[free_energy_principle]]
-      - [[information_geometry]]
+      - [[predictive_coding]]
+      - [[optimization_theory]]
 ---
 
 # Variational Inference
 
-Variational inference provides a computational framework for approximating complex posterior distributions through optimization. Within the active inference framework, it implements the core mechanism for belief updating and model optimization through minimization of variational free energy.
+## Overview
 
-## Mathematical Framework
+Variational Inference (VI) is a method for approximating complex probability distributions through optimization. It forms the mathematical foundation for many cognitive modeling approaches, including predictive coding and active inference.
 
-### Variational Principle
-1. **Core Objective**
-   ```math
-   q*(z) = argmin_{q∈Q} KL(q(z)||p(z|x))
-   ```
-   where:
-   - q*(z) is optimal approximation
-   - p(z|x) is true posterior
-   - KL is Kullback-Leibler divergence
-   - Q is variational family
+## Core Concepts
 
-2. **Evidence Lower Bound**
-   ```math
-   ELBO(q) = E_q[log p(x,z)] - E_q[log q(z)]
-   ```
-   where:
-   - ELBO is evidence lower bound
-   - p(x,z) is joint distribution
-   - q(z) is variational distribution
+### Evidence Lower Bound
+```math
+\mathcal{L} = \mathbb{E}_{q(z)}[\log p(x,z) - \log q(z)]
+```
+where:
+- $\mathcal{L}$ is ELBO
+- $q(z)$ is variational distribution
+- $p(x,z)$ is joint distribution
 
-### Mean Field Theory
-1. **Factorization**
-   ```math
-   q(z) = ∏ᵢ q_i(z_i)
-   ```
-   where:
-   - q(z) is variational distribution
-   - z_i are partitioned variables
+### KL Divergence
+```math
+D_{KL}(q||p) = \mathbb{E}_{q(z)}[\log q(z) - \log p(z)]
+```
+where:
+- $D_{KL}$ is KL divergence
+- $q(z)$ is approximate posterior
+- $p(z)$ is true posterior
 
-2. **Coordinate Ascent**
-   ```math
-   log q_j*(z_j) = E_{q_{-j}}[log p(x,z)] + const
-   ```
-   where:
-   - q_j* is optimal factor
-   - q_{-j} is all other factors
+## Implementation
 
-## Implementation Methods
+### Variational Distribution
 
-### Stochastic Optimization
-1. **Gradient Estimation**
-   ```math
-   ∇_ϕ ELBO = E_q[∇_ϕ log q(z;ϕ)(log p(x,z) - log q(z;ϕ))]
-   ```
-   where:
-   - ϕ are variational parameters
-   - q(z;ϕ) is parameterized distribution
+```python
+import numpy as np
+import torch
+import torch.nn as nn
+from typing import List, Tuple, Optional
+from torch.distributions import Normal, kl_divergence
 
-2. **Reparameterization**
-   ```math
-   z = g_ϕ(ε), ε ~ p(ε)
-   ```
-   where:
-   - g_ϕ is differentiable transform
-   - p(ε) is base distribution
+class VariationalDistribution(nn.Module):
+    def __init__(self,
+                 input_size: int,
+                 hidden_size: int,
+                 latent_size: int):
+        """Initialize variational distribution.
+        
+        Args:
+            input_size: Input dimension
+            hidden_size: Hidden dimension
+            latent_size: Latent dimension
+        """
+        super().__init__()
+        
+        # Encoder network
+        self.encoder = nn.Sequential(
+            nn.Linear(input_size, hidden_size),
+            nn.ReLU(),
+            nn.Linear(hidden_size, hidden_size),
+            nn.ReLU()
+        )
+        
+        # Distribution parameters
+        self.mean = nn.Linear(hidden_size, latent_size)
+        self.log_var = nn.Linear(hidden_size, latent_size)
+    
+    def forward(self,
+               x: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+        """Forward pass through distribution.
+        
+        Args:
+            x: Input tensor
+            
+        Returns:
+            z: Sampled latent
+            mean: Distribution mean
+            log_var: Log variance
+        """
+        # Encode input
+        h = self.encoder(x)
+        
+        # Get distribution parameters
+        mean = self.mean(h)
+        log_var = self.log_var(h)
+        
+        # Sample using reparameterization
+        std = torch.exp(0.5 * log_var)
+        eps = torch.randn_like(std)
+        z = mean + eps * std
+        
+        return z, mean, log_var
+```
 
-### Structured Approximations
-1. **Hierarchical Models**
-   ```math
-   q(z) = q(z₁|z₂)q(z₂|z₃)...q(zₖ)
-   ```
-   where:
-   - zᵢ are hierarchical variables
-   - q(zᵢ|zᵢ₊₁) are conditional factors
+### Generative Model
 
-2. **Normalizing Flows**
-   ```math
-   q(z) = q₀(z₀)|det(∂f/∂z₀)|⁻¹
-   ```
-   where:
-   - q₀ is base distribution
-   - f is invertible transform
+```python
+class GenerativeModel(nn.Module):
+    def __init__(self,
+                 latent_size: int,
+                 hidden_size: int,
+                 output_size: int):
+        """Initialize generative model.
+        
+        Args:
+            latent_size: Latent dimension
+            hidden_size: Hidden dimension
+            output_size: Output dimension
+        """
+        super().__init__()
+        
+        # Decoder network
+        self.decoder = nn.Sequential(
+            nn.Linear(latent_size, hidden_size),
+            nn.ReLU(),
+            nn.Linear(hidden_size, hidden_size),
+            nn.ReLU(),
+            nn.Linear(hidden_size, output_size)
+        )
+    
+    def forward(self,
+               z: torch.Tensor) -> torch.Tensor:
+        """Forward pass through model.
+        
+        Args:
+            z: Latent tensor
+            
+        Returns:
+            x_hat: Reconstructed input
+        """
+        return self.decoder(z)
+```
 
-## Active Inference Integration
+### Variational Autoencoder
 
-### Free Energy Connection
-1. **Variational Free Energy**
-   ```math
-   F = KL[q(s)||p(s|o)] - log p(o)
-   ```
-   where:
-   - F is free energy
-   - q(s) is approximate posterior
-   - p(s|o) is true posterior
-   - p(o) is evidence
+```python
+class VariationalAutoencoder(nn.Module):
+    def __init__(self,
+                 input_size: int,
+                 hidden_size: int,
+                 latent_size: int):
+        """Initialize variational autoencoder.
+        
+        Args:
+            input_size: Input dimension
+            hidden_size: Hidden dimension
+            latent_size: Latent dimension
+        """
+        super().__init__()
+        
+        # Model components
+        self.encoder = VariationalDistribution(
+            input_size, hidden_size, latent_size
+        )
+        self.decoder = GenerativeModel(
+            latent_size, hidden_size, input_size
+        )
+    
+    def forward(self,
+               x: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+        """Forward pass through model.
+        
+        Args:
+            x: Input tensor
+            
+        Returns:
+            x_hat: Reconstructed input
+            mean: Latent mean
+            log_var: Latent log variance
+        """
+        # Encode input
+        z, mean, log_var = self.encoder(x)
+        
+        # Decode latent
+        x_hat = self.decoder(z)
+        
+        return x_hat, mean, log_var
+    
+    def loss_function(self,
+                     x: torch.Tensor,
+                     x_hat: torch.Tensor,
+                     mean: torch.Tensor,
+                     log_var: torch.Tensor) -> torch.Tensor:
+        """Compute ELBO loss.
+        
+        Args:
+            x: Input tensor
+            x_hat: Reconstructed input
+            mean: Latent mean
+            log_var: Latent log variance
+            
+        Returns:
+            loss: ELBO loss
+        """
+        # Reconstruction loss
+        recon_loss = torch.mean(
+            torch.sum((x - x_hat)**2, dim=1)
+        )
+        
+        # KL divergence
+        kl_loss = -0.5 * torch.mean(
+            torch.sum(
+                1 + log_var - mean**2 - torch.exp(log_var),
+                dim=1
+            )
+        )
+        
+        return recon_loss + kl_loss
+```
 
-2. **Hierarchical Extension**
-   ```math
-   F = ∑ᵢ F_i + KL[q(θ)||p(θ)]
-   ```
-   where:
-   - F_i is level-specific free energy
-   - θ are global parameters
+### Training Loop
 
-### Precision Weighting
-1. **Precision Updates**
-   ```math
-   π = (Σ + ηI)⁻¹
-   ```
-   where:
-   - π is precision
-   - Σ is covariance
-   - η is regularization
+```python
+def train_model(model: VariationalAutoencoder,
+                dataset: torch.Tensor,
+                n_epochs: int = 100,
+                learning_rate: float = 0.001) -> List[float]:
+    """Train variational autoencoder.
+    
+    Args:
+        model: Variational autoencoder
+        dataset: Training data
+        n_epochs: Number of epochs
+        learning_rate: Learning rate
+        
+    Returns:
+        losses: Training losses
+    """
+    optimizer = torch.optim.Adam(
+        model.parameters(),
+        lr=learning_rate
+    )
+    losses = []
+    
+    for epoch in range(n_epochs):
+        total_loss = 0
+        
+        for data in dataset:
+            # Forward pass
+            x_hat, mean, log_var = model(data)
+            
+            # Compute loss
+            loss = model.loss_function(
+                data, x_hat, mean, log_var
+            )
+            
+            # Update parameters
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+            
+            total_loss += loss.item()
+        
+        avg_loss = total_loss / len(dataset)
+        losses.append(avg_loss)
+        print(f"Epoch {epoch}, Loss: {avg_loss:.4f}")
+    
+    return losses
+```
 
-2. **Weighted Updates**
-   ```math
-   dμ/dt = -π∇_μF
-   ```
-   where:
-   - μ is mean parameter
-   - π is precision
-   - F is free energy
+## Best Practices
 
-## Applications
+### Model Design
+1. Choose appropriate architectures
+2. Design latent space
+3. Initialize parameters
+4. Consider hierarchical structure
 
-### Cognitive Modeling
-1. **Perception**
-   - State inference
-   - Feature extraction
-   - Context integration
-   - Pattern recognition
+### Implementation
+1. Monitor convergence
+2. Handle numerical stability
+3. Validate inference
+4. Test reconstruction
 
-2. **Learning**
-   - Parameter estimation
-   - Model selection
-   - Structure learning
-   - Skill acquisition
+### Training
+1. Tune learning rates
+2. Balance loss components
+3. Monitor KL divergence
+4. Validate learning
 
-### Neural Implementation
-1. **Message Passing**
-   - Predictive coding
-   - Error propagation
-   - Belief updating
-   - Precision control
+## Common Issues
 
-2. **Network Architecture**
-   - Hierarchical models
-   - Recurrent connections
-   - Lateral interactions
-   - Top-down modulation
+### Technical Challenges
+1. Posterior collapse
+2. Latent space issues
+3. Gradient problems
+4. Training instability
 
-## Future Directions
+### Solutions
+1. KL annealing
+2. Warm-up period
+3. Gradient clipping
+4. Careful initialization
 
-1. **Theoretical Extensions**
-   - Non-Gaussian approximations
-   - Implicit distributions
-   - Dynamic models
-   - Causal inference
-
-2. **Computational Methods**
-   - Scalable algorithms
-   - Adaptive methods
-   - Distributed inference
-   - Online learning
-
-## Related Concepts
-- [[variational_methods]]
-- [[variational_calculus]]
-- [[active_inference]]
-- [[bayesian_inference]]
-- [[information_geometry]]
-
-## References
-- [[jordan_1999]] - "Introduction to Variational Methods"
-- [[blei_2017]] - "Variational Inference: A Review"
-- [[kingma_2014]] - "Auto-Encoding Variational Bayes"
-- [[rezende_2015]] - "Variational Inference with Normalizing Flows"
+## Related Documentation
+- [[probability_theory]]
+- [[information_theory]]
+- [[optimization_theory]]

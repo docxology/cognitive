@@ -2,7 +2,7 @@
 title: Free Energy Principle
 type: concept
 status: stable
-created: 2024-02-06
+created: 2024-02-12
 updated: 2024-03-15
 complexity: advanced
 processing_priority: 1
@@ -21,15 +21,18 @@ semantic_relations:
     links: 
       - [[active_inference]]
       - [[predictive_coding]]
-      - [[bayesian_mechanics]]
-  - type: relates
-    links: 
-      - [[bayesian_inference]]
+      - [[hierarchical_inference]]
+  - type: foundation
+    links:
+      - [[variational_inference]]
       - [[information_theory]]
-      - [[statistical_physics]]
-      - [[thermodynamics]]
       - [[dynamical_systems]]
-      - [[complexity_theory]]
+  - type: relates
+    links:
+      - [[stochastic_processes]]
+      - [[optimization_theory]]
+      - [[precision_weighting]]
+      - [[bayesian_mechanics]]
   - type: implements
     links:
       - [[self_organization]]
@@ -43,6 +46,8 @@ semantic_relations:
       - [[stochastic_processes]]
       - [[differential_geometry]]
       - [[measure_theory]]
+  - type: extends
+    links: [[../mathematics/variational_inference]]
 ---
 
 ## Overview
@@ -648,127 +653,212 @@ Components:
 
 ## Computational Implementation
 
-### 1. Numerical Methods
-```python
-class NumericalSolver:
-    def __init__(self):
-        self.integrators = {
-            'euler': EulerIntegrator(),
-            'rk4': RungeKuttaIntegrator(),
-            'symplectic': SymplecticIntegrator(),
-            'variational': VariationalIntegrator()
-        }
-        
-        self.optimizers = {
-            'gradient_descent': GradientDescent(),
-            'natural_gradient': NaturalGradient(),
-            'hamiltonian_mc': HamiltonianMC(),
-            'variational_em': VariationalEM()
-        }
-        
-        self.samplers = {
-            'mcmc': MCMCSampler(),
-            'hmc': HamiltonianMCSampler(),
-            'smc': SequentialMCSampler(),
-            'nested': NestedSampler()
-        }
+### Free Energy Computation
 
-    def solve_dynamics(self, system, method='rk4'):
-        integrator = self.integrators[method]
-        return integrator.integrate(system)
+```python
+import numpy as np
+from typing import Callable, Tuple, List, Optional
+from scipy.special import softmax
+
+class FreeEnergyModel:
+    def __init__(self,
+                 state_dim: int,
+                 obs_dim: int):
+        """Initialize free energy model.
+        
+        Args:
+            state_dim: State dimension
+            obs_dim: Observation dimension
+        """
+        self.state_dim = state_dim
+        self.obs_dim = obs_dim
+        
+        # Initialize distributions
+        self.init_distributions()
     
-    def optimize_beliefs(self, model, method='natural_gradient'):
-        optimizer = self.optimizers[method]
-        return optimizer.optimize(model)
+    def init_distributions(self):
+        """Initialize model distributions."""
+        # Prior beliefs
+        self.prior_mean = np.zeros(self.state_dim)
+        self.prior_precision = np.eye(self.state_dim)
+        
+        # Likelihood mapping
+        self.likelihood_matrix = np.random.randn(
+            self.obs_dim, self.state_dim
+        )
+        self.likelihood_precision = np.eye(self.obs_dim)
     
-    def sample_posterior(self, distribution, method='hmc'):
-        sampler = self.samplers[method]
-        return sampler.sample(distribution)
+    def compute_free_energy(self,
+                          q_mean: np.ndarray,
+                          q_precision: np.ndarray,
+                          observation: np.ndarray) -> float:
+        """Compute variational free energy.
+        
+        Args:
+            q_mean: Approximate posterior mean
+            q_precision: Approximate posterior precision
+            observation: Observed data
+            
+        Returns:
+            fe: Free energy value
+        """
+        # Compute expected likelihood
+        pred_obs = self.likelihood_matrix @ q_mean
+        obs_error = observation - pred_obs
+        
+        expected_likelihood = -0.5 * (
+            obs_error.T @ self.likelihood_precision @ obs_error +
+            np.trace(
+                self.likelihood_precision @
+                self.likelihood_matrix @
+                np.linalg.inv(q_precision) @
+                self.likelihood_matrix.T
+            )
+        )
+        
+        # Compute KL divergence
+        kl_div = 0.5 * (
+            np.trace(
+                self.prior_precision @
+                np.linalg.inv(q_precision)
+            ) +
+            (q_mean - self.prior_mean).T @
+            self.prior_precision @
+            (q_mean - self.prior_mean) -
+            self.state_dim +
+            np.log(
+                np.linalg.det(q_precision) /
+                np.linalg.det(self.prior_precision)
+            )
+        )
+        
+        return kl_div - expected_likelihood
 ```
 
-### 2. Optimization Algorithms
-```python
-class OptimizationFramework:
-    def __init__(self):
-        # Optimization parameters
-        self.learning_rates = {
-            'belief': AdaptiveLearningRate(),
-            'parameter': DualAveragingRate(),
-            'structure': MetaLearningRate()
-        }
-        
-        # Convergence criteria
-        self.convergence = {
-            'elbo': ELBOConvergence(),
-            'gradient': GradientNorm(),
-            'parameter': ParameterChange()
-        }
-        
-        # Regularization schemes
-        self.regularization = {
-            'complexity': ComplexityPenalty(),
-            'entropy': EntropyRegularizer(),
-            'sparsity': SparsityInducing()
-        }
+### Perception and Learning
 
-    def optimize_step(self, objective, parameters):
-        # Compute gradients
-        gradients = self.compute_gradients(objective, parameters)
+```python
+class ActiveInference:
+    def __init__(self,
+                 model: FreeEnergyModel,
+                 n_actions: int):
+        """Initialize active inference agent.
         
-        # Apply regularization
-        regularized_grads = self.apply_regularization(gradients)
+        Args:
+            model: Free energy model
+            n_actions: Number of actions
+        """
+        self.model = model
+        self.n_actions = n_actions
         
-        # Update parameters
-        new_parameters = self.update_parameters(parameters, regularized_grads)
+        # Initialize policy prior
+        self.policy_prior = np.ones(n_actions) / n_actions
+    
+    def infer_state(self,
+                   observation: np.ndarray,
+                   n_iterations: int = 10) -> Tuple[np.ndarray, np.ndarray]:
+        """Perform perceptual inference.
         
-        # Check convergence
-        converged = self.check_convergence(parameters, new_parameters)
+        Args:
+            observation: Observed data
+            n_iterations: Number of iterations
+            
+        Returns:
+            q_mean: Inferred state mean
+            q_precision: Inferred state precision
+        """
+        # Initialize posterior
+        q_mean = self.model.prior_mean.copy()
+        q_precision = self.model.prior_precision.copy()
         
-        return new_parameters, converged
+        for _ in range(n_iterations):
+            # Compute gradients
+            dF_dm = self.compute_mean_gradient(
+                q_mean, q_precision, observation
+            )
+            dF_dP = self.compute_precision_gradient(
+                q_mean, q_precision, observation
+            )
+            
+            # Update posterior
+            q_mean -= 0.1 * dF_dm
+            q_precision += 0.1 * dF_dP
+            
+            # Ensure positive definite
+            q_precision = 0.5 * (
+                q_precision + q_precision.T
+            )
+        
+        return q_mean, q_precision
+    
+    def compute_expected_free_energy(self,
+                                   policy: np.ndarray) -> float:
+        """Compute expected free energy for policy.
+        
+        Args:
+            policy: Action policy
+            
+        Returns:
+            G: Expected free energy
+        """
+        # Compute predicted observations
+        pred_obs = self.model.likelihood_matrix @ policy
+        
+        # Compute expected surprise
+        expected_surprise = -np.sum(
+            softmax(pred_obs) * np.log(softmax(pred_obs))
+        )
+        
+        # Compute risk
+        risk = 0.5 * np.log(
+            2 * np.pi * np.linalg.det(
+                np.linalg.inv(self.model.likelihood_precision)
+            )
+        )
+        
+        return expected_surprise + risk
 ```
 
-### 3. Analysis Tools
-```python
-class AnalysisToolkit:
-    def __init__(self):
-        # Information measures
-        self.information = {
-            'mutual': MutualInformation(),
-            'transfer': TransferEntropy(),
-            'integrated': IntegratedInformation()
-        }
-        
-        # Dynamical analysis
-        self.dynamics = {
-            'stability': StabilityAnalysis(),
-            'bifurcation': BifurcationAnalysis(),
-            'phase_space': PhaseSpaceAnalysis()
-        }
-        
-        # Statistical analysis
-        self.statistics = {
-            'hypothesis': HypothesisTesting(),
-            'model_comparison': ModelComparison(),
-            'parameter_estimation': ParameterEstimation()
-        }
+### Action Selection
 
-    def analyze_system(self, data, analysis_type):
-        # Perform analysis
-        results = {}
+```python
+class PolicySelection:
+    def __init__(self,
+                 agent: ActiveInference,
+                 temperature: float = 1.0):
+        """Initialize policy selection.
         
-        # Information-theoretic analysis
-        if 'information' in analysis_type:
-            results['information'] = self.analyze_information(data)
+        Args:
+            agent: Active inference agent
+            temperature: Selection temperature
+        """
+        self.agent = agent
+        self.temperature = temperature
+    
+    def select_action(self,
+                     policies: List[np.ndarray]) -> int:
+        """Select action using active inference.
+        
+        Args:
+            policies: List of possible policies
             
-        # Dynamical analysis
-        if 'dynamics' in analysis_type:
-            results['dynamics'] = self.analyze_dynamics(data)
-            
-        # Statistical analysis
-        if 'statistics' in analysis_type:
-            results['statistics'] = self.analyze_statistics(data)
-            
-        return results
+        Returns:
+            action: Selected action index
+        """
+        # Compute expected free energy
+        G = np.array([
+            self.agent.compute_expected_free_energy(pi)
+            for pi in policies
+        ])
+        
+        # Compute policy probabilities
+        p_pi = softmax(-self.temperature * G)
+        
+        # Sample action
+        return np.random.choice(
+            len(policies),
+            p=p_pi
+        )
 ```
 
 ## Experimental Protocols
@@ -1456,4 +1546,9 @@ Frameworks:
 - [[research_communities]]
   - [[academic_groups]]
   - [[online_forums]]
-  - [[conferences]] 
+  - [[conferences]]
+
+## Related Documentation
+- [[active_inference]]
+- [[predictive_coding]]
+- [[hierarchical_inference]] 

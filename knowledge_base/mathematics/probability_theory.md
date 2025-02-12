@@ -1,330 +1,297 @@
-# Probability Theory in Cognitive Modeling
-
 ---
-type: mathematical_concept
-id: probability_theory_001
-created: 2024-02-06
-modified: 2024-02-06
-tags: [mathematics, probability, statistics, measure-theory]
-aliases: [probability-foundations, measure-theoretic-probability]
+title: Probability Theory
+type: concept
+status: stable
+created: 2024-02-12
+tags:
+  - mathematics
+  - probability
+  - foundations
 semantic_relations:
-  - type: implements
-    links: 
-      - [[../../docs/research/research_documentation_index|Research Documentation]]
-      - [[statistical_foundations]]
-  - type: uses
+  - type: extends
+    links: [[measure_theory]]
+  - type: relates
     links:
-      - [[measure_theory]]
       - [[information_theory]]
-  - type: documented_by
-    links:
-      - [[../../docs/guides/implementation_guides_index|Implementation Guides]]
-      - [[../../docs/api/api_documentation_index|API Documentation]]
+      - [[statistics]]
 ---
+
+# Probability Theory
 
 ## Overview
 
-Probability theory provides the mathematical foundation for uncertainty quantification and statistical inference in cognitive modeling. This document outlines key probabilistic concepts, measure-theoretic foundations, and their applications.
+Probability theory provides the mathematical foundation for reasoning under uncertainty, forming the basis for modern approaches to cognitive modeling, machine learning, and statistical inference.
 
-## Measure-Theoretic Foundations
+## Fundamentals
 
 ### Probability Spaces
-```python
-class ProbabilitySpace:
-    """
-    Implementation of probability space.
-    
-    Theory:
-        - [[measure_theory]]
-        - [[sigma_algebra]]
-        - [[probability_measure]]
-    """
-    def __init__(self,
-                 sample_space: Set,
-                 events: Set[Set],
-                 measure: Callable[[Set], float]):
-        self.sample_space = sample_space
-        self.events = events
-        self.measure = measure
-    
-    def verify_probability_axioms(self) -> bool:
-        """Verify probability axioms."""
-        # Non-negativity
-        for event in self.events:
-            if self.measure(event) < 0:
-                return False
-        
-        # Normalization
-        if not np.isclose(self.measure(self.sample_space), 1.0):
-            return False
-        
-        # Additivity
-        return self._verify_additivity()
+
+#### Measure Space
+```math
+(\Omega, \mathcal{F}, P)
 ```
+where:
+- $\Omega$ is sample space
+- $\mathcal{F}$ is σ-algebra
+- $P$ is probability measure
+
+#### Axioms
+1. Non-negativity: $P(A) \geq 0$
+2. Normalization: $P(\Omega) = 1$
+3. Additivity: $P(\cup_i A_i) = \sum_i P(A_i)$ for disjoint sets
 
 ### Random Variables
-```python
-class RandomVariable:
-    """
-    Random variable implementation.
-    
-    Theory:
-        - [[measurable_functions]]
-        - [[distribution_theory]]
-        - [[expectation_theory]]
-    """
-    def __init__(self,
-                 distribution: Distribution,
-                 support: Set):
-        self.distribution = distribution
-        self.support = support
-        self.moments = {}
-    
-    def compute_expectation(self,
-                          function: Callable = lambda x: x) -> float:
-        """Compute expectation of function under distribution."""
-        if isinstance(self.support, DiscreteSet):
-            return self._discrete_expectation(function)
-        return self._continuous_expectation(function)
-    
-    def compute_moment(self, order: int = 1) -> float:
-        """Compute moment of specified order."""
-        if order in self.moments:
-            return self.moments[order]
-        
-        moment = self.compute_expectation(lambda x: x**order)
-        self.moments[order] = moment
-        return moment
+
+#### Definition
+A measurable function $X: \Omega \rightarrow \mathbb{R}$
+
+#### Distribution Function
+```math
+F_X(x) = P(X \leq x)
 ```
 
-## Distribution Theory
+#### Density Function
+```math
+f_X(x) = \frac{d}{dx}F_X(x)
+```
+
+## Key Concepts
+
+### Conditional Probability
+```math
+P(A|B) = \frac{P(A \cap B)}{P(B)}
+```
+
+### Bayes' Theorem
+```math
+P(A|B) = \frac{P(B|A)P(A)}{P(B)}
+```
+
+### Independence
+```math
+P(A \cap B) = P(A)P(B)
+```
+
+## Common Distributions
+
+### Gaussian Distribution
+```python
+class GaussianDistribution:
+    def __init__(self, mu: float, sigma: float):
+        """Initialize Gaussian distribution.
+        
+        Args:
+            mu: Mean
+            sigma: Standard deviation
+        """
+        self.mu = mu
+        self.sigma = sigma
+    
+    def pdf(self, x: torch.Tensor) -> torch.Tensor:
+        """Compute probability density."""
+        z = (x - self.mu) / self.sigma
+        return torch.exp(-0.5 * z**2) / (self.sigma * math.sqrt(2 * math.pi))
+    
+    def sample(self, n: int) -> torch.Tensor:
+        """Generate samples."""
+        return torch.randn(n) * self.sigma + self.mu
+```
+
+### Categorical Distribution
+```python
+class CategoricalDistribution:
+    def __init__(self, probs: torch.Tensor):
+        """Initialize categorical distribution.
+        
+        Args:
+            probs: Probability vector
+        """
+        self.probs = probs
+        
+    def pmf(self, x: torch.Tensor) -> torch.Tensor:
+        """Compute probability mass."""
+        return self.probs[x]
+    
+    def sample(self, n: int) -> torch.Tensor:
+        """Generate samples."""
+        return torch.multinomial(self.probs, n, replacement=True)
+```
+
+## Applications
+
+### Probabilistic Modeling
+```python
+class ProbabilisticModel:
+    def __init__(self, prior: Distribution):
+        """Initialize probabilistic model.
+        
+        Args:
+            prior: Prior distribution
+        """
+        self.prior = prior
+        
+    def likelihood(self,
+                  x: torch.Tensor,
+                  theta: torch.Tensor) -> torch.Tensor:
+        """Compute likelihood.
+        
+        Args:
+            x: Observations
+            theta: Parameters
+            
+        Returns:
+            likelihood: p(x|theta)
+        """
+        raise NotImplementedError
+    
+    def posterior(self,
+                 x: torch.Tensor,
+                 theta: torch.Tensor) -> torch.Tensor:
+        """Compute posterior.
+        
+        Args:
+            x: Observations
+            theta: Parameters
+            
+        Returns:
+            posterior: p(theta|x)
+        """
+        likelihood = self.likelihood(x, theta)
+        prior = self.prior.pdf(theta)
+        return likelihood * prior
+```
+
+### Inference Methods
+```python
+class BayesianInference:
+    def __init__(self, model: ProbabilisticModel):
+        """Initialize Bayesian inference.
+        
+        Args:
+            model: Probabilistic model
+        """
+        self.model = model
+    
+    def map_estimate(self,
+                    x: torch.Tensor,
+                    init_theta: torch.Tensor,
+                    num_steps: int = 1000) -> torch.Tensor:
+        """Compute MAP estimate.
+        
+        Args:
+            x: Observations
+            init_theta: Initial parameters
+            num_steps: Number of optimization steps
+            
+        Returns:
+            theta_map: MAP estimate
+        """
+        theta = init_theta.requires_grad_()
+        optimizer = torch.optim.Adam([theta])
+        
+        for _ in range(num_steps):
+            # Compute negative log posterior
+            neg_log_posterior = -torch.log(
+                self.model.posterior(x, theta)
+            )
+            
+            # Update parameters
+            optimizer.zero_grad()
+            neg_log_posterior.backward()
+            optimizer.step()
+        
+        return theta.detach()
+```
+
+## Advanced Topics
+
+### Information Theory
+```python
+def entropy(p: torch.Tensor) -> torch.Tensor:
+    """Compute entropy.
+    
+    Args:
+        p: Probability distribution
+        
+    Returns:
+        H: Entropy value
+    """
+    return -torch.sum(p * torch.log(p))
+
+def kl_divergence(p: torch.Tensor, q: torch.Tensor) -> torch.Tensor:
+    """Compute KL divergence.
+    
+    Args:
+        p: First distribution
+        q: Second distribution
+        
+    Returns:
+        KL: KL divergence
+    """
+    return torch.sum(p * torch.log(p / q))
+```
 
 ### Exponential Family
 ```python
 class ExponentialFamily:
-    """
-    Exponential family distributions.
-    
-    Theory:
-        - [[natural_parameters]]
-        - [[sufficient_statistics]]
-        - [[conjugate_priors]]
-    """
     def __init__(self,
-                 natural_params: np.ndarray,
-                 sufficient_stats: Callable,
-                 base_measure: Callable,
-                 log_partition: Callable):
+                 natural_params: torch.Tensor,
+                 sufficient_stats: Callable):
+        """Initialize exponential family distribution.
+        
+        Args:
+            natural_params: Natural parameters
+            sufficient_stats: Sufficient statistics function
+        """
         self.eta = natural_params
         self.T = sufficient_stats
-        self.h = base_measure
-        self.A = log_partition
     
-    def log_prob(self, x: np.ndarray) -> float:
-        """Compute log probability."""
-        return (np.dot(self.eta, self.T(x)) + 
-                np.log(self.h(x)) - self.A(self.eta))
+    def log_partition(self) -> torch.Tensor:
+        """Compute log partition function."""
+        raise NotImplementedError
     
-    def compute_fisher_information(self) -> np.ndarray:
-        """Compute Fisher information matrix."""
-        return self._hessian(self.A, self.eta)
+    def pdf(self, x: torch.Tensor) -> torch.Tensor:
+        """Compute probability density."""
+        return torch.exp(
+            torch.sum(self.eta * self.T(x)) - self.log_partition()
+        )
 ```
 
-### Conditional Probability
-```python
-class ConditionalDistribution:
-    """
-    Conditional probability implementation.
-    
-    Theory:
-        - [[conditional_probability]]
-        - [[chain_rule]]
-        - [[bayes_theorem]]
-    """
-    def __init__(self,
-                 joint: JointDistribution,
-                 condition_on: Set[str]):
-        self.joint = joint
-        self.condition_on = condition_on
-        
-    def compute_conditional(self,
-                          evidence: Dict[str, Any]) -> Distribution:
-        """Compute conditional distribution given evidence."""
-        # Slice joint distribution
-        sliced = self.joint.slice(evidence)
-        
-        # Normalize
-        return self._normalize_distribution(sliced)
-    
-    def apply_chain_rule(self,
-                        variable_order: List[str]) -> float:
-        """Apply chain rule of probability."""
-        return self._sequential_conditioning(variable_order)
-```
+## Best Practices
 
-## Stochastic Processes
+### Implementation
+1. Use log-space computations
+2. Implement numerical stability
+3. Validate probability axioms
+4. Handle edge cases
 
-### Markov Chains
-```python
-class MarkovChain:
-    """
-    Discrete-time Markov chain.
-    
-    Theory:
-        - [[markov_property]]
-        - [[transition_matrix]]
-        - [[stationary_distribution]]
-    """
-    def __init__(self,
-                 transition_matrix: np.ndarray,
-                 initial_dist: np.ndarray = None):
-        self.P = transition_matrix
-        self.pi = initial_dist or self._compute_stationary()
-        
-    def simulate(self,
-                n_steps: int,
-                start_state: int = None) -> np.ndarray:
-        """Simulate Markov chain trajectory."""
-        state = (start_state if start_state is not None 
-                else np.random.choice(len(self.pi), p=self.pi))
-        
-        trajectory = [state]
-        for _ in range(n_steps - 1):
-            state = np.random.choice(len(self.P), p=self.P[state])
-            trajectory.append(state)
-        
-        return np.array(trajectory)
-```
+### Modeling
+1. Choose appropriate distributions
+2. Validate assumptions
+3. Consider conjugate priors
+4. Test inference methods
 
-### Point Processes
-```python
-class PointProcess:
-    """
-    Point process implementation.
-    
-    Theory:
-        - [[poisson_process]]
-        - [[renewal_process]]
-        - [[hawkes_process]]
-    """
-    def __init__(self,
-                 intensity: Callable[[float], float],
-                 horizon: float):
-        self.lambda_t = intensity
-        self.T = horizon
-    
-    def simulate_inhomogeneous_poisson(self) -> np.ndarray:
-        """Simulate inhomogeneous Poisson process."""
-        # Thinning algorithm
-        lambda_max = self._compute_max_intensity()
-        potential_times = self._homogeneous_poisson(lambda_max)
-        
-        # Accept-reject
-        return self._thin_process(potential_times)
-```
+### Computation
+1. Use stable algorithms
+2. Implement vectorization
+3. Handle numerical precision
+4. Validate results
 
-## Inference Methods
-
-### Bayesian Inference
-```python
-class BayesianInference:
-    """
-    Bayesian inference implementation.
-    
-    Theory:
-        - [[bayes_theorem]]
-        - [[conjugate_priors]]
-        - [[posterior_computation]]
-    """
-    def __init__(self,
-                 prior: Distribution,
-                 likelihood: Callable):
-        self.prior = prior
-        self.likelihood = likelihood
-        
-    def compute_posterior(self,
-                        data: np.ndarray,
-                        conjugate: bool = False) -> Distribution:
-        """Compute posterior distribution."""
-        if conjugate:
-            return self._conjugate_update(data)
-        return self._numerical_posterior(data)
-```
-
-## Numerical Methods
-
-### Monte Carlo Methods
-```python
-class MonteCarloSampling:
-    """
-    Monte Carlo sampling methods.
-    
-    Theory:
-        - [[importance_sampling]]
-        - [[rejection_sampling]]
-        - [[mcmc_methods]]
-    """
-    @staticmethod
-    def importance_sampling(target: Callable,
-                          proposal: Distribution,
-                          n_samples: int) -> Tuple[np.ndarray, np.ndarray]:
-        """Perform importance sampling."""
-        # Generate samples
-        samples = proposal.sample(n_samples)
-        
-        # Compute importance weights
-        log_weights = (target.log_prob(samples) - 
-                      proposal.log_prob(samples))
-        
-        # Normalize weights
-        weights = np.exp(log_weights - logsumexp(log_weights))
-        
-        return samples, weights
-```
-
-## Implementation Considerations
+## Common Issues
 
 ### Numerical Stability
-- [[log_domain_computation]] - Log-space methods
-- [[stable_sampling]] - Stable sampling
-- [[overflow_prevention]] - Overflow handling
-- [[underflow_prevention]] - Underflow handling
+1. Underflow/overflow
+2. Division by zero
+3. Log of zero
+4. Precision loss
 
-### Computational Efficiency
-- [[vectorized_sampling]] - Vectorized methods
-- [[parallel_mcmc]] - Parallel MCMC
-- [[adaptive_methods]] - Adaptive algorithms
-- [[caching_strategies]] - Result caching
+### Solutions
+1. Log-space arithmetic
+2. Stable algorithms
+3. Numerical safeguards
+4. Error checking
 
-## Validation Framework
-
-### Quality Metrics
-```python
-class ProbabilityMetrics:
-    """Quality metrics for probabilistic methods."""
-    
-    @staticmethod
-    def ks_test(samples: np.ndarray,
-                distribution: Distribution) -> float:
-        """Compute Kolmogorov-Smirnov test statistic."""
-        return stats.ks_2samp(samples, distribution.rvs(len(samples)))[0]
-    
-    @staticmethod
-    def effective_sample_size(
-        weights: np.ndarray
-    ) -> float:
-        """Compute effective sample size for importance sampling."""
-        return 1.0 / np.sum(weights**2)
-```
-
-## Documentation Links
-- [[../../docs/research/research_documentation_index|Research Documentation]]
-- [[../../docs/guides/implementation_guides_index|Implementation Guides]]
-- [[../../docs/api/api_documentation_index|API Documentation]]
-- [[../../docs/examples/usage_examples_index|Usage Examples]]
-
-## References
-- [[billingsley]] - Probability and Measure
-- [[durrett]] - Probability Theory
-- [[robert_casella]] - Monte Carlo Methods
-- [[williams]] - Probability with Martingales 
+## Related Documentation
+- [[measure_theory]]
+- [[information_theory]]
+- [[statistics]] 
