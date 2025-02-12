@@ -2,255 +2,311 @@
 title: Active Inference Learning Path
 type: learning_path
 status: stable
-created: 2024-02-12
+created: 2024-03-15
+complexity: advanced
+processing_priority: 1
 tags:
-  - learning-path
   - active-inference
-  - guide
+  - free-energy-principle
+  - cognitive-science
+  - machine-learning
 semantic_relations:
+  - type: foundation_for
+    links:
+      - [[predictive_processing_learning_path]]
+      - [[cognitive_architecture_learning_path]]
   - type: implements
-    links: [[../documentation_standards]]
+    links:
+      - [[free_energy_principle_learning_path]]
+      - [[variational_inference_learning_path]]
   - type: relates
     links:
-      - [[../../knowledge_base/cognitive/active_inference]]
-      - [[../machine_learning]]
+      - [[dynamical_systems_learning_path]]
+      - [[stochastic_processes_learning_path]]
+      - [[information_theory_learning_path]]
 ---
 
 # Active Inference Learning Path
 
 ## Overview
 
-This learning path provides a structured approach to understanding and implementing active inference in the cognitive modeling framework.
+This learning path provides a comprehensive guide to understanding and implementing Active Inference, from mathematical foundations to practical applications. Active Inference is a unifying framework for understanding perception, learning, and action in biological and artificial systems.
 
 ## Prerequisites
 
-### Mathematics
-1. [[knowledge_base/mathematics/probability_theory|Probability Theory]]
-   - Probability distributions
-   - Bayesian inference
-   - Information theory
+### 1. Mathematics (4 weeks)
+- [[probability_theory_learning_path|Probability Theory]]
+  - Probability spaces
+  - Random variables
+  - Conditional probability
+  - Bayesian inference
 
-2. [[knowledge_base/mathematics/variational_inference|Variational Inference]]
-   - Variational Bayes
-   - Mean field approximation
-   - Free energy principle
+- [[information_theory_learning_path|Information Theory]]
+  - Entropy
+  - KL divergence
+  - Mutual information
+  - Free energy
 
-3. [[knowledge_base/mathematics/optimization_theory|Optimization Theory]]
-   - Gradient descent
-   - Expectation maximization
-   - Variational methods
+- [[optimization_theory_learning_path|Optimization Theory]]
+  - Variational methods
+  - Gradient descent
+  - Lagrange multipliers
+  - Optimal control
 
-### Programming
-1. Python Fundamentals
-   - Object-oriented programming
-   - Scientific computing (NumPy, SciPy)
-   - Machine learning frameworks
+- [[stochastic_processes_learning_path|Stochastic Processes]]
+  - Markov processes
+  - Diffusion processes
+  - Stochastic differential equations
+  - Path integrals
 
-2. Software Engineering
-   - Version control
-   - Testing
-   - Documentation
+### 2. Programming (2 weeks)
+- Python Fundamentals
+  - NumPy/SciPy
+  - PyTorch/JAX
+  - Object-oriented programming
+  - Scientific computing
 
-## Learning Path
+- Software Engineering
+  - Version control
+  - Testing
+  - Documentation
+  - Best practices
 
-### 1. Theoretical Foundations
+## Core Learning Path
 
-#### Week 1: Basic Concepts
-1. [[knowledge_base/cognitive/free_energy_principle|Free Energy Principle]]
-   - Biological foundations
-   - Information theory perspective
-   - Variational principles
+### 1. Theoretical Foundations (4 weeks)
 
-2. [[knowledge_base/cognitive/predictive_processing|Predictive Processing]]
-   - Hierarchical prediction
-   - Error minimization
-   - Precision weighting
+#### Week 1-2: Free Energy Principle
+- Variational Free Energy
+  ```python
+  def compute_free_energy(q_dist, p_dist, obs):
+      """Compute variational free energy."""
+      expected_log_likelihood = compute_expected_ll(q_dist, p_dist, obs)
+      kl_divergence = compute_kl(q_dist, p_dist)
+      return -expected_log_likelihood + kl_divergence
+  ```
+- Markov Blankets
+- Self-organization
+- Information Geometry
 
-#### Week 2: Active Inference
-1. [[knowledge_base/cognitive/active_inference|Active Inference Theory]]
-   - Core principles
-   - Mathematical framework
-   - Implementation strategies
+#### Week 3-4: Active Inference
+- Expected Free Energy
+  ```python
+  def compute_expected_free_energy(policy, model):
+      """Compute expected free energy for policy."""
+      ambiguity = compute_ambiguity(policy, model)
+      risk = compute_risk(policy, model)
+      return ambiguity + risk
+  ```
+- Policy Selection
+- Precision Engineering
+- Message Passing
 
-2. [[knowledge_base/cognitive/belief_updating|Belief Updating]]
-   - Message passing
-   - Belief propagation
-   - State estimation
+### 2. Implementation (6 weeks)
 
-### 2. Implementation Basics
+#### Week 1-2: Core Components
+- Generative Models
+  ```python
+  class GenerativeModel:
+      def __init__(self,
+                  hidden_dims: List[int],
+                  obs_dim: int):
+          """Initialize generative model."""
+          self.hidden_states = [
+              torch.zeros(dim) for dim in hidden_dims
+          ]
+          self.obs_model = ObservationModel(hidden_dims[-1], obs_dim)
+          self.trans_model = TransitionModel(hidden_dims)
+          
+      def generate(self, policy: torch.Tensor) -> torch.Tensor:
+          """Generate observations under policy."""
+          states = self.propagate_states(policy)
+          return self.obs_model(states)
+  ```
+- Variational Inference
+- Policy Networks
+- Precision Parameters
 
-#### Week 3: Core Components
-1. [[knowledge_base/cognitive/generative_models|Generative Models]]
-   - Model architecture
-   - State space design
-   - Observation models
+#### Week 3-4: Agent Implementation
+- Perception
+  ```python
+  class ActiveInferenceAgent:
+      def __init__(self,
+                  model: GenerativeModel,
+                  learning_rate: float = 0.01):
+          """Initialize active inference agent."""
+          self.model = model
+          self.lr = learning_rate
+          self.beliefs = initialize_beliefs()
+          
+      def infer_states(self, obs: torch.Tensor) -> torch.Tensor:
+          """Perform state inference."""
+          for _ in range(self.inference_steps):
+              pred_error = self.compute_prediction_error(obs)
+              self.update_beliefs(pred_error)
+          return self.beliefs
+  ```
+- Action Selection
+- Learning
+- Memory
 
-2. [[knowledge_base/cognitive/inference_algorithms|Inference Algorithms]]
-   - Variational inference
-   - Message passing
-   - Policy selection
+#### Week 5-6: Advanced Features
+- Hierarchical Models
+- Active Learning
+- Meta-learning
+- Adaptive Behavior
 
-#### Week 4: Basic Implementation
-1. [[docs/guides/implementation/basic_agent|Basic Agent Implementation]]
-   - Agent architecture
-   - Belief updating
-   - Action selection
+### 3. Applications (4 weeks)
 
-2. [[docs/guides/implementation/simple_environment|Simple Environment]]
-   - Environment design
-   - Interaction loop
-   - Observation generation
+#### Week 1-2: Cognitive Tasks
+- Perception Tasks
+  ```python
+  class PerceptionTask:
+      def __init__(self,
+                  stimuli: torch.Tensor,
+                  categories: torch.Tensor):
+          """Initialize perception task."""
+          self.stimuli = stimuli
+          self.categories = categories
+          
+      def evaluate(self, agent: ActiveInferenceAgent) -> Dict[str, float]:
+          """Evaluate agent performance."""
+          predictions = []
+          for stimulus in self.stimuli:
+              belief = agent.infer_states(stimulus)
+              pred = agent.model.predict_category(belief)
+              predictions.append(pred)
+          return compute_metrics(predictions, self.categories)
+  ```
+- Decision Making
+- Motor Control
+- Learning Tasks
 
-### 3. Advanced Topics
+#### Week 3-4: Real-world Applications
+- Robotics
+- Neural Data Analysis
+- Clinical Applications
+- Social Systems
 
-#### Week 5: Advanced Features
-1. [[knowledge_base/cognitive/hierarchical_models|Hierarchical Models]]
-   - Deep active inference
-   - Temporal depth
-   - Abstract reasoning
+### 4. Advanced Topics (4 weeks)
 
-2. [[knowledge_base/cognitive/learning_mechanisms|Learning Mechanisms]]
-   - Parameter learning
-   - Structure learning
-   - Meta-learning
+#### Week 1-2: Theoretical Extensions
+- Non-equilibrium Physics
+- Information Geometry
+- Quantum Extensions
+- Continuous Time
 
-#### Week 6: Applications
-1. [[docs/guides/implementation/complex_environments|Complex Environments]]
-   - Partial observability
-   - Continuous actions
-   - Multi-agent systems
-
-2. [[docs/guides/implementation/real_world_applications|Real-world Applications]]
-   - Robotics
-   - Decision support
-   - Cognitive modeling
-
-### 4. Research and Development
-
-#### Week 7: Research Methods
-1. [[docs/guides/research/experimental_design|Experimental Design]]
-   - Hypothesis testing
-   - Ablation studies
-   - Comparative analysis
-
-2. [[docs/guides/research/evaluation_metrics|Evaluation Methods]]
-   - Performance metrics
-   - Behavioral analysis
-   - Model comparison
-
-#### Week 8: Advanced Development
-1. [[docs/guides/implementation/scaling_solutions|Scaling Solutions]]
-   - Distributed computing
-   - Optimization techniques
-   - Memory management
-
-2. [[docs/guides/implementation/deployment|Deployment]]
-   - Production systems
-   - Monitoring
-   - Maintenance
+#### Week 3-4: Research Frontiers
+- Mixed Models
+- Group Behavior
+- Development
+- Consciousness
 
 ## Projects
 
 ### Beginner Projects
-1. [[docs/examples/mnist_classification|MNIST Classification]]
-   - Basic perception
-   - Simple actions
-   - Performance evaluation
+1. **Simple Perception**
+   - Binary classification
+   - Feature extraction
+   - Belief updating
+   - Performance analysis
 
-2. [[docs/examples/grid_world|Grid World Navigation]]
-   - Spatial reasoning
-   - Path planning
-   - Goal-directed behavior
+2. **Basic Control**
+   - Pendulum balance
+   - Target reaching
+   - Simple navigation
+   - Error correction
 
 ### Intermediate Projects
-1. [[docs/examples/continuous_control|Continuous Control]]
-   - Motor control
-   - Continuous actions
-   - Dynamic environments
+1. **Cognitive Tasks**
+   - Visual recognition
+   - Decision making
+   - Sequence learning
+   - Working memory
 
-2. [[docs/examples/multi_agent|Multi-agent Coordination]]
-   - Agent interaction
-   - Collective behavior
-   - Emergent patterns
+2. **Robotic Control**
+   - Arm control
+   - Object manipulation
+   - Path planning
+   - Multi-joint coordination
 
 ### Advanced Projects
-1. [[docs/examples/hierarchical_reasoning|Hierarchical Reasoning]]
-   - Abstract planning
+1. **Complex Cognition**
    - Meta-learning
-   - Transfer learning
+   - Hierarchical control
+   - Active exploration
+   - Social interaction
 
-2. [[docs/examples/real_world_robotics|Robotics Integration]]
-   - Physical systems
-   - Real-time control
-   - Safety constraints
+2. **Real-world Applications**
+   - Medical diagnosis
+   - Brain-machine interfaces
+   - Autonomous systems
+   - Clinical interventions
 
 ## Resources
 
 ### Reading Materials
-1. Core Papers
-   - Original active inference papers
-   - Key implementation papers
-   - Recent developments
+1. **Core Papers**
+   - Original formulations
+   - Key extensions
+   - Review papers
+   - Applications
 
-2. Books
-   - Theoretical foundations
-   - Implementation guides
-   - Case studies
+2. **Books**
+   - Mathematical foundations
+   - Cognitive science
+   - Machine learning
+   - Neuroscience
 
-### Tools and Libraries
-1. Framework Components
-   - Core libraries
-   - Extensions
-   - Utilities
+### Software Tools
+1. **Libraries**
+   - PyAI (Active Inference)
+   - Torch/JAX implementations
+   - Simulation environments
+   - Analysis tools
 
-2. Development Tools
-   - Debugging tools
-   - Profiling tools
-   - Visualization tools
+2. **Environments**
+   - OpenAI Gym
+   - MuJoCo
+   - Custom environments
+   - Real-world interfaces
 
 ## Assessment
 
 ### Knowledge Checks
-1. Theoretical Understanding
-   - Concept quizzes
-   - Mathematical exercises
-   - Paper reviews
+1. **Theoretical Understanding**
+   - Mathematical derivations
+   - Conceptual relationships
+   - Framework applications
+   - Design principles
 
-2. Practical Skills
-   - Coding exercises
-   - Project implementation
-   - Performance optimization
+2. **Implementation Skills**
+   - Code review
+   - Performance analysis
+   - Debugging exercises
+   - Optimization tasks
 
 ### Final Projects
-1. Research Project
-   - Novel implementation
-   - Experimental validation
+1. **Research Implementation**
+   - Novel contribution
+   - Theoretical extension
+   - Empirical validation
    - Documentation
 
-2. Application Project
-   - Real-world application
-   - Performance analysis
-   - Deployment strategy
+2. **Practical Application**
+   - Real-world problem
+   - Solution design
+   - Performance evaluation
+   - Impact assessment
 
 ## Next Steps
 
-### Advanced Learning
-1. [[docs/guides/learning_paths/advanced_active_inference|Advanced Active Inference]]
-   - Latest developments
-   - Research frontiers
-   - Open problems
+### Advanced Paths
+1. [[predictive_processing_learning_path|Predictive Processing]]
+2. [[cognitive_architecture_learning_path|Cognitive Architecture]]
+3. [[free_energy_principle_learning_path|Free Energy Principle]]
 
-2. [[docs/guides/learning_paths/research_track|Research Track]]
-   - Publication preparation
-   - Conference participation
-   - Collaboration opportunities
-
-### Related Paths
-1. [[docs/guides/learning_paths/predictive_processing|Predictive Processing]]
-2. [[docs/guides/learning_paths/cognitive_architectures|Cognitive Architectures]]
-3. [[docs/guides/learning_paths/machine_learning|Machine Learning]]
-
-## Related Documentation
-- [[docs/guides/machine_learning]]
-- [[docs/guides/research]]
-- [[docs/guides/implementation/active_inference_implementation]] 
+### Research Directions
+1. [[research_guides/active_inference|Active Inference Research]]
+2. [[research_guides/cognitive_science|Cognitive Science Research]]
+3. [[research_guides/machine_learning|Machine Learning Research]] 

@@ -7,25 +7,27 @@ complexity: advanced
 processing_priority: 1
 tags:
   - mathematics
-  - complex_systems
   - networks
-  - data_science
+  - complex_systems
+  - graph_theory
+  - dynamics
 semantic_relations:
   - type: foundation_for
     links:
       - [[complex_systems]]
-      - [[social_networks]]
+      - [[social_ecological_systems]]
       - [[neural_networks]]
   - type: implements
     links:
       - [[graph_theory]]
+      - [[dynamical_systems]]
       - [[statistical_physics]]
-      - [[information_theory]]
   - type: relates
     links:
-      - [[dynamical_systems]]
-      - [[probabilistic_graphical_models]]
-      - [[markov_random_fields]]
+      - [[information_theory]]
+      - [[collective_intelligence]]
+      - [[cultural_evolution]]
+      - [[ecological_networks]]
 
 ---
 
@@ -33,27 +35,33 @@ semantic_relations:
 
 ## Overview
 
-Network Science is an interdisciplinary field that studies complex networks such as technological, biological, and social systems. It combines principles from graph theory, statistical physics, and information theory to understand the structure, dynamics, and evolution of networked systems.
+Network Science provides a mathematical framework for understanding complex systems through their interaction patterns and emergent behaviors. It bridges graph theory, statistical physics, and dynamical systems to analyze systems ranging from neural networks to social-ecological relationships.
 
 ## Mathematical Foundation
 
-### Network Properties
+### Network Structure
 
-#### Degree Distribution
+#### Graph Representation
 ```math
-P(k) = \frac{n_k}{N}
+G = (V,E,W)
 ```
 where:
-- $n_k$ is number of nodes with degree $k$
-- $N$ is total number of nodes
+- $V$ is vertex set
+- $E$ is edge set
+- $W$ is weight matrix
 
-#### Clustering Coefficient
+#### Network Metrics
 ```math
-C_i = \frac{2L_i}{k_i(k_i-1)}
+\begin{align*}
+C_i &= \frac{2|e_{jk}|}{k_i(k_i-1)} \\
+L_{ij} &= \min(\text{path}(i,j)) \\
+B_i &= \sum_{s \neq t} \frac{\sigma_{st}(i)}{\sigma_{st}}
+\end{align*}
 ```
 where:
-- $L_i$ is number of links between neighbors
-- $k_i$ is degree of node $i$
+- $C_i$ is clustering coefficient
+- $L_{ij}$ is shortest path length
+- $B_i$ is betweenness centrality
 
 ## Implementation
 
@@ -62,245 +70,244 @@ where:
 ```python
 class NetworkAnalyzer:
     def __init__(self,
-                 network: nx.Graph):
+                 adjacency: np.ndarray,
+                 directed: bool = False,
+                 weighted: bool = False):
         """Initialize network analyzer.
         
         Args:
-            network: NetworkX graph
+            adjacency: Adjacency matrix
+            directed: Whether network is directed
+            weighted: Whether network is weighted
         """
-        self.network = network
+        self.A = adjacency
+        self.directed = directed
+        self.weighted = weighted
+        self.N = len(adjacency)
         
-    def compute_centralities(self) -> Dict[str, Dict[Any, float]]:
-        """Compute various centrality measures.
-        
-        Returns:
-            centralities: Dictionary of centrality measures
-        """
-        centralities = {
-            'degree': nx.degree_centrality(self.network),
-            'betweenness': nx.betweenness_centrality(self.network),
-            'eigenvector': nx.eigenvector_centrality(self.network),
-            'pagerank': nx.pagerank(self.network)
-        }
-        return centralities
+        # Convert to NetworkX graph
+        self.G = self._build_graph()
     
-    def detect_communities(self,
-                         method: str = 'louvain') -> Dict[Any, int]:
-        """Detect network communities.
-        
-        Args:
-            method: Community detection method
-            
-        Returns:
-            communities: Node community assignments
-        """
-        if method == 'louvain':
-            return community.best_partition(self.network)
-        elif method == 'label_propagation':
-            return community.label_propagation_communities(self.network)
+    def _build_graph(self) -> nx.Graph:
+        """Build NetworkX graph."""
+        if self.directed:
+            G = nx.DiGraph(self.A)
         else:
-            raise ValueError(f"Unknown method: {method}")
-    
-    def compute_network_statistics(self) -> Dict[str, float]:
-        """Compute network statistics.
+            G = nx.Graph(self.A)
         
-        Returns:
-            stats: Network statistics
-        """
-        stats = {
-            'avg_degree': np.mean([d for _, d in self.network.degree()]),
-            'clustering': nx.average_clustering(self.network),
-            'diameter': nx.diameter(self.network),
-            'density': nx.density(self.network),
-            'assortativity': nx.degree_assortativity_coefficient(self.network)
+        return G
+    
+    def compute_metrics(self) -> Dict[str, Any]:
+        """Compute network metrics."""
+        metrics = {
+            'degree': self._compute_degree(),
+            'clustering': nx.average_clustering(self.G),
+            'path_length': nx.average_shortest_path_length(self.G),
+            'betweenness': nx.betweenness_centrality(self.G),
+            'modularity': self._compute_modularity()
         }
-        return stats
+        return metrics
+    
+    def _compute_modularity(self) -> float:
+        """Compute network modularity."""
+        communities = community.best_partition(self.G)
+        return community.modularity(communities, self.G)
 ```
 
-### Network Models
+### Community Detection
 
 ```python
-class NetworkGenerator:
+class CommunityDetector:
     def __init__(self,
-                 n_nodes: int):
-        """Initialize network generator.
+                 network: NetworkAnalyzer,
+                 method: str = 'louvain'):
+        """Initialize community detector.
         
         Args:
-            n_nodes: Number of nodes
-        """
-        self.n_nodes = n_nodes
-    
-    def erdos_renyi(self,
-                    p: float) -> nx.Graph:
-        """Generate Erdős-Rényi random graph.
-        
-        Args:
-            p: Edge probability
-            
-        Returns:
-            network: Random graph
-        """
-        return nx.erdos_renyi_graph(self.n_nodes, p)
-    
-    def watts_strogatz(self,
-                      k: int,
-                      p: float) -> nx.Graph:
-        """Generate Watts-Strogatz small-world network.
-        
-        Args:
-            k: Mean degree
-            p: Rewiring probability
-            
-        Returns:
-            network: Small-world network
-        """
-        return nx.watts_strogatz_graph(self.n_nodes, k, p)
-    
-    def barabasi_albert(self,
-                       m: int) -> nx.Graph:
-        """Generate Barabási-Albert scale-free network.
-        
-        Args:
-            m: Number of edges to attach
-            
-        Returns:
-            network: Scale-free network
-        """
-        return nx.barabasi_albert_graph(self.n_nodes, m)
-```
-
-### Network Dynamics
-
-```python
-class NetworkDynamics:
-    def __init__(self,
-                 network: nx.Graph):
-        """Initialize network dynamics.
-        
-        Args:
-            network: NetworkX graph
+            network: Network analyzer
+            method: Community detection method
         """
         self.network = network
-        self.state = {node: 0.0 for node in network.nodes()}
+        self.method = method
     
-    def update_states(self,
-                     dynamics: Callable,
-                     dt: float = 0.1) -> None:
-        """Update node states.
+    def detect_communities(self) -> Dict[str, Any]:
+        """Detect network communities."""
+        if self.method == 'louvain':
+            partition = community.best_partition(self.network.G)
+        elif self.method == 'spectral':
+            partition = self._spectral_clustering()
+        else:
+            raise ValueError(f"Unknown method: {self.method}")
+        
+        # Compute community metrics
+        metrics = {
+            'modularity': community.modularity(partition, self.network.G),
+            'num_communities': len(set(partition.values())),
+            'sizes': self._community_sizes(partition)
+        }
+        
+        return {
+            'partition': partition,
+            'metrics': metrics
+        }
+    
+    def _spectral_clustering(self) -> Dict[int, int]:
+        """Perform spectral clustering."""
+        # Compute Laplacian
+        L = nx.laplacian_matrix(self.network.G).todense()
+        
+        # Compute eigenvectors
+        eigenvals, eigenvecs = np.linalg.eigh(L)
+        
+        # Use second eigenvector for bipartition
+        partition = np.sign(eigenvecs[:,1])
+        
+        return {i: int(p) for i, p in enumerate(partition)}
+```
+
+### Temporal Networks
+
+```python
+class TemporalNetwork:
+    def __init__(self,
+                 snapshots: List[np.ndarray],
+                 times: np.ndarray):
+        """Initialize temporal network.
         
         Args:
-            dynamics: State update function
-            dt: Time step
+            snapshots: List of adjacency matrices
+            times: Time points
         """
-        new_state = {}
-        for node in self.network.nodes():
-            # Get neighbor states
-            neighbor_states = [
-                self.state[nbr]
-                for nbr in self.network.neighbors(node)
-            ]
-            
-            # Update state
-            new_state[node] = dynamics(
-                self.state[node],
-                neighbor_states,
-                dt
-            )
-        
-        self.state = new_state
+        self.snapshots = snapshots
+        self.times = times
+        self.networks = [
+            NetworkAnalyzer(A) for A in snapshots
+        ]
     
-    def simulate(self,
-                dynamics: Callable,
-                n_steps: int,
-                dt: float = 0.1) -> np.ndarray:
-        """Simulate network dynamics.
+    def compute_temporal_metrics(self) -> Dict[str, np.ndarray]:
+        """Compute temporal network metrics."""
+        metrics = {
+            'density': self._compute_density(),
+            'clustering': self._compute_clustering(),
+            'path_length': self._compute_path_length()
+        }
+        return metrics
+    
+    def detect_temporal_communities(self) -> List[Dict[int, int]]:
+        """Detect communities across time."""
+        detector = CommunityDetector(self.networks[0])
+        communities = []
         
-        Args:
-            dynamics: State update function
-            n_steps: Number of steps
-            dt: Time step
-            
-        Returns:
-            trajectories: Node state trajectories
-        """
-        trajectories = np.zeros((n_steps, len(self.network)))
+        for network in self.networks:
+            detector.network = network
+            result = detector.detect_communities()
+            communities.append(result['partition'])
         
-        for t in range(n_steps):
-            # Store current states
-            trajectories[t] = list(self.state.values())
-            
-            # Update states
-            self.update_states(dynamics, dt)
-        
-        return trajectories
+        return communities
 ```
 
 ## Applications
-
-### Social Networks
-
-#### Structure Analysis
-- Community detection
-- Influence spread
-- Information flow
-- Role identification
-
-#### Temporal Dynamics
-- Network evolution
-- Trend diffusion
-- Opinion dynamics
-- Behavioral contagion
 
 ### Biological Networks
 
 #### Neural Networks
 - Connectivity patterns
-- Activity dynamics
-- Learning rules
-- Information processing
+- Information flow
+- Synaptic plasticity
+- Network development
 
-#### Molecular Networks
-- Protein interactions
-- Metabolic pathways
-- Gene regulation
-- Signal transduction
+#### Ecological Networks
+- Food webs
+- Species interactions
+- Ecosystem stability
+- Biodiversity patterns
+
+### Social Networks
+
+#### Knowledge Networks
+- Information diffusion
+- Cultural transmission
+- Innovation spread
+- Collective learning
+
+#### Organizational Networks
+- Collaboration patterns
+- Resource flows
+- Adaptive governance
+- Social resilience
+
+### Technological Networks
+
+#### Infrastructure Networks
+- Resource distribution
+- System resilience
+- Failure cascades
+- Optimal design
+
+#### Information Networks
+- Communication patterns
+- Data flow
+- Network security
+- System optimization
+
+## Advanced Topics
+
+### Multilayer Networks
+- Layer interactions
+- Cross-scale dynamics
+- Emergent properties
+- Stability analysis
+
+### Adaptive Networks
+- Topology evolution
+- State dynamics
+- Feedback loops
+- Self-organization
+
+### Network Control
+- Controllability
+- Target control
+- Network intervention
+- Optimal influence
 
 ## Best Practices
 
 ### Analysis
 1. Data preprocessing
-2. Network representation
-3. Algorithm selection
-4. Result validation
+2. Network construction
+3. Metric selection
+4. Validation methods
 
-### Modeling
-1. Model selection
-2. Parameter estimation
-3. Validation metrics
-4. Robustness testing
+### Implementation
+1. Efficient algorithms
+2. Scalable methods
+3. Error handling
+4. Performance optimization
 
 ### Visualization
 1. Layout algorithms
 2. Visual encoding
-3. Interactive exploration
-4. Scalable rendering
+3. Interactive tools
+4. Clear presentation
 
 ## Common Issues
 
 ### Technical Challenges
-1. Large-scale networks
-2. Dynamic networks
-3. Missing data
+1. Large networks
+2. Missing data
+3. Dynamic changes
 4. Computational complexity
 
 ### Solutions
 1. Sampling methods
-2. Streaming algorithms
-3. Imputation techniques
+2. Robust algorithms
+3. Incremental updates
 4. Parallel processing
 
 ## Related Documentation
 - [[graph_theory]]
 - [[complex_systems]]
-- [[statistical_physics]]
-- [[information_theory]] 
+- [[dynamical_systems]]
+- [[ecological_networks]]
+- [[social_ecological_systems]]
+- [[collective_intelligence]] 

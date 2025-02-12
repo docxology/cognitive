@@ -10,22 +10,24 @@ tags:
   - probability
   - dynamics
   - random_processes
+  - uncertainty
 semantic_relations:
   - type: foundation_for
     links:
       - [[dynamical_systems]]
-      - [[non_equilibrium_thermodynamics]]
-      - [[active_inference]]
+      - [[network_science]]
+      - [[statistical_physics]]
   - type: implements
     links:
       - [[probability_theory]]
       - [[measure_theory]]
-      - [[statistical_physics]]
+      - [[differential_equations]]
   - type: relates
     links:
       - [[information_theory]]
       - [[optimization_theory]]
       - [[control_theory]]
+      - [[complex_systems]]
 
 ---
 
@@ -33,326 +35,298 @@ semantic_relations:
 
 ## Overview
 
-Stochastic Processes provide a mathematical framework for describing random phenomena that evolve over time or space. They are fundamental to understanding noise, fluctuations, and uncertainty in physical, biological, and cognitive systems.
+Stochastic Processes provide a mathematical framework for analyzing systems with random dynamics. They form the foundation for understanding uncertainty and variability in complex systems, from molecular dynamics to ecological populations and neural activity.
 
 ## Mathematical Foundation
 
-### Process Types
+### Probability Spaces
 
-#### Markov Processes
+#### Filtered Space
 ```math
-P(X_{t+1}|X_t,X_{t-1},...,X_0) = P(X_{t+1}|X_t)
+(\Omega, \mathcal{F}, \{\mathcal{F}_t\}_{t \geq 0}, \mathbb{P})
 ```
 where:
-- $X_t$ is state at time $t$
-- $P$ is transition probability
+- $\Omega$ is sample space
+- $\mathcal{F}$ is σ-algebra
+- $\{\mathcal{F}_t\}$ is filtration
+- $\mathbb{P}$ is probability measure
 
-#### Diffusion Processes
+#### Martingales
 ```math
-dX_t = μ(X_t,t)dt + σ(X_t,t)dW_t
+\mathbb{E}[X_{t+s}|\mathcal{F}_t] = X_t
 ```
 where:
-- $μ$ is drift term
-- $σ$ is diffusion term
+- $X_t$ is martingale process
+- $\mathcal{F}_t$ is filtration at time $t$
+
+### Stochastic Differential Equations
+
+#### Itô Process
+```math
+dX_t = \mu(X_t,t)dt + \sigma(X_t,t)dW_t
+```
+where:
+- $\mu$ is drift term
+- $\sigma$ is diffusion term
 - $W_t$ is Wiener process
 
 ## Implementation
 
-### Stochastic Integration
+### Stochastic Simulator
 
 ```python
-class StochasticIntegrator:
+class StochasticProcess:
     def __init__(self,
                  drift: Callable,
                  diffusion: Callable,
-                 dt: float = 0.01):
-        """Initialize stochastic integrator.
+                 dimension: int,
+                 seed: Optional[int] = None):
+        """Initialize stochastic process.
         
         Args:
-            drift: Drift function
-            diffusion: Diffusion function
-            dt: Time step
+            drift: Drift function μ(x,t)
+            diffusion: Diffusion function σ(x,t)
+            dimension: State dimension
+            seed: Random seed
         """
         self.drift = drift
         self.diffusion = diffusion
-        self.dt = dt
+        self.dim = dimension
+        
+        # Initialize random state
+        self.rng = np.random.RandomState(seed)
+        
+        # Initialize process state
+        self.state = np.zeros(dimension)
+        self.time = 0.0
     
-    def euler_maruyama(self,
-                      x0: np.ndarray,
-                      T: float) -> Tuple[np.ndarray, np.ndarray]:
-        """Euler-Maruyama integration.
+    def step(self,
+            dt: float = 0.01) -> np.ndarray:
+        """Evolve process one step using Euler-Maruyama.
         
         Args:
-            x0: Initial state
-            T: Integration time
+            dt: Time step
             
         Returns:
-            t: Time points
-            x: State trajectory
+            state: Updated state
         """
-        # Time points
-        t = np.arange(0, T + self.dt, self.dt)
-        n_steps = len(t)
+        # Generate Wiener increment
+        dW = self.rng.normal(0, np.sqrt(dt), self.dim)
         
-        # Initialize trajectory
-        x = np.zeros((n_steps, *x0.shape))
-        x[0] = x0
+        # Compute drift and diffusion
+        drift = self.drift(self.state, self.time)
+        diff = self.diffusion(self.state, self.time)
         
-        # Integration
-        for i in range(n_steps-1):
-            # Compute increments
-            drift_term = self.drift(x[i], t[i]) * self.dt
-            diffusion_term = (
-                self.diffusion(x[i], t[i]) *
-                np.sqrt(self.dt) *
-                np.random.randn(*x0.shape)
-            )
-            
-            # Update state
-            x[i+1] = x[i] + drift_term + diffusion_term
+        # Update state
+        self.state += drift * dt + diff * dW
+        self.time += dt
         
-        return t, x
+        return self.state
     
-    def milstein(self,
-                x0: np.ndarray,
-                T: float) -> Tuple[np.ndarray, np.ndarray]:
-        """Milstein integration.
+    def simulate(self,
+                duration: float,
+                dt: float = 0.01) -> Tuple[np.ndarray, np.ndarray]:
+        """Simulate process trajectory.
         
         Args:
-            x0: Initial state
-            T: Integration time
+            duration: Simulation duration
+            dt: Time step
             
         Returns:
-            t: Time points
-            x: State trajectory
+            times: Time points
+            states: State trajectory
         """
-        # Time points
-        t = np.arange(0, T + self.dt, self.dt)
-        n_steps = len(t)
+        n_steps = int(duration / dt)
+        times = np.linspace(0, duration, n_steps)
+        states = np.zeros((n_steps, self.dim))
         
-        # Initialize trajectory
-        x = np.zeros((n_steps, *x0.shape))
-        x[0] = x0
+        for i in range(n_steps):
+            states[i] = self.step(dt)
         
-        # Integration
-        for i in range(n_steps-1):
-            # Generate noise
-            dW = np.sqrt(self.dt) * np.random.randn(*x0.shape)
-            
-            # Compute terms
-            drift_term = self.drift(x[i], t[i]) * self.dt
-            diffusion_term = self.diffusion(x[i], t[i]) * dW
-            
-            # Milstein correction
-            diffusion_derivative = (
-                self.diffusion(x[i] + self.diffusion(x[i], t[i]), t[i]) -
-                self.diffusion(x[i], t[i])
-            ) / self.diffusion(x[i], t[i])
-            correction_term = 0.5 * (
-                self.diffusion(x[i], t[i]) *
-                diffusion_derivative *
-                (dW**2 - self.dt)
-            )
-            
-            # Update state
-            x[i+1] = x[i] + drift_term + diffusion_term + correction_term
-        
-        return t, x
+        return times, states
 ```
 
-### Markov Chain Analysis
+### Markov Chain
 
 ```python
 class MarkovChain:
     def __init__(self,
                  transition_matrix: np.ndarray,
-                 state_space: np.ndarray):
+                 state_space: List[Any]):
         """Initialize Markov chain.
         
         Args:
             transition_matrix: State transition probabilities
-            state_space: State space values
+            state_space: List of possible states
         """
         self.P = transition_matrix
         self.states = state_space
+        self.n_states = len(state_space)
         
         # Validate transition matrix
-        self._validate_transition_matrix()
-    
-    def _validate_transition_matrix(self):
-        """Validate transition matrix properties."""
-        # Check stochasticity
-        if not np.allclose(np.sum(self.P, axis=1), 1.0):
-            raise ValueError("Rows must sum to 1")
+        assert np.allclose(np.sum(self.P, axis=1), 1)
         
-        # Check non-negativity
-        if np.any(self.P < 0):
-            raise ValueError("Probabilities must be non-negative")
+        # Initialize state
+        self.current_state = 0
     
-    def steady_state(self,
-                    max_iter: int = 1000,
-                    tol: float = 1e-8) -> np.ndarray:
-        """Compute steady state distribution.
+    def step(self) -> Any:
+        """Take one step in chain.
         
-        Args:
-            max_iter: Maximum iterations
-            tol: Convergence tolerance
-            
         Returns:
-            pi: Steady state distribution
+            state: New state
         """
-        # Power iteration
-        pi = np.ones(len(self.states)) / len(self.states)
+        # Sample next state
+        self.current_state = np.random.choice(
+            self.n_states,
+            p=self.P[self.current_state]
+        )
         
-        for _ in range(max_iter):
-            pi_new = pi @ self.P
-            
-            if np.max(np.abs(pi_new - pi)) < tol:
-                break
-                
-            pi = pi_new
+        return self.states[self.current_state]
+    
+    def compute_stationary(self) -> np.ndarray:
+        """Compute stationary distribution.
+        
+        Returns:
+            pi: Stationary distribution
+        """
+        # Solve eigenvalue problem
+        eigenvals, eigenvecs = np.linalg.eig(self.P.T)
+        
+        # Find eigenvector for eigenvalue 1
+        idx = np.argmin(np.abs(eigenvals - 1))
+        pi = np.real(eigenvecs[:, idx])
+        
+        # Normalize
+        pi = pi / np.sum(pi)
         
         return pi
-    
-    def first_passage_time(self,
-                         start: int,
-                         target: int,
-                         n_samples: int = 1000) -> float:
-        """Compute mean first passage time.
-        
-        Args:
-            start: Start state index
-            target: Target state index
-            n_samples: Number of samples
-            
-        Returns:
-            mfpt: Mean first passage time
-        """
-        passage_times = []
-        
-        for _ in range(n_samples):
-            state = start
-            time = 0
-            
-            while state != target:
-                state = np.random.choice(
-                    len(self.states),
-                    p=self.P[state]
-                )
-                time += 1
-            
-            passage_times.append(time)
-        
-        return np.mean(passage_times)
 ```
 
 ### Stochastic Differential Equations
 
 ```python
-class StochasticDifferentialEquation:
+class SDESolver:
     def __init__(self,
-                 state_dim: int,
-                 noise_dim: int):
-        """Initialize SDE system.
+                 sde: StochasticProcess,
+                 method: str = 'euler'):
+        """Initialize SDE solver.
         
         Args:
-            state_dim: State dimension
-            noise_dim: Noise dimension
-        """
-        self.state_dim = state_dim
-        self.noise_dim = noise_dim
-        
-        # Initialize state
-        self.state = np.zeros(state_dim)
-    
-    def drift(self,
-             x: np.ndarray,
-             t: float) -> np.ndarray:
-        """Compute drift term.
-        
-        Args:
-            x: Current state
-            t: Current time
-            
-        Returns:
-            drift: Drift vector
-        """
-        # Implementation depends on specific system
-        pass
-    
-    def diffusion(self,
-                 x: np.ndarray,
-                 t: float) -> np.ndarray:
-        """Compute diffusion term.
-        
-        Args:
-            x: Current state
-            t: Current time
-            
-        Returns:
-            diffusion: Diffusion matrix
-        """
-        # Implementation depends on specific system
-        pass
-    
-    def simulate(self,
-                T: float,
-                dt: float = 0.01,
-                method: str = 'euler') -> Tuple[np.ndarray, np.ndarray]:
-        """Simulate SDE system.
-        
-        Args:
-            T: Integration time
-            dt: Time step
+            sde: Stochastic process
             method: Integration method
+        """
+        self.sde = sde
+        self.method = method
+    
+    def solve(self,
+             x0: np.ndarray,
+             duration: float,
+             dt: float = 0.01) -> Tuple[np.ndarray, np.ndarray]:
+        """Solve SDE numerically.
+        
+        Args:
+            x0: Initial condition
+            duration: Integration duration
+            dt: Time step
             
         Returns:
-            t: Time points
-            x: State trajectory
+            times: Time points
+            solution: Solution trajectory
         """
-        integrator = StochasticIntegrator(
-            self.drift,
-            self.diffusion,
-            dt
-        )
+        # Initialize
+        n_steps = int(duration / dt)
+        times = np.linspace(0, duration, n_steps)
+        solution = np.zeros((n_steps, self.sde.dim))
+        solution[0] = x0
         
-        if method == 'euler':
-            return integrator.euler_maruyama(self.state, T)
-        elif method == 'milstein':
-            return integrator.milstein(self.state, T)
-        else:
-            raise ValueError(f"Unknown method: {method}")
+        # Integration loop
+        for i in range(1, n_steps):
+            if self.method == 'euler':
+                solution[i] = self._euler_step(
+                    solution[i-1], times[i-1], dt
+                )
+            elif self.method == 'milstein':
+                solution[i] = self._milstein_step(
+                    solution[i-1], times[i-1], dt
+                )
+        
+        return times, solution
+    
+    def _euler_step(self,
+                   x: np.ndarray,
+                   t: float,
+                   dt: float) -> np.ndarray:
+        """Euler-Maruyama step."""
+        dW = np.random.normal(0, np.sqrt(dt), self.sde.dim)
+        
+        return (x + 
+                self.sde.drift(x, t) * dt +
+                self.sde.diffusion(x, t) * dW)
 ```
 
 ## Applications
 
 ### Physical Systems
 
-#### Brownian Motion
-- Particle diffusion
+#### Molecular Dynamics
+- Brownian motion
+- Diffusion processes
+- Chemical reactions
 - Thermal fluctuations
-- Random walks
-- Noise processes
 
-#### Chemical Kinetics
-- Reaction networks
-- Population dynamics
-- Gene expression
-- Metabolic pathways
+#### Quantum Systems
+- Quantum noise
+- Open systems
+- Decoherence
+- Measurement
 
-### Cognitive Systems
+### Biological Systems
 
-#### Neural Dynamics
+#### Population Dynamics
+- Birth-death processes
+- Competition models
+- Epidemic spread
+- Genetic drift
+
+#### Neural Systems
 - Spike trains
 - Synaptic noise
 - Population coding
 - Decision making
 
-#### Learning Processes
-- Exploration-exploitation
-- Policy adaptation
-- Belief updating
-- Parameter estimation
+### Financial Systems
+
+#### Market Models
+- Price processes
+- Option pricing
+- Risk assessment
+- Portfolio theory
+
+#### Economic Systems
+- Agent-based models
+- Game theory
+- Strategic behavior
+- Market dynamics
+
+## Advanced Topics
+
+### Random Fields
+- Spatial processes
+- Gaussian fields
+- Point processes
+- Lattice models
+
+### Filtering Theory
+- Kalman filtering
+- Particle filters
+- State estimation
+- Data assimilation
+
+### Large Deviations
+- Rate functions
+- Asymptotic behavior
+- Rare events
+- Phase transitions
 
 ## Best Practices
 
@@ -363,33 +337,35 @@ class StochasticDifferentialEquation:
 4. Handle boundaries
 
 ### Implementation
-1. Stable integration
+1. Numerical stability
 2. Error control
 3. Efficient sampling
-4. State constraints
+4. Convergence checks
 
 ### Analysis
-1. Ergodicity checks
-2. Stability analysis
-3. Convergence tests
-4. Statistical validation
+1. Statistical tests
+2. Uncertainty quantification
+3. Robustness checks
+4. Validation methods
 
 ## Common Issues
 
 ### Technical Challenges
-1. Numerical stability
-2. Path dependence
-3. Rare events
-4. Dimensionality
+1. Numerical instability
+2. Rare event sampling
+3. High dimensionality
+4. Long-time behavior
 
 ### Solutions
 1. Adaptive stepping
 2. Importance sampling
-3. Variance reduction
-4. Dimension reduction
+3. Dimension reduction
+4. Multi-scale methods
 
 ## Related Documentation
 - [[probability_theory]]
-- [[measure_theory]]
 - [[dynamical_systems]]
-- [[statistical_physics]] 
+- [[statistical_physics]]
+- [[information_theory]]
+- [[control_theory]]
+- [[complex_systems]] 
