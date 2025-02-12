@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document outlines the application of [[Active_Inference|Active Inference]] principles to socioeconomic systems within the [[BioFirm_Framework|BioFirm]]. It demonstrates how the [[Active_Inference/Free_Energy_Principle|Free Energy Principle]] can be used to understand and guide social and economic dynamics in bioregional contexts.
+This document outlines the application of [[Active_Inference|Active Inference]] principles to socioeconomic systems within the [[biofirm_framework|BioFirm]]. It demonstrates how the [[Active_Inference/Free_Energy_Principle|Free Energy Principle]] can be used to understand and guide social and economic dynamics in bioregional contexts.
 
 ## Theoretical Framework
 
@@ -217,7 +217,7 @@ where:
 
 ## See Also
 - [[Active_Inference]]
-- [[BioFirm_Framework]]
+- [[biofirm_framework]]
 - [[Social_Systems]]
 - [[Economic_Systems]]
 - [[Governance_Systems]]

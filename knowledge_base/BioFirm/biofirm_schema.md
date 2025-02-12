@@ -1,4 +1,4 @@
-# [[BioFirm_Framework|BioFirm]] Active Inference Schema
+# [[biofirm_framework|BioFirm]] Active Inference Schema
 
 ## Core Abstractions
 

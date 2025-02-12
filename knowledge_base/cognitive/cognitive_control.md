@@ -1,258 +1,299 @@
-# Cognitive Control
-
 ---
 title: Cognitive Control
-type: concept
+type: knowledge_base
 status: stable
+created: 2024-03-20
 tags:
   - cognition
   - control
   - executive_function
-  - regulation
-  - behavior
+  - computation
 semantic_relations:
   - type: implements
-    links: [[executive_functions]]
+    links: [[control_processes]]
+  - type: extends
+    links: [[executive_processes]]
   - type: related
     links: 
-      - [[attention]]
+      - [[active_inference]]
+      - [[free_energy_principle]]
+      - [[attentional_control]]
       - [[working_memory]]
-      - [[metacognition]]
 ---
 
-## Overview
+# Cognitive Control
 
-Cognitive Control encompasses the mechanisms by which cognitive systems regulate, coordinate, and optimize mental processes and behavior. This system enables goal-directed behavior, flexible adaptation to changing circumstances, and resolution of competing demands on processing resources.
+Cognitive control represents the system's ability to flexibly coordinate thoughts and actions in accordance with internal goals. Within the active inference framework, it implements hierarchical precision control and model selection to optimize behavior through minimization of expected free energy.
 
-## Core Components
+## Mathematical Foundations
 
-### Executive Functions
-- [[executive_processes]] - Boss parts
-  - [[working_memory]] - Hold info
-    - [[maintenance]] - Keep active
-    - [[manipulation]] - Change info
-  - [[inhibitory_control]] - Stop things
-    - [[response_inhibition]] - Stop do
-    - [[interference_control]] - Block noise
+### Control Dynamics
+1. **State Regulation**
+   ```math
+   dx/dt = -∂F/∂x + D∇²x + η(t)
+   ```
+   where:
+   - x is system state
+   - F is free energy
+   - D is diffusion coefficient
+   - η is noise term
 
-### Attention Control
-- [[attention_regulation]] - Focus manage
-  - [[selective_attention]] - Choose what
-    - [[target_selection]] - Pick what
-    - [[distractor_suppression]] - Ignore what
-  - [[sustained_attention]] - Keep focus
-    - [[vigilance]] - Stay alert
-    - [[effort_control]] - Energy use
+2. **Policy Selection**
+   ```math
+   π* = argmin_π[G(π) + λC(π)]
+   ```
+   where:
+   - π* is optimal policy
+   - G is expected free energy
+   - C is control cost
+   - λ is trade-off parameter
 
-### Goal Management
-- [[goal_processes]] - Want handle
-  - [[goal_maintenance]] - Keep goals
-    - [[active_representation]] - Hold want
-    - [[priority_management]] - What first
-  - [[goal_updating]] - Change goals
-    - [[flexibility]] - Switch able
-    - [[adaptation]] - Change fit
+### Control Theory
+1. **Feedback Control**
+   ```math
+   u(t) = K(x*(t) - x(t)) + ∫K_i(x*(τ) - x(τ))dτ
+   ```
+   where:
+   - u is control signal
+   - K is gain matrix
+   - x* is target state
+   - x is current state
 
-## Control Mechanisms
+2. **Precision Control**
+   ```math
+   Π(t) = (Σ(t) + η(t)I)⁻¹
+   ```
+   where:
+   - Π is precision matrix
+   - Σ is uncertainty
+   - η is neural noise
+   - I is identity matrix
 
-### Monitoring Systems
-- [[performance_monitoring]] - Check work
-  - [[error_detection]] - Find wrong
-    - [[error_recognition]] - See wrong
-    - [[error_correction]] - Fix wrong
-  - [[conflict_monitoring]] - Spot fight
-    - [[response_conflict]] - Do clash
-    - [[strategy_conflict]] - Plan clash
+## Core Mechanisms
 
-### Resource Allocation
-- [[resource_control]] - Give power
-  - [[attention_resources]] - Focus power
-    - [[capacity_limits]] - How much
-    - [[effort_allocation]] - Try give
-  - [[processing_resources]] - Think power
-    - [[load_management]] - Full handle
-    - [[efficiency]] - Good use
+### Control Processes
+1. **Executive Functions**
+   - Goal maintenance
+   - Task switching
+   - Response inhibition
+   - Performance monitoring
+   - Error correction
 
-### Control Signals
-- [[control_signals]] - Boss tell
-  - [[top_down_control]] - High low
-    - [[bias_signals]] - Push way
-    - [[inhibitory_signals]] - Stop signals
-  - [[modulatory_signals]] - Change how
-    - [[gain_control]] - Strong weak
-    - [[timing_control]] - When do
+2. **Resource Management**
+   - Attention allocation
+   - Working memory
+   - Processing priorities
+   - Energy distribution
+   - Efficiency optimization
+
+### Regulatory Systems
+1. **Control Architecture**
+   - Hierarchical organization
+   - Feedback loops
+   - Forward models
+   - Error detection
+   - State estimation
+
+2. **Adaptation Mechanisms**
+   - Strategy selection
+   - Learning integration
+   - Flexibility control
+   - Stability maintenance
+   - Performance optimization
+
+## Active Inference Implementation
+
+### Model Optimization
+1. **Prediction Processing**
+   - State estimation
+   - Error computation
+   - Parameter updating
+   - Precision control
+   - Model selection
+
+2. **Control Dynamics**
+   - Information integration
+   - Resource planning
+   - Policy selection
+   - Performance enhancement
+   - Efficiency optimization
+
+### Resource Management
+1. **Processing Allocation**
+   - Computational costs
+   - Memory demands
+   - Control requirements
+   - Efficiency targets
+   - Performance goals
+
+2. **Stability Control**
+   - Balance maintenance
+   - Resource regulation
+   - Distribution control
+   - Performance monitoring
+   - Adaptation management
 
 ## Neural Implementation
 
-### Brain Networks
-- [[control_networks]] - Boss parts
-  - [[prefrontal_cortex]] - Front brain
-    - [[dorsolateral]] - Side front
-    - [[ventrolateral]] - Low front
-  - [[cingulate_cortex]] - Middle brain
-    - [[anterior_cingulate]] - Front middle
-    - [[posterior_cingulate]] - Back middle
+### Network Architecture
+1. **Core Systems**
+   - Prefrontal cortex
+   - Anterior cingulate
+   - Basal ganglia
+   - Parietal regions
+   - Integration hubs
+
+2. **Processing Streams**
+   - Control pathways
+   - Resource networks
+   - Learning circuits
+   - Error processing
+   - Integration systems
 
 ### Circuit Mechanisms
-- [[control_circuits]] - Boss paths
-  - [[local_circuits]] - Near paths
-    - [[inhibitory_circuits]] - Stop paths
-    - [[excitatory_circuits]] - Go paths
-  - [[long_range]] - Far paths
-    - [[frontoparietal]] - Front back
-    - [[frontostriatal]] - Front deep
+1. **Neural Operations**
+   - State monitoring
+   - Error detection
+   - Resource allocation
+   - Learning modulation
+   - Performance control
 
-### Neuromodulation
-- [[control_modulation]] - Change how
-  - [[dopamine_system]] - Want chemical
-    - [[reward_signals]] - Good mark
-    - [[error_signals]] - Wrong mark
-  - [[norepinephrine_system]] - Wake chemical
-    - [[arousal_control]] - Alert level
-    - [[gain_modulation]] - Strong level
+2. **Network Dynamics**
+   - Activity patterns
+   - Information flow
+   - Resource distribution
+   - State transitions
+   - Performance modulation
 
-## Control Functions
+## Behavioral Effects
 
-### Action Control
-- [[behavior_control]] - Do manage
-  - [[response_selection]] - Choose do
-    - [[action_planning]] - Plan move
-    - [[decision_making]] - Pick what
-  - [[response_inhibition]] - Stop do
-    - [[impulse_control]] - Stop urge
-    - [[motor_inhibition]] - Stop move
+### Control Characteristics
+1. **Performance Measures**
+   - Processing efficiency
+   - Response accuracy
+   - Learning rate
+   - Adaptation speed
+   - Error patterns
 
-### Cognitive Control
-- [[thought_control]] - Think manage
-  - [[information_selection]] - Pick info
-    - [[relevance_filtering]] - What matters
-    - [[priority_processing]] - What first
-  - [[strategy_control]] - Way manage
-    - [[strategy_selection]] - Pick how
-    - [[strategy_switching]] - Change how
-
-### Emotional Control
-- [[emotion_regulation]] - Feel manage
-  - [[emotion_monitoring]] - Feel check
-    - [[affect_awareness]] - Feel know
-    - [[intensity_tracking]] - How strong
-  - [[emotion_modulation]] - Feel change
-    - [[reappraisal]] - Think different
-    - [[suppression]] - Hold back
-
-## Development
-
-### Developmental Trajectory
-- [[control_development]] - Grow how
-  - [[early_development]] - Young grow
-    - [[basic_control]] - Simple boss
-    - [[emergence]] - Start show
-  - [[maturation]] - Get better
-    - [[refinement]] - Fine tune
-    - [[integration]] - Work together
+2. **System Impact**
+   - Task completion
+   - Resource utilization
+   - Error handling
+   - Learning capacity
+   - Performance quality
 
 ### Individual Differences
-- [[control_variation]] - People vary
-  - [[capacity_differences]] - Can vary
-    - [[control_strength]] - How strong
-    - [[flexibility]] - How change
-  - [[style_differences]] - Way vary
-    - [[strategy_preference]] - Like how
-    - [[effort_tendency]] - Try how
+1. **Control Capacity**
+   - Processing speed
+   - Memory capacity
+   - Attention control
+   - Learning ability
+   - Performance level
 
-### Environmental Effects
-- [[context_effects]] - Where change
-  - [[task_demands]] - Need what
-    - [[complexity]] - How hard
-    - [[time_pressure]] - When rush
-  - [[social_context]] - People effect
-    - [[social_demands]] - Others need
-    - [[cultural_norms]] - Group rules
+2. **State Factors**
+   - Cognitive load
+   - Resource availability
+   - Stress effects
+   - Fatigue impact
+   - Health status
 
-## Applications
+## Clinical Applications
 
-### Clinical Applications
-- [[control_disorders]] - Wrong control
-  - [[executive_dysfunction]] - Boss wrong
-    - [[adhd]] - Focus wrong
-    - [[impulsivity]] - Stop wrong
-  - [[intervention]] - Help fix
-    - [[cognitive_training]] - Think train
-    - [[behavioral_therapy]] - Do train
+### Control Disorders
+1. **Deficit Patterns**
+   - Executive dysfunction
+   - Attention problems
+   - Memory impairments
+   - Learning difficulties
+   - Performance decline
 
-### Educational Applications
-- [[learning_support]] - Learn help
-  - [[study_skills]] - Learn how
-    - [[attention_management]] - Focus help
-    - [[self_regulation]] - Self boss
-  - [[academic_support]] - School help
-    - [[organization]] - Order help
-    - [[planning]] - Plan help
+2. **Assessment Methods**
+   - Executive tests
+   - Attention measures
+   - Memory evaluation
+   - Learning assessment
+   - Performance metrics
 
-### Performance Enhancement
-- [[performance_optimization]] - Do better
-  - [[cognitive_enhancement]] - Think better
-    - [[training_programs]] - Practice what
-    - [[strategy_development]] - Way better
-  - [[stress_management]] - Handle hard
-    - [[coping_strategies]] - Deal how
-    - [[resilience]] - Bounce back
+### Intervention Approaches
+1. **Treatment Strategies**
+   - Executive training
+   - Attention enhancement
+   - Memory support
+   - Learning assistance
+   - Performance improvement
+
+2. **Rehabilitation Methods**
+   - Cognitive exercises
+   - Strategy development
+   - Error reduction
+   - Performance practice
+   - Adaptation training
 
 ## Research Methods
 
-### Behavioral Methods
-- [[control_assessment]] - Check how
-  - [[performance_tasks]] - Do tasks
-    - [[stroop_task]] - Word color
-    - [[flanker_task]] - Side ignore
-  - [[rating_scales]] - Judge how
-    - [[self_report]] - Say self
-    - [[observer_rating]] - Watch other
+### Experimental Paradigms
+1. **Control Tasks**
+   - Executive function
+   - Attention allocation
+   - Working memory
+   - Learning assessment
+   - Performance evaluation
 
-### Neural Methods
-- [[brain_measures]] - Brain check
-  - [[imaging]] - Picture take
-    - [[activation]] - Work where
-    - [[connectivity]] - Join how
-  - [[recording]] - Signal watch
-    - [[eeg]] - Wave watch
-    - [[meg]] - Field watch
+2. **Measurement Approaches**
+   - Behavioral metrics
+   - Neural recordings
+   - Performance indices
+   - Learning measures
+   - Adaptation tracking
 
-### Computational Models
-- [[control_models]] - Math think
-  - [[process_models]] - Step math
-    - [[conflict_monitoring]] - Fight math
-    - [[resource_allocation]] - Give math
-  - [[network_models]] - Join math
-    - [[circuit_dynamics]] - Path math
-    - [[system_models]] - Whole math
+### Analysis Techniques
+1. **Data Processing**
+   - Performance analysis
+   - Error patterns
+   - Learning curves
+   - Adaptation profiles
+   - State dynamics
+
+2. **Statistical Methods**
+   - Distribution analysis
+   - Pattern recognition
+   - Trend detection
+   - Performance metrics
+   - Efficiency indices
 
 ## Future Directions
 
-### Current Challenges
-- [[measurement_issues]] - Check hard
-- [[mechanism_understanding]] - How work
-- [[individual_differences]] - People vary
+1. **Theoretical Development**
+   - Model refinement
+   - Process understanding
+   - Individual differences
+   - Clinical applications
+   - Integration methods
 
-### Emerging Approaches
-- [[new_methods]] - New ways
-  - [[real_time_measures]] - Now check
-    - [[adaptive_assessment]] - Fit check
-    - [[mobile_monitoring]] - Move watch
-  - [[intervention_design]] - Help make
-    - [[personalized]] - Person fit
-    - [[technology_enhanced]] - Tech help
+2. **Technical Advances**
+   - Measurement tools
+   - Analysis techniques
+   - Training systems
+   - Support applications
+   - Integration platforms
 
-## References
-- [[miller_cohen]]
-- [[posner_attention]]
-- [[botvinick_conflict]]
-- [[diamond_executive]]
+3. **Clinical Innovation**
+   - Assessment tools
+   - Treatment strategies
+   - Intervention techniques
+   - Recovery protocols
+   - Support systems
 
 ## Related Concepts
-- [[executive_functions]]
-- [[attention]]
+- [[active_inference]]
+- [[free_energy_principle]]
+- [[attentional_control]]
 - [[working_memory]]
-- [[metacognition]]
-- [[self_regulation]]
-- [[decision_making]] 
+- [[executive_processes]]
+
+## References
+- [[control_theory]]
+- [[cognitive_science]]
+- [[computational_neuroscience]]
+- [[clinical_psychology]]
+- [[performance_optimization]] 

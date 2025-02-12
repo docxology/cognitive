@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document details the application of [[cognitive/active_inference|Active Inference]] principles to ecological systems within the [[BioFirm_Framework|BioFirm]] context. It focuses on how the [[cognitive/free_energy_principle|Free Energy Principle]] can be used to understand and manage complex ecological dynamics.
+This document details the application of [[cognitive/active_inference|Active Inference]] principles to ecological systems within the [[biofirm_framework|BioFirm]] context. It focuses on how the [[cognitive/free_energy_principle|Free Energy Principle]] can be used to understand and manage complex ecological dynamics.
 
 ## Theoretical Framework
 

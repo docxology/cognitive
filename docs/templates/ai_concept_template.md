@@ -1,255 +1,232 @@
-# AI-Oriented Concept Template
-
 ---
-title: Concept Name
-type: ai_concept
-status: draft
-created: YYYY-MM-DD
-updated: YYYY-MM-DD
-complexity: [basic|intermediate|advanced]
-processing_priority: 1-5
+title: AI Concept Template
+type: template
+status: stable
+created: 2024-02-12
+tags:
+  - template
+  - concept
+  - ai
 semantic_relations:
-  - type: prerequisite
-    links: []
+  - type: implements
+    links: [[../guides/documentation_standards]]
+  - type: relates
+    links:
+      - [[template_guide]]
+      - [[guide_template]]
+---
+
+# AI Concept Template
+
+## Overview
+
+This template provides a standardized structure for documenting AI and cognitive modeling concepts in the framework.
+
+## Template Structure
+
+### Basic Template
+```markdown
+---
+title: ${concept_name}
+type: concept
+status: draft
+created: ${date}
+tags:
+  - concept
+  - ai
+  - ${specific_tags}
+semantic_relations:
   - type: implements
     links: []
   - type: extends
     links: []
-knowledge_graph:
-  centrality: 0.0
-  density: 0.0
-  cluster_coefficient: 0.0
-embeddings:
-  model: sentence-transformers/all-mpnet-base-v2
-  vector: []
-tags:
-  - concept
-  - category
-  - domain
-validation:
-  completeness: 0.0
-  consistency: 0.0
-  coherence: 0.0
+  - type: relates
+    links: []
 ---
 
-#BEGIN_CONCEPT_DEFINITION
-Brief, precise definition optimized for machine processing and semantic understanding.
-#END_CONCEPT_DEFINITION
+# ${concept_name}
 
-## Formal Specification
+## Overview
 
-### Mathematical Foundation
-```math
-# Mathematical formalization of the concept
+Brief description of the AI concept.
+
+## Theoretical Foundation
+
+### Background
+Core theoretical background and principles.
+
+### Mathematical Framework
+Mathematical formulation and notation.
+
+### Key Components
+Essential elements and mechanisms.
+
+## Implementation
+
+### Architecture
+System architecture and components.
+
+### Algorithms
+Key algorithms and methods.
+
+### Data Structures
+Important data structures and representations.
+
+## Applications
+
+### Use Cases
+Primary applications and scenarios.
+
+### Examples
+Implementation examples.
+
+### Limitations
+Known limitations and constraints.
+
+## Integration
+
+### Dependencies
+Required components and dependencies.
+
+### Interfaces
+API and integration points.
+
+### Configuration
+Configuration options and parameters.
+
+## Validation
+
+### Testing Approach
+Validation methodology.
+
+### Metrics
+Performance metrics and evaluation.
+
+### Benchmarks
+Standard benchmarks and results.
+
+## Related Concepts
+- [[related_concept_1]]
+- [[related_concept_2]]
 ```
 
-### Logical Framework
-```prolog
-% Logical representation
-concept(X) :- property(X), relationship(X, Y).
-```
+## Usage Guidelines
 
-### Computational Model
-```python
-class ConceptModel:
-    """Computational representation of the concept"""
-    def __init__(self):
-        self.properties = {}
-        self.relationships = []
-```
+### Required Sections
+1. Overview
+2. Theoretical Foundation
+3. Implementation
+4. Applications
+5. Integration
+6. Validation
+7. Related Concepts
 
-## Knowledge Integration
+### Optional Sections
+1. Advanced Topics
+2. Research Directions
+3. Historical Context
+4. Future Work
 
-### Ontological Position
-```yaml
-ontology:
-  is_a: []
-  part_of: []
-  related_to: []
-  implements: []
-```
+### Metadata Fields
+1. Title
+2. Type
+3. Status
+4. Created Date
+5. Tags
+6. Semantic Relations
 
-### Semantic Relationships
-- **Prerequisites**: [[concept1]], [[concept2]]
-- **Dependencies**: [[dependency1]], [[dependency2]]
-- **Applications**: [[application1]], [[application2]]
+## Best Practices
 
-### Context Embedding
-```yaml
-context:
-  domain: []
-  scope: []
-  constraints: []
-```
+### Content Guidelines
+1. Clear explanations
+2. Mathematical precision
+3. Code examples
+4. Visual diagrams
+5. Reference citations
 
-## Implementation Framework
+### Writing Style
+1. Technical accuracy
+2. Logical flow
+3. Consistent terminology
+4. Clear examples
+5. Proper citations
 
-### Core Components
-```python
-# @component_specification
-{
-    "interfaces": [],
-    "behaviors": [],
-    "constraints": []
-}
-```
+### Link Management
+1. Relevant links
+2. Bidirectional links
+3. Hierarchical structure
+4. Cross-references
 
-### Integration Points
-```python
-# @integration_specification
-{
-    "inputs": [],
-    "outputs": [],
-    "protocols": []
-}
-```
+## Template Variables
 
-### Validation Criteria
-```python
-# @validation_specification
-{
-    "invariants": [],
-    "assertions": [],
-    "tests": []
-}
-```
+### Required Variables
+- ${concept_name} - Name of the concept
+- ${date} - Creation date
+- ${specific_tags} - Concept-specific tags
 
-## Machine Learning Aspects
-
-### Training Considerations
-```yaml
-training:
-  data_requirements:
-    - type: structured
-      source: [[data_source1]]
-    - type: unstructured
-      source: [[data_source2]]
-  model_architecture:
-    - type: neural_network
-      specification: [[architecture_spec]]
-```
-
-### Feature Space
-```python
-# @feature_specification
-{
-    "dimensions": [],
-    "representations": [],
-    "transformations": []
-}
-```
-
-### Performance Metrics
-```python
-# @performance_metrics
-{
-    "accuracy": 0.0,
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1_score": 0.0
-}
-```
-
-## Processing Instructions
-
-### Priority Levels
-```yaml
-processing:
-  critical_path: boolean
-  dependency_order: integer
-  parallel_processing: boolean
-```
-
-### Resource Requirements
-```yaml
-resources:
-  memory: string
-  computation: string
-  time_complexity: string
-```
-
-### Optimization Hints
-```python
-# @optimization_hints
-{
-    "caching_strategy": "",
-    "parallelization": "",
-    "approximation": ""
-}
-```
-
-## Validation Framework
-
-### Consistency Checks
-```python
-# @consistency_validation
-def validate_concept():
-    """
-    Validation steps:
-    1. Check internal consistency
-    2. Verify relationships
-    3. Validate implementations
-    """
-    pass
-```
-
-### Completeness Metrics
-```yaml
-completeness:
-  definition: 0.0
-  relationships: 0.0
-  implementations: 0.0
-  validations: 0.0
-```
-
-### Quality Assurance
-```python
-# @quality_metrics
-{
-    "formal_correctness": 0.0,
-    "semantic_clarity": 0.0,
-    "implementation_coverage": 0.0
-}
-```
+### Optional Variables
+- ${description} - Brief description
+- ${author} - Content author
+- ${version} - Version number
+- ${references} - Reference list
 
 ## Examples
 
-### Minimal Example
-```python
-# @minimal_example
-def demonstrate_concept():
-    """Minimal working example of the concept"""
-    pass
+### Basic Concept
+```markdown
+---
+title: Active Inference
+type: concept
+status: draft
+created: 2024-02-12
+tags:
+  - concept
+  - ai
+  - inference
+  - modeling
+semantic_relations:
+  - type: implements
+    links: [[free_energy_principle]]
+  - type: relates
+    links:
+      - [[predictive_processing]]
+      - [[belief_updating]]
+---
+
+# Active Inference
+
+## Overview
+Active inference is a framework for understanding...
 ```
 
-### Complete Implementation
-```python
-# @complete_example
-class ConceptImplementation:
-    """Full implementation with all features"""
-    pass
+### Complex Concept
+```markdown
+---
+title: Free Energy Principle
+type: concept
+status: draft
+created: 2024-02-12
+tags:
+  - concept
+  - ai
+  - theory
+  - modeling
+semantic_relations:
+  - type: extends
+    links: [[information_theory]]
+  - type: relates
+    links:
+      - [[active_inference]]
+      - [[variational_inference]]
+---
+
+# Free Energy Principle
+
+## Overview
+The Free Energy Principle proposes that...
 ```
 
-### Integration Example
-```python
-# @integration_example
-def integrate_with_system():
-    """Example of system integration"""
-    pass
-```
-
-## Related Concepts
-- [[concept1]] {type: prerequisite, weight: 0.8}
-- [[concept2]] {type: implements, confidence: 0.9}
-- [[concept3]] {type: extends, similarity: 0.7}
-
-## References
-- [[reference1]]
-- [[reference2]]
-- [[reference3]]
-
-#BEGIN_METADATA_VALIDATION
-Last validated: YYYY-MM-DD
-Validation score: 0.0
-Coverage: 0.0
-#END_METADATA_VALIDATION 
+## Related Documentation
+- [[template_guide]]
+- [[guide_template]]
+- [[documentation_standards]] 
