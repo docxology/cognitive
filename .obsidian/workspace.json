@@ -201,6 +201,13 @@
   },
   "active": "7a6d72fa755690bd",
   "lastOpenFiles": [
+    "docs/guides/learning_paths/active_inference_biological_learning_path.md",
+    "docs/guides/learning_paths/active_inference_security_learning_path.md",
+    "docs/guides/learning_paths/active_inference_quantum_learning_path.md",
+    "docs/guides/learning_paths/active_inference_agi_learning_path.md",
+    "knowledge_base/cognitive/active_inference.md",
+    "docs/guides/learning_paths/active_inference_economic_learning_path.md",
+    "docs/guides/learning_paths/active_inference_social_learning_path.md",
     "docs/guides/learning_paths/active_inference_ecological_learning_path.md",
     "docs/guides/learning_paths/active_inference_cognitive_learning_path.md",
     "docs/guides/learning_paths/active_inference_robotics_learning_path.md",
@@ -240,13 +247,6 @@
     "knowledge_base/cognitive/adaptive_resonance_theory.md",
     "knowledge_base/mathematics/calculus.md",
     "knowledge_base/mathematics/differential_equations.md",
-    "knowledge_base/mathematics/dynamical_systems.md",
-    "knowledge_base/mathematics/stochastic_processes.md",
-    "knowledge_base/cognitive/error_propagation.md",
-    "knowledge_base/cognitive/hierarchical_inference.md",
-    "docs/guides/implementation/temporal_models.md",
-    "docs/guides/implementation/precision_mechanisms.md",
-    "docs/guides/implementation/error_propagation.md",
     "Canvas.canvas"
   ]
 }
