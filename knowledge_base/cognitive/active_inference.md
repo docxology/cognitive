@@ -45,6 +45,49 @@ where:
 - $σ$ is softmax function
 - $γ$ is precision parameter
 
+## Mathematical Framework
+
+### Discrete Time Active Inference
+
+The discrete time formulation uses VFE for both perception and action:
+
+```math
+\begin{aligned}
+& \text{Perception (State Inference):} \\
+& F_t = \text{KL}[q(s_t)||p(s_t|o_{1:t})] - \ln p(o_t|o_{1:t-1}) \\
+& \text{Action Selection:} \\
+& a_t^* = \argmin_a \mathbb{E}_{q(s_t)}[F_{t+1}(a)] \\
+& \text{Policy Selection:} \\
+& P(\pi) = \sigma(-\gamma G(\pi)) \text{ where } G(\pi) = \sum_\tau F_{\tau}(\pi)
+\end{aligned}
+```
+
+### Continuous Time Active Inference
+
+The continuous time extension incorporates path integral formulation:
+
+```math
+\begin{aligned}
+& \text{State Dynamics:} \\
+& dF = \frac{\partial F}{\partial s}ds + \frac{1}{2}\text{tr}\left(\frac{\partial^2 F}{\partial s^2}D\right)dt \\
+& \text{Action Selection:} \\
+& a^* = \argmin_a \int_t^{t+dt} \mathcal{L}(s(\tau), \dot{s}(\tau), a) d\tau \\
+& \text{Policy Selection:} \\
+& P(\pi) = \sigma(-\gamma \int_t^{t+T} \mathcal{L}_\pi d\tau)
+\end{aligned}
+```
+
+### Unified Framework
+
+The relationship between discrete and continuous time is bridged by:
+
+```math
+\begin{aligned}
+& F_{\text{discrete}} = -\ln p(o_t|s_t) - \ln p(s_t|s_{t-1}, a_{t-1}) + \ln q(s_t) \\
+& F_{\text{continuous}} = \int_t^{t+dt} [\mathcal{L}(s,\dot{s},a) + \text{KL}[q(s(\tau))||p(s(\tau)|o(\tau))]] d\tau
+\end{aligned}
+```
+
 ## Implementation
 
 ### Active Inference Agent
