@@ -1,83 +1,44 @@
-# Cognitive Modeling Documentation
+# Cognitive Ecosystem Modeling Framework — Documentation
 
-Welcome to the Cognitive Modeling documentation. This documentation is designed to be viewed in Obsidian for optimal navigation and knowledge linking.
+## What this repo is
 
-## Directory Structure
+A framework for modeling cognitive ecosystems using Active Inference,
+integrated with Obsidian for knowledge management: agent behavior modeling,
+knowledge-structure management, network visualization, and multi-agent
+simulation (from `README.md` and `main.py`, which runs the ant colony
+simulation via `ant_colony/`).
 
-### Core Documentation
-- [[concepts/cognitive_modeling_concepts|Concepts]] - Core concepts and theoretical foundations
-- [[guides/implementation_guides|Guides]] - Implementation guides and tutorials
-- [[api/api_documentation|API]] - API reference documentation
-- [[examples/usage_examples|Examples]] - Usage examples and tutorials
-- [[tools/development_tools|Tools]] - Development tools and utilities
-- [[templates/documentation_templates|Templates]] - Documentation templates
+## Directory map
 
-## Getting Started
+- `main.py` — entry point for the ant colony simulation
+- `ant_colony/` — simulation core (`agents/`, `simulation.py`)
+- `src/` — `models/`, `analysis/`, `visualization/`, `utils/`
+- `config.yaml` — project configuration (active-inference parameters,
+  knowledge-base settings, paths)
+- `docs/` — documentation (Obsidian-oriented; see `docs/README.md`)
+- `knowledge_base/`, `templates/` — knowledge-management assets
+- `tests/` — simulation and POMDP/visualization tests (`run_tests.py`)
 
-### Essential Setup
-- [[guides/installation_guide|Installation Guide]]
-- [[guides/configuration_guide|Configuration Guide]]
-- [[guides/quickstart_guide|Quick Start Guide]]
+## How to run
 
-### Core Concepts
-- [[concepts/plain_text_benefits|Plain Text Benefits]]
-- [[concepts/machine_readability|Machine Readability]]
-- [[concepts/research_education|Research and Education]]
+Run commands as documented in the repo's own files (no package manifest
+declares a CLI entry point, so commands below are from file contents):
 
-### Documentation Usage
-- [[guides/obsidian_linking|Obsidian Linking Guide]]
-- [[guides/package_documentation|Package Documentation]]
-- [[guides/pomdp_structure|POMDP Structure]]
+```bash
+python main.py                      # ant colony simulation (argparse-driven)
+python tests/run_tests.py           # test runner script in tests/
+```
 
-## Development
+Configuration (inference iterations, learning rate, knowledge-base linking)
+is set in `config.yaml`.
 
-### Implementation
-- [[guides/model_implementation|Model Implementation]]
-- [[guides/system_integration|System Integration]]
-- [[guides/testing_guide|Testing Guide]]
+## How to use this docs/ directory
 
-### Tools
-- [[tools/setup_tools|Setup Tools]]
-- [[tools/development_tools|Development Tools]]
-- [[tools/documentation_tools|Documentation Tools]]
+`docs/README.md` indexes the subfolders (concepts, guides, api, examples,
+tools, research, templates). This file is the human entry point;
+`docs/AGENTS.md` holds agent-facing conventions.
 
-### Examples
-- [[examples/quickstart_example|Quick Start Example]]
-- [[examples/basic_agent|Basic Agent]]
-- [[examples/active_inference_basic|Active Inference]]
+## Status
 
-## Contributing
-
-### Guidelines
-- [[guides/contribution_guide|Contribution Guide]]
-- [[guides/documentation_guide|Documentation Guide]]
-- [[guides/style_guide|Style Guide]]
-
-### Templates
-- [[templates/concept_template|Concept Template]]
-- [[templates/guide_template|Guide Template]]
-- [[templates/example_template|Example Template]]
-
-## Additional Resources
-
-### References
-- [[concepts/active_inference|Active Inference]]
-- [[concepts/free_energy_principle|Free Energy Principle]]
-- [[concepts/predictive_processing|Predictive Processing]]
-
-### Tools
-- [[tools/experiment_tools|Experiment Tools]]
-- [[tools/analysis_tools|Analysis Tools]]
-- [[tools/visualization_tools|Visualization Tools]]
-
-## Support
-
-### Help
-- [[guides/troubleshooting|Troubleshooting]]
-- [[guides/faq|FAQ]]
-- [[guides/support|Support]]
-
-### Community
-- [[guides/community_guide|Community Guide]]
-- [[guides/discussion|Discussion]]
-- [[guides/feedback|Feedback]] 
+Not documented in repo — needs owner input (no release/version or
+publication milestone is stated in tracked files).
