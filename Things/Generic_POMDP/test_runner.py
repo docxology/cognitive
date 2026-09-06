@@ -10,8 +10,8 @@ from pathlib import Path
 from datetime import datetime
 from typing import Dict, List, Optional
 
-from generic_pomdp import GenericPOMDP
-from visualization import POMDPVisualizer
+from Things.Generic_POMDP.generic_pomdp import GenericPOMDP
+from Things.Generic_POMDP.visualization import POMDPVisualizer
 
 # Configure logging
 logging.basicConfig(
