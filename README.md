@@ -16,7 +16,31 @@ See [[ai_folder_structure]] for comprehensive directory organization.
 
 📁 docs/                   # Documentation (See [[docs/guides/documentation_standards|Documentation Standards]])
 📁 tests/                  # Test suite (See [[docs/guides/unit_testing|Unit Testing Guide]])
-📁 data/                   # Data storage
+📁 src/                    # Framework code (models, analysis, visualization, utils)
+📁 Things/                 # Self-contained prototypes (Ant_Colony, BioFirm, POMDP, …)
+📁 knowledge_base/         # Concept nodes in Obsidian markdown
+📁 templates/              # Node templates
+
+## Installation and Usage
+
+No package manifest is published for this repo; install the libraries the
+code and tests import:
+
+```bash
+python -m pip install numpy pyyaml matplotlib seaborn scipy pytest pytest-cov tqdm click jinja2
+```
+
+Run the test suite from the repository root:
+
+```bash
+python -m pytest tests -q        # plain pytest
+python tests/run_tests.py        # wrapper: coverage + JUnit XML report
+```
+
+Prototype simulations live under `Things/` and carry their own
+requirements (for example `Things/Ant_Colony/requirements.txt`, which adds
+`torch`, `networkx`, `h5py`, and `pandas`; run the colony with
+`python -m ant_colony.main` from `Things/Ant_Colony/`).
 
 ## Features
 
@@ -35,7 +59,7 @@ See [[ai_folder_structure]] for comprehensive directory organization.
 ### Analysis & Visualization
 - [[docs/tools/network_analysis|Network analysis]]
 - [[docs/concepts/quality_metrics|Performance metrics]]
-- [[docs/tools/visualization|Interactive visualizations]]
+- [[docs/concepts/visualization_tools|Interactive visualizations]]
 - [[docs/guides/simulation|Simulation frameworks]]
 
 ## Knowledge Integration Architecture
@@ -52,7 +76,7 @@ See [[docs/guides/linking_completeness]] for comprehensive linking patterns.
 
 1. Theoretical Dependencies
    ```markdown
-   [[knowledge_base/mathematics/measure_theory]] → [[knowledge_base/mathematics/probability_theory]] → [[knowledge_base/cognitive/stochastic_processes]]
+   [[knowledge_base/mathematics/measure_theory]] → [[knowledge_base/mathematics/probability_theory]] → [[knowledge_base/mathematics/stochastic_processes]]
    ```
    - Enforces prerequisite knowledge
    - Validates theoretical foundations

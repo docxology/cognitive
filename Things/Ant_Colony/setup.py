@@ -10,13 +10,13 @@ setup(
         'ant_colony': ['config/*.yaml']
     },
     install_requires=[
-        'numpy',
-        'matplotlib',
-        'networkx',
-        'pyyaml',
-        'noise'  # For terrain generation
+        'numpy>=1.26.0',
+        'matplotlib>=3.8.0',
+        'networkx>=3.0',
+        'pyyaml>=6.0',
+        'noise>=1.2.2'  # For terrain generation
     ],
-    python_requires='>=3.7',
+    python_requires='>=3.9',
     entry_points={
         'console_scripts': [
             'ant-colony=ant_colony.main:main',

@@ -2,9 +2,11 @@
 
 ## Layout
 
-- Simulation logic: `ant_colony/` (agents incl. `Nestmate`, `simulation.py`)
-  invoked from `main.py`; supporting modules in `src/` (models, analysis,
-  visualization, utils).
+- Framework code: `src/` (models, analysis, visualization, utils).
+- Simulation logic: the ant colony package lives in
+  `Things/Ant_Colony/ant_colony/` (agents incl. `Nestmate`,
+  `simulation.py`, CLI `main.py`); other prototypes are sibling
+  directories under `Things/`.
 - Configuration: `config.yaml` (paths, active_inference parameters,
   knowledge_base settings; note `test_mode` flag).
 - Documentation style is Obsidian-first: `docs/` uses `[[wiki links]]`

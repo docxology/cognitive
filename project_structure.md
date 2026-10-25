@@ -177,7 +177,10 @@ Reusable templates and patterns
 - Contribution guide
 
 ### Dependencies
-- requirements.txt
-- setup.py
-- environment.yml
-- Dockerfile 
+- `Things/Ant_Colony/requirements.txt` (simulation, adds torch/networkx/h5py/pandas)
+- `Things/Continuous_Generic/requirements.txt`
+- `Things/Path_Network/requirements.txt`
+- Root tests and `src/` need numpy, PyYAML, matplotlib, seaborn, scipy, pytest
+
+There is no root `requirements.txt`, `setup.py`, `environment.yml`, or
+`Dockerfile` in this repository.

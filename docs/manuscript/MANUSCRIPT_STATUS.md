@@ -1,15 +1,16 @@
 # Manuscript Status — cognitive
 
 Repo type: research/teaching framework code (cognitive ecosystem modeling
-with Active Inference; ant colony simulation in `ant_colony/`, supporting
-modules in `src/`, Obsidian-oriented `docs/` and `knowledge_base/`).
+with Active Inference; ant colony simulation in
+`Things/Ant_Colony/ant_colony/`, supporting modules in `src/`,
+Obsidian-oriented `docs/` and `knowledge_base/`).
 
-Evidence checked: top-level listing (`main.py`, `ant_colony/`, `src/`,
-`config.yaml`, `docs/`, `knowledge_base/`, `templates/`, `tests/`,
-`Things/`, `Output/`, `InferAnt_Stream_10.md`), `README.md`,
-`main.py`, `config.yaml`, `docs/README.md`. No `manuscript/` directory, no
-analysis-output/figure pipeline, no publication track (no
-pyproject/publish config, no CITATION/zenodo metadata) exists in the repo.
+Evidence checked: top-level listing (`src/`, `Things/`, `config.yaml`,
+`docs/`, `knowledge_base/`, `templates/`, `tests/`, `scripts/`, `Output/`,
+`InferAnt_Stream_10.md`), `README.md`, `config.yaml`, `docs/README.md`.
+No `manuscript/` directory, no analysis-output/figure pipeline, no
+publication track (no pyproject/publish config, no CITATION/zenodo
+metadata) exists in the repo.
 
 Why no publication-target manuscript applies today: the repository is a
 modeling framework and teaching/knowledge-base workspace, not a

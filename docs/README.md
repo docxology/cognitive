@@ -5,28 +5,34 @@
 A framework for modeling cognitive ecosystems using Active Inference,
 integrated with Obsidian for knowledge management: agent behavior modeling,
 knowledge-structure management, network visualization, and multi-agent
-simulation (from `README.md` and `main.py`, which runs the ant colony
-simulation via `ant_colony/`).
+simulation. Framework code lives in `src/`; runnable prototypes (including
+the ant colony simulation) live under `Things/`.
 
 ## Directory map
 
-- `main.py` — entry point for the ant colony simulation
-- `ant_colony/` — simulation core (`agents/`, `simulation.py`)
 - `src/` — `models/`, `analysis/`, `visualization/`, `utils/`
+- `Things/` — self-contained prototypes; the ant colony simulation is
+  `Things/Ant_Colony/ant_colony/` (CLI: `ant_colony/main.py`)
 - `config.yaml` — project configuration (active-inference parameters,
   knowledge-base settings, paths)
-- `docs/` — documentation (Obsidian-oriented; see `docs/README.md`)
+- `docs/` — documentation (Obsidian-oriented; this file is the index)
 - `knowledge_base/`, `templates/` — knowledge-management assets
 - `tests/` — simulation and POMDP/visualization tests (`run_tests.py`)
+- `scripts/` — link and inventory tooling
 
 ## How to run
 
-Run commands as documented in the repo's own files (no package manifest
-declares a CLI entry point, so commands below are from file contents):
+No package manifest declares an installable distribution, so install the
+libraries the code and tests import:
 
 ```bash
-python main.py                      # ant colony simulation (argparse-driven)
-python tests/run_tests.py           # test runner script in tests/
+python -m pip install numpy pyyaml matplotlib seaborn scipy pytest pytest-cov tqdm click jinja2
+```
+
+```bash
+python -m pytest tests -q        # test suite from the repo root
+python tests/run_tests.py        # wrapper: coverage + JUnit XML report
+cd Things/Ant_Colony && python -m ant_colony.main   # reference simulation (adds torch, networkx, h5py, pandas)
 ```
 
 Configuration (inference iterations, learning rate, knowledge-base linking)

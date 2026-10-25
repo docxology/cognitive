@@ -49,6 +49,10 @@ config/*.local.yaml
 .pytest_cache/
 coverage.xml
 .coverage
+test-results.xml
+tests/test_report.json
+Output/test_*.png
+Output/tests/test_*.png
 
 # Jupyter Notebooks
 .ipynb_checkpoints
