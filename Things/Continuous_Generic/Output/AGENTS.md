@@ -7,7 +7,7 @@
 ## Scope
 - Local-only path under `projects/ongoing/` — matched by the root
   `.gitignore` rule `projects/*` and never committed.
-- Parent standard: see `/Volumes/external_drive/Git/template/projects/ongoing/AGENTS.md`.
+- Repository-wide policy for template projects is maintained in the template repository, not restated here.
 
 ## Layout
 - (to be filled: list child folders/files and their roles)
