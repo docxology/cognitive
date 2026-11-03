@@ -14,12 +14,12 @@ The SimplePOMDP implementation includes:
 ## Structure
 
 ```
-SimplePOMDP/
+Things/Simple_POMDP/
 ├── README.md              # This file
 ├── configuration.yaml     # Model configuration
-├── simple_pomdp.py       # Main implementation
-└── tests/
-    └── test_simple_pomdp.py  # Test suite
+├── simple_pomdp.py        # Main implementation
+├── run_simple_pomdp.py    # Entry point
+└── Output/                # Run outputs
 ```
 
 ## Features

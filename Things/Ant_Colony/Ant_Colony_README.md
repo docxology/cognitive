@@ -166,21 +166,9 @@ ant_colony/
 │   ├── world.py
 │   ├── pheromone.py
 │   └── resources.py
-├── models/
-│   ├── generative_model.py
-│   ├── belief_update.py
-│   └── policy_selection.py
-├── analysis/
-│   ├── metrics.py
-│   ├── network.py
-│   └── visualization.py
-├── config/
-│   ├── agent_config.yaml
-│   ├── colony_config.yaml
-│   ├── environment_config.yaml
-│   └── simulation_config.yaml
-└── tests/
-    ├── test_agent.py
-    ├── test_environment.py
-    └── test_simulation.py
+├── utils/              # Shared helpers
+├── visualization/      # Colony plots
+├── colony.py
+├── main.py
+└── simulation.py
 ```
